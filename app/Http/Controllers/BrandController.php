@@ -2,31 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
     public function index(){
-        
+        $brands = Brand::all();
+        return view('brand.index', compact('brands'));
     }
 
-    public function create(){
-        
+    // public function create(){
+    //     return view('brand.create');
+    // }
+
+    public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Brand::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect('/brand');
     }
 
-    public function store(){
-        
+    public function edit($id){
+        $brand = Brand::findOrFail($id);
+        return view('brand.edit', compact('brand'));
     }
 
-    public function edit(){
-        
+    public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Brand::findOrFail($id)->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect('/brand');
     }
 
-    public function update(){
-        
-    }
-
-    public function delete(){
-        
+    public function delete($id){
+        Brand::destroy($id);
+        return back();
     }
 }

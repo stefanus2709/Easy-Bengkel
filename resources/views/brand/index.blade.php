@@ -1,12 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
-</head>
-<body>
-    INDEX BRAND
-</body>
-</html>
+@extends('application')
+
+@section('page-title')
+    Brand
+@endsection
+
+@section('content')
+    @include('brand.create')
+    <div style="background-color: blueviolet">
+        <h1>INDEX BRAND</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($brands as $brand)
+                    <form action="/brand/delete/{{$brand->id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$brand->name}}</td>
+                            <td>
+                                <a href="/brand/edit/{{$brand->id}}">Edit</a>
+                                <button type="submit">Delete</button> 
+                            </td>
+                        </tr>
+                    </form>
+                @endforeach
+            </tbody>
+        </table>
+        @if(blank($brands))
+            <h5>No Data</h5>
+        @endif
+    </div>
+@endsection

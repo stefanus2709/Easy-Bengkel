@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
-</head>
-<body>
-    CREATE BRAND
-</body>
-</html>
+<div style="background-color: aqua">
+    <h1>Insert Brand</h1>
+    <form action="/brand/store" method="POST">
+        @csrf
+        <div>
+            <p style="margin-bottom: 0;">Brand Name</p>
+            <input type="text" name="name" placeholder="Input Brand Name" @error('terms') is invalid @enderror>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>

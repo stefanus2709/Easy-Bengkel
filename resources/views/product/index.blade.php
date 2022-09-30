@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
-</head>
-<body>
-    INDEX PRODUCT
-</body>
-</html>
+@extends('application')
+
+@section('page-title')
+    Dashboard
+@endsection
+
+@section('content')
+    <div style="background-color: blueviolet">
+        <h1>INDEX PRODUCT</h1>
+    </div>
+@endsection
