@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
-</head>
-<body>
-    CREATE CATEGORY
-</body>
-</html>
+<div>
+    <form action="/category/store" method="POST">
+        @csrf
+        <div>
+            <label for="inputCategoryName" class="form-label">Category Name</label>
+            <input type="text" class="form-control mb-3" id="inputCategoryName" name="name" placeholder="Input Category Name" @error('terms') is invalid @enderror>
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>

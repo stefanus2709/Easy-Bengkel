@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
-</head>
-<body>
-    EDIT CATEGORY
-</body>
-</html>
+<div style="background-color: aqua">
+    <h1>Edit Category</h1>
+    <form action="/category/update/{{$category->id}}" method="POST">
+        @csrf
+        @method('PATCH')
+        <div>
+            <p style="margin-bottom: 0;">Category Name</p>
+            <input type="text" name="name" placeholder="Input Category Name" value="{{$category->name}}" @error('terms') is invalid @enderror>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</div>

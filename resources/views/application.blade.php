@@ -12,18 +12,15 @@
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Icofont CSS -->
+    <link href="{{asset('icofont/icofont.min.css')}}" rel="stylesheet">
+
     <title>@yield('page-title')</title>
 </head>
 
 <body>
-  <div style="display: flex;">
-    <div>
-      @include('sidebar')
-    </div>
-    <div>     
-      @yield('content')
-    </div>
-  </div>
+    @include('sidebar')
 </body>
 
 </html>
