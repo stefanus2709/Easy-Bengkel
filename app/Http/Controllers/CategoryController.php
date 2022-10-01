@@ -28,25 +28,25 @@ class CategoryController extends Controller
         return redirect('/category');
     }
 
-    public function edit($id){
-        $category = Category::findOrFail($id);
-        return view('category.edit', compact('category'));
-    }
+    // public function edit($id){
+    //     $category = Category::findOrFail($id);
+    //     return view('category.edit', compact('category'));
+    // }
 
-    public function update(Request $request, $id){
+    public function update(Request $request){
         $request->validate([
             'name' => 'required',
         ]);
 
-        Category::findOrFail($id)->update([
+        Category::findOrFail($request->category_id)->update([
             'name' => $request->name,
         ]);
 
         return redirect('/category');
     }
 
-    public function delete($id){
-        Category::destroy($id);
+    public function delete(Request $request){
+        Category::destroy($request->category_id);
         return back();
     }
 }

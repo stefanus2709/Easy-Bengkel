@@ -17,21 +17,23 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+//create sama edit ga terpakai karena pakai popup & langsung pakai javascript
+
 //brand
 Route::get('/brand', 'App\Http\Controllers\BrandController@index')->name('brand');
-Route::get('/brand/create', 'App\Http\Controllers\BrandController@create')->name('brand-create');
+// Route::get('/brand/create', 'App\Http\Controllers\BrandController@create')->name('brand-create');
 Route::post('/brand/store', 'App\Http\Controllers\BrandController@store')->name('brand-store');
-Route::get('/brand/edit/{id}', 'App\Http\Controllers\BrandController@edit')->name('brand-edit');
-Route::patch('/brand/update/{id}', 'App\Http\Controllers\BrandController@update')->name('brand-update');
-Route::delete('/brand/delete/{id}', 'App\Http\Controllers\BrandController@delete')->name('brand-delete');
+// Route::get('/brand/edit/{id}', 'App\Http\Controllers\BrandController@edit')->name('brand-edit');
+Route::patch('/brand/update', 'App\Http\Controllers\BrandController@update')->name('brand-update');
+Route::delete('/brand/delete', 'App\Http\Controllers\BrandController@delete')->name('brand-delete');
 
 //category
 Route::get('/category', 'App\Http\Controllers\CategoryController@index')->name('category');
-Route::get('/category/create', 'App\Http\Controllers\CategoryController@create')->name('category-create');
+// Route::get('/category/create', 'App\Http\Controllers\CategoryController@create')->name('category-create');
 Route::post('/category/store', 'App\Http\Controllers\CategoryController@store')->name('category-store');
-Route::get('/category/edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('category-edit');
-Route::patch('/category/update/{id}', 'App\Http\Controllers\CategoryController@update')->name('category-update');
-Route::delete('/category/delete/{id}', 'App\Http\Controllers\CategoryController@delete')->name('category-delete');
+// Route::get('/category/edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('category-edit');
+Route::patch('/category/update', 'App\Http\Controllers\CategoryController@update')->name('category-update');
+Route::delete('/category/delete', 'App\Http\Controllers\CategoryController@delete')->name('category-delete');
 
 //item
 Route::get('/item', 'App\Http\Controllers\ItemController@index')->name('item');

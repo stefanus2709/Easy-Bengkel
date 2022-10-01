@@ -10,16 +10,19 @@
     <!-- Bootstrap CSS -->
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
     <!-- Icofont CSS -->
     <link href="{{asset('icofont/icofont.min.css')}}" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
     <title>@yield('page-title')</title>
 </head>
 
 <body>
+    @yield('custom-css')
     @include('sidebar')
 </body>
 

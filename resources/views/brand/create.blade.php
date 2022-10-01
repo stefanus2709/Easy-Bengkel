@@ -1,10 +1,11 @@
-<div style="background-color: aqua">
-    <h1>Insert Brand</h1>
+<div>
     <form action="/brand/store" method="POST">
         @csrf
         <div>
-            <p style="margin-bottom: 0;">Brand Name</p>
-            <input type="text" name="name" placeholder="Input Brand Name" @error('terms') is invalid @enderror>
+            <label for="inputBrandName" class="form-label">Brand Name</label>
+            <input type="text" class="form-control mb-3" id="inputBrandName" name="name" placeholder="Input Brand Name" @error('terms') is invalid @enderror>
+        </div>
+        <div class="text-end">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>
