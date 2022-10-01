@@ -63,11 +63,11 @@
                                 Type</span></span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="/item" class="nav-link align-middle pl-3 py-1 text-dark fw-normal fs-16px">
-                            <i class="icofont-box"></i> <span class="ms-1 d-none d-sm-inline">Items</span></span>
+                            <i class="icofont-box"></i> <span class="ms-1 d-none d-sm-inline">Items (ga dipake)</span></span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

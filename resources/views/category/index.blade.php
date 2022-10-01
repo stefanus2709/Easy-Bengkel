@@ -4,8 +4,25 @@
 Category
 @endsection
 
+@section('custom-css')
+<style>
+    .dataTables_info {
+        display: none;
+    }
+
+    .dataTables_wrapper .dataTables_paginate {
+        float: none;
+        text-align: center
+    }
+
+    .main-content, #createCategoryModal div, #editCategoryModal div, #deleteCategoryModal div {
+        font-family: 'Poppins';
+    }
+</style>
+@endsection
+
 @section('content')
-<div class="px-4 py-4">
+<div class="px-4 py-4 main-content">
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-3 align-middle">
         <p class="fs-22px mb-0 pb-0">

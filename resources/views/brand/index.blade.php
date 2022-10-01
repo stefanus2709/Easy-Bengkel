@@ -15,11 +15,14 @@ Brand
         text-align: center
     }
 
+    .main-content, #createBrandModal div, #editBrandModal div, #deleteBrandModal div {
+        font-family: 'Poppins';
+    }
 </style>
 @endsection
 
 @section('content')
-<div class="px-4 py-4">
+<div class="px-4 py-4 main-content">
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-3 align-middle">
         <p class="fs-22px mb-0 pb-0">

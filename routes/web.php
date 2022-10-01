@@ -35,13 +35,13 @@ Route::post('/category/store', 'App\Http\Controllers\CategoryController@store')-
 Route::patch('/category/update', 'App\Http\Controllers\CategoryController@update')->name('category-update');
 Route::delete('/category/delete', 'App\Http\Controllers\CategoryController@delete')->name('category-delete');
 
-//item
-Route::get('/item', 'App\Http\Controllers\ItemController@index')->name('item');
-Route::get('/item/create', 'App\Http\Controllers\ItemController@create')->name('item-create');
-Route::post('/item/store', 'App\Http\Controllers\ItemController@store')->name('item-store');
-Route::get('/item/edit/{id}', 'App\Http\Controllers\ItemController@edit')->name('item-edit');
-Route::patch('/item/update/{id}', 'App\Http\Controllers\ItemController@update')->name('item-update');
-Route::delete('/item/delete/{id}', 'App\Http\Controllers\ItemController@delete')->name('item-delete');
+//item (masih pertimbangan kemungkinan besar ga dipake)
+// Route::get('/item', 'App\Http\Controllers\ItemController@index')->name('item');
+// Route::get('/item/create', 'App\Http\Controllers\ItemController@create')->name('item-create');
+// Route::post('/item/store', 'App\Http\Controllers\ItemController@store')->name('item-store');
+// Route::get('/item/edit/{id}', 'App\Http\Controllers\ItemController@edit')->name('item-edit');
+// Route::patch('/item/update/{id}', 'App\Http\Controllers\ItemController@update')->name('item-update');
+// Route::delete('/item/delete/{id}', 'App\Http\Controllers\ItemController@delete')->name('item-delete');
 
 //po_in
 Route::get('/po_in', 'App\Http\Controllers\PurchaseOrderInController@index')->name('po_in');
@@ -67,13 +67,21 @@ Route::get('/quotation/edit/{id}', 'App\Http\Controllers\QuotationController@edi
 Route::patch('/quotation/update/{id}', 'App\Http\Controllers\QuotationController@update')->name('quotation-update');
 Route::delete('/quotation/delete/{id}', 'App\Http\Controllers\QuotationController@delete')->name('quotation-delete');
 
+//supplier
+Route::get('/supplier', 'App\Http\Controllers\SupplierController@index')->name('supplier');
+// Route::get('/supplier/create', 'App\Http\Controllers\SupplierController@create')->name('supplier-create');
+Route::post('/supplier/store', 'App\Http\Controllers\SupplierController@store')->name('supplier-store');
+// Route::get('/supplier/edit/{id}', 'App\Http\Controllers\SupplierController@edit')->name('supplier-edit');
+Route::patch('/supplier/update', 'App\Http\Controllers\SupplierController@update')->name('supplier-update');
+Route::delete('/supplier/delete', 'App\Http\Controllers\SupplierController@delete')->name('supplier-delete');
+
 //vehicle_type
 Route::get('/vehicle_type', 'App\Http\Controllers\VehicleTypeController@index')->name('vehicle_type');
-Route::get('/vehicle_type/create', 'App\Http\Controllers\VehicleTypeController@create')->name('vehicle_type-create');
+// Route::get('/vehicle_type/create', 'App\Http\Controllers\VehicleTypeController@create')->name('vehicle_type-create');
 Route::post('/vehicle_type/store', 'App\Http\Controllers\VehicleTypeController@store')->name('vehicle_type-store');
-Route::get('/vehicle_type/edit/{id}', 'App\Http\Controllers\VehicleTypeController@edit')->name('vehicle_type-edit');
-Route::patch('/vehicle_type/update/{id}', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type-update');
-Route::delete('/vehicle_type/delete/{id}', 'App\Http\Controllers\VehicleTypeController@delete')->name('vehicle_type-delete');
+// Route::get('/vehicle_type/edit/{id}', 'App\Http\Controllers\VehicleTypeController@edit')->name('vehicle_type-edit');
+Route::patch('/vehicle_type/update', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type-update');
+Route::delete('/vehicle_type/delete', 'App\Http\Controllers\VehicleTypeController@delete')->name('vehicle_type-delete');
 
 
 

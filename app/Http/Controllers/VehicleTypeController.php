@@ -2,31 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\VehicleType;
 use Illuminate\Http\Request;
 
 class VehicleTypeController extends Controller
 {
     public function index(){
-        
+        $vehicle_types = VehicleType::all();
+        return view('vehicle_type.index', compact('vehicle_types'));
     }
 
-    public function create(){
-        
+    // public function create(){
+    //     return view('vehicle_type.create');
+    // }
+
+    public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        VehicleType::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect('/vehicle_type');
     }
 
-    public function store(){
-        
+    // public function edit($id){
+    //     $vehicle_type = VehicleType::findOrFail($id);
+    //     return view('vehicle_type.edit', compact('vehicle_type'));
+    // }
+
+    public function update(Request $request){
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        VehicleType::findOrFail($request->vehicle_type_id)->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect('/vehicle_type');
     }
 
-    public function edit(){
-        
-    }
-
-    public function update(){
-        
-    }
-
-    public function delete(){
-        
+    public function delete(Request $request){
+        VehicleType::destroy($request->vehicle_type_id);
+        return back();
     }
 }

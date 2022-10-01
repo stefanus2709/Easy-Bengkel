@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
-</head>
-<body>
-    CREATE VEHICLE_TYPE
-</body>
-</html>
+<div>
+    <form action="/vehicle_type/store" method="POST">
+        @csrf
+        <div>
+            <label for="inputVehicleTypeName" class="form-label">Vehicle Type Name</label>
+            <input type="text" class="form-control mb-3" name="name" id="name" placeholder="Input Vehicle Type Name" @error('terms') is invalid @enderror>
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>
