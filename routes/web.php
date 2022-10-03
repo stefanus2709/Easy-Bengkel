@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
 //create sama edit ga terpakai karena pakai popup & langsung pakai javascript
 
