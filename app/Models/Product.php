@@ -10,13 +10,14 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'item_id', 'category_id', 'vehicle_type_id', 'brand_id', 'supplier_id',
+        // 'item_id', 
+        'name', 'category_id', 'vehicle_type_id', 'brand_id', 'supplier_id',
         'quantity', 'price', 'selling_price', 'available',
     ];
 
-    public function item(){
-        return $this->belongsTo('App\Models\Item');
-    }
+    // public function item(){
+    //     return $this->belongsTo('App\Models\Item');
+    // }
 
     public function category(){
         return $this->belongsTo('App\Models\Category');

@@ -51,11 +51,11 @@ Route::delete('/po_in/delete/{id}', 'App\Http\Controllers\PurchaseInController@d
 
 //product
 Route::get('/product', 'App\Http\Controllers\ProductController@index')->name('product');
-Route::get('/product/create', 'App\Http\Controllers\ProductController@create')->name('product-create');
+// Route::get('/product/create', 'App\Http\Controllers\ProductController@create')->name('product-create');
 Route::post('/product/store', 'App\Http\Controllers\ProductController@store')->name('product-store');
-Route::get('/product/edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('product-edit');
-Route::patch('/product/update/{id}', 'App\Http\Controllers\ProductController@update')->name('product-update');
-Route::delete('/product/delete/{id}', 'App\Http\Controllers\ProductController@delete')->name('product-delete');
+// Route::get('/product/edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('product-edit');
+Route::patch('/product/update', 'App\Http\Controllers\ProductController@update')->name('product-update');
+Route::delete('/product/delete', 'App\Http\Controllers\ProductController@delete')->name('product-delete');
 
 //quotation
 Route::get('/quotation', 'App\Http\Controllers\QuotationController@index')->name('quotation');
