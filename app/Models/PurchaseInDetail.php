@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseOrderInDetail extends Model
+class PurchaseInDetail extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'product_id', 'purchase_order_in_id', 'quantity', 'price',
+        'product_id', 'purchase_in_id', 'quantity', 'price',
     ];
 
     public function product(){
@@ -18,6 +18,6 @@ class PurchaseOrderInDetail extends Model
     }
 
     public function po_in(){
-        return $this->belongsTo('App\Models\PurchaseOrderIn');
+        return $this->belongsTo('App\Models\PurchaseIn');
     }
 }

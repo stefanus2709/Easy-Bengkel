@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePurchaseOrderInsTable extends Migration
+class CreatePurchaseInsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePurchaseOrderInsTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_order_ins', function (Blueprint $table) {
+        Schema::create('purchase_ins', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade')->onUpdate('cascade');
@@ -30,6 +30,6 @@ class CreatePurchaseOrderInsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_order_ins');
+        Schema::dropIfExists('purchase_ins');
     }
 }
