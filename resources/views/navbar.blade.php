@@ -13,7 +13,6 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-end">
                 <li><button class="dropdown-item" type="button">Settings</button></li>
-                <li><button class="dropdown-item" type="button">Another action?</button></li>
                 <hr>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

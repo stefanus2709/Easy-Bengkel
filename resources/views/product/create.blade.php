@@ -29,7 +29,7 @@
                         @endforeach
                     </select>
                     @else
-        
+
                     <fieldset disabled>
                         <label for="disabledSelect" class="form-label">Select Vehicle Type</label>
                         <select id="disabledSelect" class="form-select">
@@ -76,8 +76,8 @@
             <div class="container-md right-form">
                 <div>
                     <label for="inputProductName" class="form-label">Quantity</label>
-                    <input type="number" class="form-control mb-3" id="quantity" name="quantity" placeholder="Input Quantity"
-                        @error('name') is invalid @enderror>
+                    <input type="number" class="form-control mb-3" id="quantity" name="quantity"
+                        placeholder="Input Quantity" @error('name') is invalid @enderror>
                 </div>
                 <div>
                     <label for="inputProductName" class="form-label">Price</label>
@@ -96,7 +96,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="text-end">
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
