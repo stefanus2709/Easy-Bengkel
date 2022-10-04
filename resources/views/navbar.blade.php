@@ -7,15 +7,22 @@
         </a>
         <!-- Large button groups (default and split) -->
         <div class="btn-group">
-            <button type="button" class="btn dropdown-toggle fs-16px" data-bs-toggle="dropdown"
-                data-bs-display="static" aria-expanded="false">
-                <i class="icofont-user"></i> Name
+            <button type="button" class="btn dropdown-toggle fs-16px" data-bs-toggle="dropdown" data-bs-display="static"
+                aria-expanded="false">
+                <i class="icofont-user"></i> {{ Auth::user()->name }}
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-end">
                 <li><button class="dropdown-item" type="button">Settings</button></li>
                 <li><button class="dropdown-item" type="button">Another action?</button></li>
                 <hr>
-                <li><button class="dropdown-item" type="button">Logout</button></li>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </ul>
         </div>
     </div>

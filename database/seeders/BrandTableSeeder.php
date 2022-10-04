@@ -21,5 +21,17 @@ class BrandTableSeeder extends Seeder
         Brand::create([
             'name' => 'Yamaha'
         ]);
+
+        Brand::create([
+            'name' => 'Shell'
+        ]);
+
+        Brand::create([
+            'name' => 'Suzuki'
+        ]);
+
+        Brand::create([
+            'name' => 'Kawasaki'
+        ]);
     }
 }
