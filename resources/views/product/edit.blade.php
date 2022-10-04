@@ -7,7 +7,7 @@
             <div class="container-md left-form">
                 <div class="mb-3">
                     @if (!blank($categories))
-                    <label for="select" class="form-label">Select Category</label>
+                    <label for="select" class="form-label">Category</label>
                     <select id="category" class="form-select" name="category_id">
                         @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -15,7 +15,7 @@
                     </select>
                     @else
                     <fieldset disabled>
-                        <label for="disabledSelect" class="form-label">Select Category</label>
+                        <label for="disabledSelect" class="form-label">Category</label>
                         <select id="disabledSelect" class="form-select">
                             <option>No Categories Data</option>
                         </select>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="mb-3">
                     @if (!blank($vehicle_types))
-                    <label for="select" class="form-label">Select Vehicle Type</label>
+                    <label for="select" class="form-label">Vehicle Type</label>
                     <select id="vehicle_type" class="form-select" name="vehicle_type_id">
                         @foreach ($vehicle_types as $vehicle_type)
                         <option value="{{$vehicle_type->id}}">{{$vehicle_type->name}}</option>
@@ -32,7 +32,7 @@
                     </select>
                     @else
                     <fieldset disabled>
-                        <label for="disabledSelect" class="form-label">Select Vehicle Type</label>
+                        <label for="disabledSelect" class="form-label">Vehicle Type</label>
                         <select id="disabledSelect" class="form-select">
                             <option>No Vehicle Types Data</option>
                         </select>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="mb-3">
                     @if (!blank($brands))
-                    <label for="select" class="form-label">Select Brand</label>
+                    <label for="select" class="form-label">Brand</label>
                     <select id="brand" class="form-select" name="brand_id">
                         @foreach ($brands as $brand)
                         <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -49,7 +49,7 @@
                     </select>
                     @else
                     <fieldset disabled>
-                        <label for="disabledSelect" class="form-label">Select Brand</label>
+                        <label for="disabledSelect" class="form-label">Brand</label>
                         <select id="disabledSelect" class="form-select">
                             <option>No Brands Data</option>
                         </select>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="mb-3">
                     @if (!blank($suppliers))
-                    <label for="select" class="form-label">Select Supplier</label>
+                    <label for="select" class="form-label">Supplier</label>
                     <select id="supplier" class="form-select" name="supplier_id">
                         @foreach ($suppliers as $supplier)
                         <option value="{{$supplier->id}}">{{$supplier->name}}-{{$supplier->company_name}}</option>
@@ -66,7 +66,7 @@
                     </select>
                     @else
                     <fieldset disabled>
-                        <label for="disabledSelect" class="form-label">Select Supplier</label>
+                        <label for="disabledSelect" class="form-label">Supplier</label>
                         <select id="disabledSelect" class="form-select">
                             <option>No Suppliers Data</option>
                         </select>

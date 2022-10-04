@@ -30,6 +30,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('price');
             $table->bigInteger('selling_price');
             $table->boolean('available');
+            $table->bigInteger('item_sold');
             $table->timestamps();
         });
     }

@@ -47,6 +47,7 @@ class ProductController extends Controller
                 'selling_price' => $request->selling_price,
                 'name' => $request->name,
                 'available' => 1,
+                'item_sold' => 0,
             ]);
         }
         else{
@@ -60,6 +61,7 @@ class ProductController extends Controller
                 'selling_price' => $request->selling_price,
                 'name' => $request->name,
                 'available' => 0,
+                'item_sold' => 0,
             ]);
         }
 

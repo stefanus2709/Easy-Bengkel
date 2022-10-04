@@ -69,7 +69,7 @@ Dashboard
                     Total All Products
                 </p>
                 <p class="mb-0 pb-0 value">
-                    123
+                    {{count($products)}}
                 </p>
             </div>
         </div>
@@ -83,7 +83,7 @@ Dashboard
                     Low Stock Products
                 </p>
                 <p class="mb-0 pb-0 value">
-                    123
+                    {{count($low_products)}}
                 </p>
             </div>
         </div>
