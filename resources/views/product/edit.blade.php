@@ -36,10 +36,10 @@ Edit Product
             Edit Product {{$product->name}}
         </p>
     </div>
-    <form action="/product/update" method="POST">
+    <form action="/product/update/" method="POST">
         @csrf
         @method('PATCH')
-        <input type="hidden" name="product_id" id="product_id">
+        <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}">
         <div class="d-flex justify-content-around">
             <div class="container-md left-form">
                 <div class="mb-3">

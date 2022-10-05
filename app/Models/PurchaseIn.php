@@ -10,10 +10,14 @@ class PurchaseIn extends Model
     use HasFactory;
 
     protected $fillable = [
-        'supplier_id', 'date', 'total_price',
+        'supplier_id', 'date', 'total_price', 'finalized'
     ];
 
     public function supplier(){
         return $this->belongsTo('App\Models\Supplier');
+    }
+
+    public function details(){
+        return $this->hasMany('App\Models\PurchaseInDetail', 'purchase_in_id');
     }
 }

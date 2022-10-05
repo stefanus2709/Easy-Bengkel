@@ -12,4 +12,8 @@ class Supplier extends Model
     protected $fillable = [
         'name', 'company_name', 'phone_number', 'address',
     ];
+
+    public function products(){
+        return $this->hasMany('App\Models\Product', 'supplier_id');
+    }
 }

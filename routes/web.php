@@ -50,7 +50,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/po_in/store', 'App\Http\Controllers\PurchaseInController@store')->name('po_in-store');
     Route::get('/po_in/edit/{id}', 'App\Http\Controllers\PurchaseInController@edit')->name('po_in-edit');
     Route::patch('/po_in/update/{id}', 'App\Http\Controllers\PurchaseInController@update')->name('po_in-update');
-    Route::delete('/po_in/delete/{id}', 'App\Http\Controllers\PurchaseInController@delete')->name('po_in-delete');
+    Route::delete('/po_in/delete', 'App\Http\Controllers\PurchaseInController@delete')->name('po_in-delete');
+    Route::patch('/po_in/finalize/{id}', 'App\Http\Controllers\PurchaseInController@finalize')->name('po_in-finalize');
+
+    //po_in_details
+    Route::post('/po_in/{po_id}/details/store', 'App\Http\Controllers\PurchaseInDetailController@store')->name('po_in_details-store');
+    Route::get('/po_in/{po_id}/details/edit/{id}', 'App\Http\Controllers\PurchaseInDetailController@edit')->name('po_in_details-edit');
+    Route::patch('/po_in/{po_id}/details/update/{id}', 'App\Http\Controllers\PurchaseInDetailController@update')->name('po_in_details-update');
+    Route::delete('/po_in/{po_id}/details/delete', 'App\Http\Controllers\PurchaseInDetailController@delete')->name('po_in_details-delete');
 
     //product
     Route::get('/product', 'App\Http\Controllers\ProductController@index')->name('product');

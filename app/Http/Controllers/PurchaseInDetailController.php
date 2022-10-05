@@ -2,31 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PurchaseIn;
+use App\Models\PurchaseInDetail;
+use App\Models\Supplier;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PurchaseInDetailController extends Controller
 {
-    public function index(){
-        
-    }
-
     public function create(){
-        
+
     }
 
-    public function store(){
-        
+    public function store(Request $request, $po_id){
+        $request->validate([
+            'product_id' => 'required',
+            'quantity' => 'required',
+        ]);
+
+        $product = Product::findOrFail($request->product_id);
+
+        PurchaseInDetail::create([
+            'purchase_in_id' => $po_id,
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
+            'price' => $product->price,
+        ]);
+
+        return redirect('/po_in/edit/'.$po_id);
     }
 
-    public function edit(){
-        
+    public function edit($po_id, $id){
+        $po_detail = PurchaseInDetail::findOrFail($id);
+        return view('po_in.edit-product', compact('po_detail'));
     }
 
-    public function update(){
-        
+    public function update(Request $request, $po_id, $id){
+        $request->validate([
+            'quantity' => 'required',
+            'price' => 'required',
+        ]);
+
+        PurchaseInDetail::findOrFail($id)->update([
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+        ]);
+
+        return redirect('/po_in/edit/'.$po_id);
     }
 
-    public function delete(){
-        
+    public function delete(Request $request){
+        PurchaseInDetail::destroy($request->po_detail_id);
+        return back();
     }
 }

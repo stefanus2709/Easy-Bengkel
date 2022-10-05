@@ -19,6 +19,7 @@ class CreatePurchaseInsTable extends Migration
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date');
             $table->bigInteger('total_price');
+            $table->boolean('finalized');
             $table->timestamps();
         });
     }

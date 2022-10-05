@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Create Purchase In
+Edit Purchase Product
 @endsection
 
 @section('custom-css')
@@ -33,43 +33,29 @@ Create Purchase In
 <div class="px-4 py-4 main-content">
     <div class="d-flex justify-content-between mb-3 align-middle">
         <p class="fs-22px mb-0 pb-0">
-            Create Purchase In
+            Edit Purchase Product {{$po_detail->product->name}}
         </p>
     </div>
-    <form action="/po_in/store" method="POST">
+    <form action="/po_in/{{$po_detail->purchase_in_id}}/details/update/{{$po_detail->id}}" method="POST">
         @csrf
+        @method('PATCH')
         <div class="mb-3">
-            @if (!blank($suppliers))
-            <label for="select" class="form-label">Select Supplier</label>
-            <select id="select" class="selectpicker form-control" data-live-search="true" multiple
-                data-max-options="1" name="supplier_id">
-                @foreach ($suppliers as $supplier)
-                <option value="{{$supplier->id}}">{{$supplier->name}}-{{$supplier->company_name}}</option>
-                @endforeach
-            </select>
-            @else
-            <fieldset disabled>
-                <label for="disabledSelect" class="form-label">Select Supplier</label>
-                <select id="disabledSelect" class="form-select">
-                    <option>No Suppliers Data</option>
-                </select>
-            </fieldset>
-            @endif
-            @error('supplier_id')
-            <span class="text-danger">The supplier field is required.</span>
+            <label for="inputPOProductQty" class="form-label">Product Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" value="{{$po_detail->quantity}}">
+            @error('quantity')
+            <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
         <div class="mb-3">
-            <label for="inputPurchaseInDate" class="form-label">Purchase Date</label>
-            <input type="date" class="form-control" id="date" name="date"
-                placeholder="Input Purchase Date">
-            @error('date')
+            <label for="inputPOProductPrice" class="form-label">Product Price</label>
+            <input type="number" class="form-control" id="price" name="price" value="{{$po_detail->price}}">
+            @error('price')
             <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
         <div class="text-end">
-            <a href="/po_in" class="btn btn-secondary">Back</a>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <a href="/po_in/edit/{{$po_detail->purchase_in_id}}" class="btn btn-secondary">Back</a>
+            <button type="submit" class="btn btn-primary">Update</button>
         </div>
     </form>
 </div>
