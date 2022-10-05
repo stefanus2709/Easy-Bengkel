@@ -7,7 +7,7 @@ Product
 @section('custom-css')
 <style>
     #datatable {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .dataTables_info {
@@ -30,16 +30,28 @@ Product
 @endsection
 
 @section('content')
+@if(Session::has('success'))
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>{{Session::get('success')}}</strong>
+</div>
+@elseif(Session::has('failed'))
+<div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>{{Session::get('failed')}}</strong>
+</div>
+@endif
 <div class="px-4 py-4 main-content">
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-3 align-middle">
         <p class="fs-22px mb-0 pb-0">
             Product Lists
         </p>
-        <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal"
+        {{-- <button type="button" class="btn btn-primary fs-16px createOrEdit" value="create" data-bs-toggle="modal"
             data-bs-target="#createProductModal">
             Create Product
-        </button>
+        </button> --}}
+        <a href="/product/create" class="btn btn-primary fs-16px">Create Product</a>
     </div>
     <div>
         <table class="table" id="datatable">
@@ -70,17 +82,18 @@ Product
                     <td style="width: 8%;">{{number_format($product->price)}}</td>
                     <td style="width: 8%;">{{number_format($product->selling_price)}}</td>
                     <td style="width: 10%;">
-                        <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
-                            data-bs-toggle="modal" data-bs-target="#editProductModal" data-myName="{{$product->name}}"
-                            data-myCategory="{{$product->category->id}}"
+                        {{-- <button type="button" class="btn btn-info fs-16px createOrEdit" style="font-size: 16px;"
+                            value="edit" data-bs-toggle="modal" data-bs-target="#editProductModal"
+                            data-myName="{{$product->name}}" data-myCategory="{{$product->category->id}}"
                             data-myCategoryName="{{$product->category->name}}" data-myBrand="{{$product->brand->id}}"
                             data-myVehicleType="{{$product->vehicle_type->id}}"
                             data-mySupplier="{{$product->supplier->id}}" data-myQuantity="{{$product->quantity}}"
                             data-myPrice="{{$product->price}}" data-mySellingPrice="{{$product->selling_price}}"
                             data-myId="{{$product->id}}">
                             <i class="icofont-pencil-alt-2 text-light"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
+                        </button> --}}
+                        <a href="/product/edit/{{$product->id}}" class="btn btn-info fs-16px"><i class="icofont-pencil-alt-2 text-light"></i></a>
+                        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
                             data-bs-toggle="modal" data-bs-target="#deleteProductModal" data-myId="{{$product->id}}">
                             <i class="icofont-trash text-light"></i>
                         </button>
@@ -92,7 +105,7 @@ Product
     </div>
 </div>
 
-<!-- Create Product Modal -->
+{{-- <!-- Create Product Modal -->
 <div class="modal" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -120,7 +133,7 @@ Product
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Delete Product Modal -->
 <div class="modal" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
@@ -159,44 +172,63 @@ Product
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         var table = $('#datatable').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
         });
-    });
 
-    $('#editProductModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var category = button.attr('data-myCategory');
-        var brand = button.attr('data-myBrand');
-        var vehicle_type = button.attr('data-myVehicleType');
-        var supplier = button.attr('data-mySupplier');
-        var quantity = button.attr('data-myQuantity');
-        var price = button.attr('data-myPrice');
-        var selling_price = button.attr('data-mySellingPrice');
-        var name = button.attr('data-myName');
-        var id = button.attr('data-myId');
+        // $('.selectpickerCategory').selectpicker();
+        // $('.selectpickerVehicleType').selectpicker();
+        // $('.selectpickerBrand').selectpicker();
+        // $('.selectpickerSupplier').selectpicker();
+        // $('.selectpickerEditCategory').selectpicker();
+        // $('.selectpickerEditVehicleType').selectpicker();
+        // $('.selectpickerEditBrand').selectpicker();
+        // $('.selectpickerEditSupplier').selectpicker();
 
-        var modal = $(this)
-        modal.find('.modal-body #category').val(category);
-        modal.find('.modal-body #vehicle_type').val(vehicle_type);
-        modal.find('.modal-body #brand').val(brand);
-        modal.find('.modal-body #supplier').val(supplier);
-        modal.find('.modal-body #quantity').val(quantity);
-        modal.find('.modal-body #price').val(price);
-        modal.find('.modal-body #selling_price').val(selling_price);
-        modal.find('.modal-body #name').val(name);
-        modal.find('.modal-body #product_id').val(id);
-    });
+        // @if($errors->has('create_category_id')||$errors->has('create_vehicle_type_id'))
+        //     $('#createProductModal').modal('show');
+        // @elseif($errors->has('edit_name')||$errors->has('edit_quantity'))
+        //     $('#editProductModal').modal('show');
+        // @endif
 
-    $('#deleteProductModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var id = button.attr('data-myId');
+        // $('#editProductModal').on('show.bs.modal', function (event) {
+        //     var button = $(event.relatedTarget);
+        //     var category = button.attr('data-myCategory');
+        //     var brand = button.attr('data-myBrand');
+        //     var vehicle_type = button.attr('data-myVehicleType');
+        //     var supplier = button.attr('data-mySupplier');
+        //     var quantity = button.attr('data-myQuantity');
+        //     var price = button.attr('data-myPrice');
+        //     var selling_price = button.attr('data-mySellingPrice');
+        //     var name = button.attr('data-myName');
+        //     var id = button.attr('data-myId');
 
-        var modal = $(this)
-        modal.find('.modal-body #product_id').val(id);
+        //     console.log(button)
+
+        //     var modal = $(this)
+        //     $('.selectpickerEditCategory').selectpicker('val', category);
+        //     $('.selectpickerEditVehicleType').selectpicker('val', vehicle_type);
+        //     $('.selectpickerEditBrand').selectpicker('val', brand);
+        //     $('.selectpickerEditSupplier').selectpicker('val', supplier);
+        //     modal.find('.modal-body #quantity').val(quantity);
+        //     modal.find('.modal-body #price').val(price);
+        //     modal.find('.modal-body #selling_price').val(selling_price);
+        //     modal.find('.modal-body #name').val(name);
+        //     modal.find('.modal-body #product_id').val(id);
+        // });
+
+        $('#deleteProductModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.attr('data-myId');
+
+            var modal = $(this)
+            modal.find('.modal-body #product_id').val(id);
+        });
     });
 
 </script>

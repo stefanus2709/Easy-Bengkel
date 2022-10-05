@@ -13,16 +13,16 @@ class ProductController extends Controller
 {
     public function index(){
         $products = Product::all();
+        return view('product.index', compact('products'));
+    }
+
+    public function create(){
         $categories = Category::all();
         $vehicle_types = VehicleType::all();
         $brands = Brand::all();
         $suppliers = Supplier::all();
-        return view('product.index', compact('products', 'categories', 'vehicle_types', 'brands', 'suppliers'));
+        return view('product.create', compact('categories', 'vehicle_types', 'brands', 'suppliers'));
     }
-
-    // public function create(){
-    //     return view('product.create');
-    // }
 
     public function store(Request $request){
         $request->validate([
@@ -68,10 +68,14 @@ class ProductController extends Controller
         return redirect('/product');
     }
 
-    // public function edit($id){
-    //     $product = Product::findOrFail($id);
-    //     return view('product.edit', compact('product'));
-    // }
+    public function edit($id){
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        $vehicle_types = VehicleType::all();
+        $brands = Brand::all();
+        $suppliers = Supplier::all();
+        return view('product.edit', compact('product', 'categories', 'vehicle_types', 'brands', 'suppliers'));
+    }
 
     public function update(Request $request){
         $request->validate([
