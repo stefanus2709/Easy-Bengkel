@@ -148,6 +148,8 @@ Edit Purchase In
                     <th>Price</th>
                     @if (!$po_in->finalized)
                     <th>Action</th>
+                    @else
+                    <th>Total Price</th>
                     @endif
                 </tr>
             </thead>
@@ -167,6 +169,8 @@ Edit Purchase In
                             <i class="icofont-trash text-light"></i>
                         </button>
                     </td>
+                    @else
+                    <td style="width: 10%;">{{number_format($detail->price*$detail->quantity)}}</td>
                     @endif
                 </tr>
                 @endforeach

@@ -17,7 +17,7 @@ class PurchaseInDetail extends Model
         return $this->belongsTo('App\Models\Product');
     }
 
-    public function po_in(){
+    public function purchaseIn(){
         return $this->belongsTo('App\Models\PurchaseIn');
     }
 }

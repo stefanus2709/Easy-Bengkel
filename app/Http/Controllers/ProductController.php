@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\VehicleType;
+use App\Models\PurchaseInDetail;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -74,7 +75,8 @@ class ProductController extends Controller
         $vehicle_types = VehicleType::all();
         $brands = Brand::all();
         $suppliers = Supplier::all();
-        return view('product.edit', compact('product', 'categories', 'vehicle_types', 'brands', 'suppliers'));
+        $product_details = PurchaseInDetail::where('product_id', $id)->get();
+        return view('product.edit', compact('product', 'categories', 'vehicle_types', 'brands', 'suppliers', 'product_details'));
     }
 
     public function update(Request $request){

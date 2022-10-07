@@ -132,6 +132,42 @@ Edit Product
         </div>
     </form>
 </div>
+<div class="px-4 py-4 main-content">
+    <!-- Button trigger modal -->
+    <div class="d-flex justify-content-between mb-3 align-middle">
+        <p class="fs-22px mb-0 pb-0">
+            History Product Stock
+        </p>
+    </div>
+    <div>
+        <table class="table" id="datatable">
+            <thead>
+                <tr style="background-color: #293A80; color: white; border-radius: 5px">
+                    <th>#</th>
+                    <th>Supplier</th>
+                    <th>Date</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($product_details as $detail)
+                <tr>
+                    <td style="width: 5%;">{{$loop->iteration}}</td>
+                    <td style="width: 20%;">{{$detail->purchaseIn->supplier->name}} - {{$detail->purchaseIn->supplier->company_name}}</td>
+                    <td style="width: 8%;">{{$detail->purchaseIn->date}}</td>
+                    <td style="width: 8%;">{{$detail->quantity}}</td>
+                    <td style="width: 8%;">{{$detail->price}}</td>
+                    <td style="width: 5%;">
+                        <a href="/po_in/edit/{{$detail->purchaseIn->id}}" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection
 @section('scripts')
 <!-- Bootstrap Bundle with Popper -->
@@ -145,6 +181,10 @@ Edit Product
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var table = $('#datatable').DataTable({
+            "pageLength": 5,
+            "pagingType": 'full_numbers',
+        });
         $('select[name=category_id]').selectpicker('val', '{{$product->category_id}}');
         $('select[name=vehicle_type_id]').selectpicker('val', '{{$product->vehicle_type_id}}');
         $('select[name=brand_id]').selectpicker('val', '{{$product->brand_id}}');
