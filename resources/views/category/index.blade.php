@@ -28,10 +28,11 @@ Category
         <p class="fs-22px mb-0 pb-0">
             Category Lists
         </p>
-        <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal"
+        {{-- <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal"
             data-bs-target="#createCategoryModal">
             Create Category
-        </button>
+        </button> --}}
+        <a href="/category/create" class="btn btn-primary fs-16px">Create Category</a>
     </div>
     <div>
         <table id="datatable" class="table">
@@ -51,11 +52,13 @@ Category
                         <td style="width: 10%;">{{$loop->iteration}}</td>
                         <td style="width: 80%;">{{$category->name}}</td>
                         <td style="width: 10%;">
-                            <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
+                            {{-- <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
                                 data-bs-toggle="modal" data-bs-target="#editCategoryModal"
                                 data-myName="{{$category->name}}" data-myId="{{$category->id}}">
                                 <i class="icofont-pencil-alt-2 text-light"></i>
-                            </button>
+                            </button> --}}
+                            <a href="/category/edit/{{$category->id}}" class="btn btn-info fs-16px"><i
+                                class="icofont-pencil-alt-2 text-light"></i></a>
                             <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
                                 data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"
                                 data-myId="{{$category->id}}">
@@ -70,7 +73,7 @@ Category
     </div>
 </div>
 
-<!-- Create Category Modal -->
+{{-- <!-- Create Category Modal -->
 <div class="modal" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -98,7 +101,7 @@ Category
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- Delete Category Modal -->
 <div class="modal" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -143,15 +146,15 @@ Category
         });
     });
 
-    $('#editCategoryModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var name = button.attr('data-myName');
-        var id = button.attr('data-myId');
+    // $('#editCategoryModal').on('show.bs.modal', function (event) {
+    //     var button = $(event.relatedTarget);
+    //     var name = button.attr('data-myName');
+    //     var id = button.attr('data-myId');
 
-        var modal = $(this)
-        modal.find('.modal-body #name').val(name);
-        modal.find('.modal-body #category_id').val(id);
-    });
+    //     var modal = $(this)
+    //     modal.find('.modal-body #name').val(name);
+    //     modal.find('.modal-body #category_id').val(id);
+    // });
 
     $('#deleteCategoryModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);

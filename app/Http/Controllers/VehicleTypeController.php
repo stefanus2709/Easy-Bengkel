@@ -12,13 +12,13 @@ class VehicleTypeController extends Controller
         return view('vehicle_type.index', compact('vehicle_types'));
     }
 
-    // public function create(){
-    //     return view('vehicle_type.create');
-    // }
+    public function create(){
+        return view('vehicle_type.create');
+    }
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:vehicle_types,name',
         ]);
 
         VehicleType::create([
@@ -28,17 +28,17 @@ class VehicleTypeController extends Controller
         return redirect('/vehicle_type');
     }
 
-    // public function edit($id){
-    //     $vehicle_type = VehicleType::findOrFail($id);
-    //     return view('vehicle_type.edit', compact('vehicle_type'));
-    // }
+    public function edit($id){
+        $vehicle_type = VehicleType::findOrFail($id);
+        return view('vehicle_type.edit', compact('vehicle_type'));
+    }
 
-    public function update(Request $request){
+    public function update(Request $request, $id){
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:vehicle_types,name',
         ]);
 
-        VehicleType::findOrFail($request->vehicle_type_id)->update([
+        VehicleType::findOrFail($id)->update([
             'name' => $request->name,
         ]);
 

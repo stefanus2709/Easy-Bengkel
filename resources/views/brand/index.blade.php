@@ -15,9 +15,13 @@ Brand
         text-align: center
     }
 
-    .main-content, #createBrandModal div, #editBrandModal div, #deleteBrandModal div {
+    .main-content,
+    #createBrandModal div,
+    #editBrandModal div,
+    #deleteBrandModal div {
         font-family: 'Poppins';
     }
+
 </style>
 @endsection
 
@@ -28,9 +32,10 @@ Brand
         <p class="fs-22px mb-0 pb-0">
             Brand Lists
         </p>
-        <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal" data-bs-target="#createBrandModal">
+        {{-- <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal" data-bs-target="#createBrandModal">
             Create Brand
-        </button>
+        </button> --}}
+        <a href="/brand/create" class="btn btn-primary fs-16px">Create Brand</a>
     </div>
     <div>
         <table class="table" id="datatable">
@@ -47,11 +52,13 @@ Brand
                     <td style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 80%;">{{$brand->name}}</td>
                     <td style="width: 10%;">
-                        <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
+                        {{-- <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
                             data-bs-toggle="modal" data-bs-target="#editBrandModal" data-myName="{{$brand->name}}"
-                            data-myId="{{$brand->id}}">
-                            <i class="icofont-pencil-alt-2 text-light"></i>
-                        </button>
+                        data-myId="{{$brand->id}}">
+                        <i class="icofont-pencil-alt-2 text-light"></i>
+                        </button> --}}
+                        <a href="/brand/edit/{{$brand->id}}" class="btn btn-info fs-16px"><i
+                                class="icofont-pencil-alt-2 text-light"></i></a>
                         <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
                             data-bs-toggle="modal" data-bs-target="#deleteBrandModal" data-myId="{{$brand->id}}">
                             <i class="icofont-trash text-light"></i>
@@ -64,7 +71,7 @@ Brand
     </div>
 </div>
 
-<!-- Create Brand Modal -->
+{{-- <!-- Create Brand Modal -->
 <div class="modal" id="createBrandModal" tabindex="-1" aria-labelledby="createBrandModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -92,7 +99,7 @@ Brand
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Delete Brand Modal -->
 <div class="modal" id="deleteBrandModal" tabindex="-1" aria-labelledby="deleteBrandModalLabel" aria-hidden="true">
@@ -139,15 +146,15 @@ Brand
         });
     });
 
-    $('#editBrandModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var name = button.attr('data-myName');
-        var id = button.attr('data-myId');
+    // $('#editBrandModal').on('show.bs.modal', function (event) {
+    //     var button = $(event.relatedTarget);
+    //     var name = button.attr('data-myName');
+    //     var id = button.attr('data-myId');
 
-        var modal = $(this)
-        modal.find('.modal-body #name').val(name);
-        modal.find('.modal-body #brand_id').val(id);
-    });
+    //     var modal = $(this)
+    //     modal.find('.modal-body #name').val(name);
+    //     modal.find('.modal-body #brand_id').val(id);
+    // });
 
     $('#deleteBrandModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);

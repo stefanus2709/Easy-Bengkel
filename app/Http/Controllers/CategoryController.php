@@ -12,13 +12,13 @@ class CategoryController extends Controller
         return view('category.index', compact('categories'));
     }
 
-    // public function create(){
-    //     return view('category.create');
-    // }
+    public function create(){
+        return view('category.create');
+    }
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:categories,name',
         ]);
 
         Category::create([
@@ -28,17 +28,17 @@ class CategoryController extends Controller
         return redirect('/category');
     }
 
-    // public function edit($id){
-    //     $category = Category::findOrFail($id);
-    //     return view('category.edit', compact('category'));
-    // }
+    public function edit($id){
+        $category = Category::findOrFail($id);
+        return view('category.edit', compact('category'));
+    }
 
-    public function update(Request $request){
+    public function update(Request $request, $id){
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:categories,name',
         ]);
 
-        Category::findOrFail($request->category_id)->update([
+        Category::findOrFail($id)->update([
             'name' => $request->name,
         ]);
 

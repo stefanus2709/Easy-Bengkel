@@ -22,18 +22,18 @@ Route::group(['middleware' => ['auth']], function () {
 
     //brand
     Route::get('/brand', 'App\Http\Controllers\BrandController@index')->name('brand');
-    // Route::get('/brand/create', 'App\Http\Controllers\BrandController@create')->name('brand-create');
+    Route::get('/brand/create', 'App\Http\Controllers\BrandController@create')->name('brand-create');
     Route::post('/brand/store', 'App\Http\Controllers\BrandController@store')->name('brand-store');
-    // Route::get('/brand/edit/{id}', 'App\Http\Controllers\BrandController@edit')->name('brand-edit');
-    Route::patch('/brand/update', 'App\Http\Controllers\BrandController@update')->name('brand-update');
+    Route::get('/brand/edit/{id}', 'App\Http\Controllers\BrandController@edit')->name('brand-edit');
+    Route::patch('/brand/update/{id}', 'App\Http\Controllers\BrandController@update')->name('brand-update');
     Route::delete('/brand/delete', 'App\Http\Controllers\BrandController@delete')->name('brand-delete');
 
     //category
     Route::get('/category', 'App\Http\Controllers\CategoryController@index')->name('category');
-    // Route::get('/category/create', 'App\Http\Controllers\CategoryController@create')->name('category-create');
+    Route::get('/category/create', 'App\Http\Controllers\CategoryController@create')->name('category-create');
     Route::post('/category/store', 'App\Http\Controllers\CategoryController@store')->name('category-store');
-    // Route::get('/category/edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('category-edit');
-    Route::patch('/category/update', 'App\Http\Controllers\CategoryController@update')->name('category-update');
+    Route::get('/category/edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('category-edit');
+    Route::patch('/category/update/{id}', 'App\Http\Controllers\CategoryController@update')->name('category-update');
     Route::delete('/category/delete', 'App\Http\Controllers\CategoryController@delete')->name('category-delete');
 
     //item (masih pertimbangan kemungkinan besar ga dipake)
@@ -85,10 +85,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     //vehicle_type
     Route::get('/vehicle_type', 'App\Http\Controllers\VehicleTypeController@index')->name('vehicle_type');
-    // Route::get('/vehicle_type/create', 'App\Http\Controllers\VehicleTypeController@create')->name('vehicle_type-create');
+    Route::get('/vehicle_type/create', 'App\Http\Controllers\VehicleTypeController@create')->name('vehicle_type-create');
     Route::post('/vehicle_type/store', 'App\Http\Controllers\VehicleTypeController@store')->name('vehicle_type-store');
-    // Route::get('/vehicle_type/edit/{id}', 'App\Http\Controllers\VehicleTypeController@edit')->name('vehicle_type-edit');
-    Route::patch('/vehicle_type/update', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type-update');
+    Route::get('/vehicle_type/edit/{id}', 'App\Http\Controllers\VehicleTypeController@edit')->name('vehicle_type-edit');
+    Route::patch('/vehicle_type/update/{id}', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type-update');
     Route::delete('/vehicle_type/delete', 'App\Http\Controllers\VehicleTypeController@delete')->name('vehicle_type-delete');
 });
 

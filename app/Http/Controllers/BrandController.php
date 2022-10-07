@@ -12,13 +12,13 @@ class BrandController extends Controller
         return view('brand.index', compact('brands'));
     }
 
-    // public function create(){
-    //     return view('brand.create');
-    // }
+    public function create(){
+        return view('brand.create');
+    }
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:brands,name',
         ]);
 
         Brand::create([
@@ -28,17 +28,17 @@ class BrandController extends Controller
         return redirect('/brand');
     }
 
-    // public function edit($id){
-    //     $brand = Brand::findOrFail($id);
-    //     return view('brand.edit', compact('brand'));
-    // }
+    public function edit($id){
+        $brand = Brand::findOrFail($id);
+        return view('brand.edit', compact('brand'));
+    }
 
-    public function update(Request $request){
+    public function update(Request $request, $id){
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:brands,name',
         ]);
 
-        Brand::findOrFail($request->brand_id)->update([
+        Brand::findOrFail($id)->update([
             'name' => $request->name,
         ]);
 

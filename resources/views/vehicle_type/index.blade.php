@@ -15,7 +15,7 @@ Vehicle Type
         text-align: center
     }
 
-    .main-content, #createVehicleTypeModal div, #editVehicleTypeModal div, #deleteVehicleTypeModal div {
+    .main-content, #deleteVehicleTypeModal div {
         font-family: 'Poppins';
     }
 </style>
@@ -28,10 +28,11 @@ Vehicle Type
         <p class="fs-22px mb-0 pb-0">
             Vehicle Type Lists
         </p>
-        <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal"
+        {{-- <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal"
             data-bs-target="#createVehicleTypeModal">
             Create Vehicle Type
-        </button>
+        </button> --}}
+        <a href="/vehicle_type/create" class="btn btn-primary fs-16px">Create Vehicle Type</a>
     </div>
     <div>
         <table id="datatable" class="table">
@@ -51,11 +52,13 @@ Vehicle Type
                         <td style="width: 10%;">{{$loop->iteration}}</td>
                         <td style="width: 80%;">{{$vehicle_type->name}}</td>
                         <td style="width: 10%;">
-                            <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
+                            {{-- <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
                                 data-bs-toggle="modal" data-bs-target="#editVehicleTypeModal"
                                 data-myName="{{$vehicle_type->name}}" data-myId="{{$vehicle_type->id}}">
                                 <i class="icofont-pencil-alt-2 text-light"></i>
-                            </button>
+                            </button> --}}
+                            <a href="/vehicle_type/edit/{{$vehicle_type->id}}" class="btn btn-info fs-16px"><i
+                                class="icofont-pencil-alt-2 text-light"></i></a>
                             <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
                                 data-bs-toggle="modal" data-bs-target="#deleteVehicleTypeModal"
                                 data-myId="{{$vehicle_type->id}}">
@@ -70,7 +73,7 @@ Vehicle Type
     </div>
 </div>
 
-<!-- Create Vehicle Type Modal -->
+{{-- <!-- Create Vehicle Type Modal -->
 <div class="modal" id="createVehicleTypeModal" tabindex="-1" aria-labelledby="createVehicleTypeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -98,7 +101,7 @@ Vehicle Type
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- Delete Vehicle Type Modal -->
 <div class="modal" id="deleteVehicleTypeModal" tabindex="-1" aria-labelledby="deleteVehicleTypeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -143,15 +146,15 @@ Vehicle Type
         });
     });
 
-    $('#editVehicleTypeModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var name = button.attr('data-myName');
-        var id = button.attr('data-myId');
+    // $('#editVehicleTypeModal').on('show.bs.modal', function (event) {
+    //     var button = $(event.relatedTarget);
+    //     var name = button.attr('data-myName');
+    //     var id = button.attr('data-myId');
 
-        var modal = $(this)
-        modal.find('.modal-body #name').val(name);
-        modal.find('.modal-body #vehicle_type_id').val(id);
-    });
+    //     var modal = $(this)
+    //     modal.find('.modal-body #name').val(name);
+    //     modal.find('.modal-body #vehicle_type_id').val(id);
+    // });
 
     $('#deleteVehicleTypeModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
