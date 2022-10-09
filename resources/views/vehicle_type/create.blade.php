@@ -34,9 +34,9 @@ Create Vehicle Type
     <div>
         <form action="/vehicle_type/store" method="POST">
             @csrf
-            <div>
+            <div class="mb-3">
                 <label for="inputVehicleTypeName" class="form-label">Vehicle Type Name</label>
-                <input type="text" class="form-control mb-3" name="name" id="name" placeholder="Input Vehicle Type Name">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Input Vehicle Type Name">
                 @error('name')
                 <span class="text-danger">{{$message}}</span>
                 @enderror

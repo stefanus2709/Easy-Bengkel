@@ -34,7 +34,7 @@ Dashboard
     }
 
     .container-summary-text p {
-        font-size: 14px;
+        font-size: 13px;
         color: white;
     }
 
@@ -97,7 +97,7 @@ Dashboard
                     Total Purchase ({{ date('F')}})
                 </p>
                 <p class="mb-0 pb-0 value">
-                    Rp. {{number_format($total_purchase, 0, ',', '.')}}
+                    Rp {{number_format($total_purchase, 0, ',', '.')}}
                 </p>
             </div>
         </a>
