@@ -67,6 +67,10 @@ class PurchaseInController extends Controller
         $po_details = PurchaseInDetail::where('purchase_in_id', $id)->get();
         $total_price = 0;
 
+        if(count($po_details) == 0){
+            return redirect('/po_in/edit/'.$po_in->id)->with('failed', 'Cannot finalize, there is no item to stock!');
+        }
+
         foreach ($po_details as $detail) {
             $detail->product->update([
                 'quantity' => $detail->product->quantity + $detail->quantity,
@@ -83,7 +87,7 @@ class PurchaseInController extends Controller
     }
 
     public function purchase_this_month(){
-        $total_purchases = PurchaseIn::orderBy('created_at', 'DESC')->whereMonth('date', now()->month)->get();
+        $total_purchases = PurchaseIn::orderBy('created_at', 'DESC')->whereMonth('date', now()->month)->where('finalized', true)->get();
         return view('po_in.this_month', compact('total_purchases'));
     }
 }
