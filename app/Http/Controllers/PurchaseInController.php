@@ -32,7 +32,9 @@ class PurchaseInController extends Controller
             'finalized' => 0,
         ]);
 
-        return redirect('/po_in');
+        $last_po = PurchaseIn::orderBy('created_at', 'desc')->first();
+
+        return redirect('/po_in/edit/'.$last_po->id)->with('success', 'Purchase has been created');
     }
 
     public function edit($id){

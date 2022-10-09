@@ -26,6 +26,17 @@ Brand
 @endsection
 
 @section('content')
+@if(Session::has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{Session::get('success')}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@elseif(Session::has('failed'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{Session::get('failed')}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <div class="px-4 py-4 main-content">
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-3 align-middle">

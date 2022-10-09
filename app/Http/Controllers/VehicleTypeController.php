@@ -25,7 +25,7 @@ class VehicleTypeController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect('/vehicle_type');
+        return redirect('/vehicle_type')->with('success', 'Vehicle Type has been created');
     }
 
     public function edit($id){

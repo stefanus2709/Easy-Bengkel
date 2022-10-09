@@ -25,7 +25,7 @@ class BrandController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect('/brand');
+        return redirect('/brand')->with('success', 'Brand has been created');
     }
 
     public function edit($id){

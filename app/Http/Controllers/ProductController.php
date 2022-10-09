@@ -66,7 +66,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect('/product');
+        return redirect('/product')->with('success', 'Product has been created');
     }
 
     public function edit($id){
