@@ -109,4 +109,10 @@ class ProductController extends Controller
         Product::destroy($request->product_id);
         return back();
     }
+
+
+    public function low_product(){
+        $low_products = Product::where('quantity', '<', '5')->get();
+        return view('product.low_product', compact('low_products'));
+    }
 }

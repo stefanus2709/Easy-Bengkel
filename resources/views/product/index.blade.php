@@ -78,9 +78,9 @@ Product
                     <td style="width: 8%;">{{$product->brand->name}}</td>
                     <td style="width: 8%;">{{$product->vehicle_type->name}}</td>
                     <td style="width: 15%;">{{$product->supplier->name}}-{{$product->supplier->company_name}}</td>
-                    <td style="width: 5%;">{{number_format($product->quantity)}}</td>
-                    <td style="width: 8%;">{{number_format($product->price)}}</td>
-                    <td style="width: 8%;">{{number_format($product->selling_price)}}</td>
+                    <td style="width: 5%;">{{number_format($product->quantity, 0, ',', '.')}}</td>
+                    <td style="width: 8%;">{{number_format($product->price, 0, ',', '.')}}</td>
+                    <td style="width: 8%;">{{number_format($product->selling_price, 0, ',', '.')}}</td>
                     <td style="width: 10%;">
                         {{-- <button type="button" class="btn btn-info fs-16px createOrEdit" style="font-size: 16px;"
                             value="edit" data-bs-toggle="modal" data-bs-target="#editProductModal"

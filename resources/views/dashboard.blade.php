@@ -59,8 +59,8 @@ Dashboard
         </p>
     </div>
     <div class="d-flex justify-content-between mb-3">
-        <div
-            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-success border border-success">
+        <a href="/product"
+            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-success border border-success text-decoration-none">
             <div class="d-flex">
                 <i class="icofont-inbox"></i>
             </div>
@@ -72,9 +72,9 @@ Dashboard
                     {{count($products)}}
                 </p>
             </div>
-        </div>
-        <div
-            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-danger border border-danger">
+        </a>
+        <a href="/product/low"
+            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-danger border border-danger text-decoration-none">
             <div class="d-flex">
                 <i class="icofont-inbox"></i>
             </div>
@@ -86,21 +86,21 @@ Dashboard
                     {{count($low_products)}}
                 </p>
             </div>
-        </div>
-        <div
-            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-warning border border-warning">
+        </a>
+        <a href="/po_in/this_month"
+            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-warning border border-warning text-decoration-none">
             <div class="d-flex">
                 <i class="icofont-inbox"></i>
             </div>
             <div class="container-summary-text fw-bold">
                 <p class="mb-0 pb-0">
-                    Most Sold Products
+                    Total Purchase ({{ date('F')}})
                 </p>
                 <p class="mb-0 pb-0 value">
-                    123
+                    Rp. {{number_format($total_purchase, 0, ',', '.')}}
                 </p>
             </div>
-        </div>
+        </a>
         <div
             class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-primary border border-primary">
             <div class="d-flex">
@@ -160,7 +160,7 @@ Dashboard
 </div> --}}
 </div>
 
-<!-- Create Supplier Modal -->
+{{-- <!-- Create Supplier Modal -->
 <div class="modal" id="createSupplierModal" tabindex="-1" aria-labelledby="createSupplierModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -216,7 +216,7 @@ Dashboard
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
 
 @section('scripts')
@@ -235,29 +235,29 @@ Dashboard
         });
     });
 
-    $('#editSupplierModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var name = button.attr('data-myName');
-        var company_name = button.attr('data-myCompanyName');
-        var phone_number = button.attr('data-myPhoneNumber');
-        var address = button.attr('data-myAddress');
-        var id = button.attr('data-myId');
+    // $('#editSupplierModal').on('show.bs.modal', function (event) {
+    //     var button = $(event.relatedTarget);
+    //     var name = button.attr('data-myName');
+    //     var company_name = button.attr('data-myCompanyName');
+    //     var phone_number = button.attr('data-myPhoneNumber');
+    //     var address = button.attr('data-myAddress');
+    //     var id = button.attr('data-myId');
 
-        var modal = $(this)
-        modal.find('.modal-body #name').val(name);
-        modal.find('.modal-body #company_name').val(company_name);
-        modal.find('.modal-body #phone_number').val(phone_number);
-        modal.find('.modal-body #address').val(address);
-        modal.find('.modal-body #supplier_id').val(id);
-    });
+    //     var modal = $(this)
+    //     modal.find('.modal-body #name').val(name);
+    //     modal.find('.modal-body #company_name').val(company_name);
+    //     modal.find('.modal-body #phone_number').val(phone_number);
+    //     modal.find('.modal-body #address').val(address);
+    //     modal.find('.modal-body #supplier_id').val(id);
+    // });
 
-    $('#deleteSupplierModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var id = button.attr('data-myId');
+    // $('#deleteSupplierModal').on('show.bs.modal', function (event) {
+    //     var button = $(event.relatedTarget);
+    //     var id = button.attr('data-myId');
 
-        var modal = $(this)
-        modal.find('.modal-body #supplier_id').val(id);
-    });
+    //     var modal = $(this)
+    //     modal.find('.modal-body #supplier_id').val(id);
+    // });
 
 </script>
 @endsection

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class PurchaseInController extends Controller
 {
     public function index(){
-        $po_ins = PurchaseIn::all();
+        $po_ins = PurchaseIn::orderBy('created_at', 'DESC')->get();
         return view('po_in.index', compact('po_ins'));
     }
 
@@ -78,5 +78,10 @@ class PurchaseInController extends Controller
         ]);
 
         return redirect('/po_in');
+    }
+
+    public function purchase_this_month(){
+        $total_purchases = PurchaseIn::orderBy('created_at', 'DESC')->whereMonth('date', now()->month)->get();
+        return view('po_in.this_month', compact('total_purchases'));
     }
 }

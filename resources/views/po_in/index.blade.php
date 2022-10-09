@@ -64,7 +64,7 @@ Purchase In
                     <td style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 25%;">{{$po_in->supplier->name}}</td>
                     <td style="width: 25%;">{{$po_in->date}}</td>
-                    <td style="width: 25%;">{{number_format($po_in->total_price)}}</td>
+                    <td style="width: 25%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>
                     <td style="width: 10%;">
                         @if (!$po_in->finalized)
                         <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-info fs-16px"><i class="icofont-pencil-alt-2 text-light"></i></a>

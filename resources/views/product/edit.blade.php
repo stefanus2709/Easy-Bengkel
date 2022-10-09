@@ -53,7 +53,7 @@ Edit Product
                 <div class="mb-3">
                     <label for="inputQuantity" class="form-label">Quantity</label>
                     <input type="number" class="form-control" id="quantity" name="quantity"
-                        placeholder="Input Quantity" value="{{$product->quantity}}">
+                        placeholder="Input Quantity" value="{{number_format($product->quantity, 0, ',', '.')}}">
                     @error('quantity')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -157,8 +157,8 @@ Edit Product
                     <td style="width: 5%;">{{$loop->iteration}}</td>
                     <td style="width: 20%;">{{$detail->purchaseIn->supplier->name}} - {{$detail->purchaseIn->supplier->company_name}}</td>
                     <td style="width: 8%;">{{$detail->purchaseIn->date}}</td>
-                    <td style="width: 8%;">{{$detail->quantity}}</td>
-                    <td style="width: 8%;">{{$detail->price}}</td>
+                    <td style="width: 8%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
+                    <td style="width: 8%;">{{number_format($detail->price, 0, ',', '.')}}</td>
                     <td style="width: 5%;">
                         <a href="/po_in/edit/{{$detail->purchaseIn->id}}" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
                     </td>

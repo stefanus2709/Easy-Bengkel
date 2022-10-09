@@ -158,8 +158,8 @@ Edit Purchase In
                 <tr>
                     <td style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 25%;">{{$detail->product->name}}</td>
-                    <td style="width: 25%;">{{number_format($detail->quantity)}}</td>
-                    <td style="width: 25%;">{{number_format($detail->price)}}</td>
+                    <td style="width: 25%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
+                    <td style="width: 25%;">{{number_format($detail->price, 0, ',', '.')}}</td>
                     @if (!$po_in->finalized)
                     <td style="width: 10%;">
                         <a href="/po_in/{{$po_in->id}}/details/edit/{{$detail->id}}" class="btn btn-info fs-16px"><i
@@ -170,7 +170,7 @@ Edit Purchase In
                         </button>
                     </td>
                     @else
-                    <td style="width: 10%;">{{number_format($detail->price*$detail->quantity)}}</td>
+                    <td style="width: 10%;">{{number_format($detail->price*$detail->quantity, 0, ',', '.')}}</td>
                     @endif
                 </tr>
                 @endforeach

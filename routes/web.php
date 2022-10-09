@@ -16,6 +16,7 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth']], function () {
+    //dashboard
     Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
     //create sama edit ga terpakai karena pakai popup & langsung pakai javascript
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('/po_in/update/{id}', 'App\Http\Controllers\PurchaseInController@update')->name('po_in-update');
     Route::delete('/po_in/delete', 'App\Http\Controllers\PurchaseInController@delete')->name('po_in-delete');
     Route::patch('/po_in/finalize/{id}', 'App\Http\Controllers\PurchaseInController@finalize')->name('po_in-finalize');
+    Route::get('/po_in/this_month', 'App\Http\Controllers\PurchaseInController@purchase_this_month')->name('po_in_this_month');
 
     //po_in_details
     Route::post('/po_in/{po_id}/details/store', 'App\Http\Controllers\PurchaseInDetailController@store')->name('po_in_details-store');
@@ -66,6 +68,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/product/edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('product-edit');
     Route::patch('/product/update', 'App\Http\Controllers\ProductController@update')->name('product-update');
     Route::delete('/product/delete', 'App\Http\Controllers\ProductController@delete')->name('product-delete');
+    Route::get('/product/low', 'App\Http\Controllers\ProductController@low_product')->name('low-product');
 
     //quotation
     Route::get('/quotation', 'App\Http\Controllers\QuotationController@index')->name('quotation');
