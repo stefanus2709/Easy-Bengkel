@@ -78,6 +78,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('/quotation/update/{id}', 'App\Http\Controllers\QuotationController@update')->name('quotation-update');
     Route::delete('/quotation/delete/{id}', 'App\Http\Controllers\QuotationController@delete')->name('quotation-delete');
 
+    //quotation detail
+    Route::post('/quotation/{quotation_id}/details/store', 'App\Http\Controllers\QuotationDetailController@store')->name('quotation_details-store');
+    Route::get('/quotation/{quotation_id}/details/edit/{id}', 'App\Http\Controllers\QuotationDetailController@edit')->name('quotation_details-edit');
+    Route::patch('/quotation/{quotation_id}/details/update/{id}', 'App\Http\Controllers\QuotationDetailController@update')->name('quotation_details-update');
+    Route::delete('/quotation/{quotation_id}/details/delete', 'App\Http\Controllers\QuotationDetailController@delete')->name('quotation_details-delete');
+
     //supplier
     Route::get('/supplier', 'App\Http\Controllers\SupplierController@index')->name('supplier');
     // Route::get('/supplier/create', 'App\Http\Controllers\SupplierController@create')->name('supplier-create');

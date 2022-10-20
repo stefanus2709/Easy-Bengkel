@@ -12,4 +12,8 @@ class Quotation extends Model
     protected $fillable = [
         'customer_name', 'date', 'total_price',
     ];
+
+    public function details(){
+        return $this->hasMany('App\Models\QuotationDetail', 'quotation_id');
+    }
 }
