@@ -14,6 +14,15 @@ Purchase In
         display: none;
     }
 
+    .active > .page-link, .page-link.active, .btn-primary{
+        background-color: #293A80;
+        border-color: #293A80;
+    }
+
+    .page-link{
+        color: #293A80;
+    }
+
     .dataTables_wrapper .dataTables_paginate {
         float: none;
         text-align: center

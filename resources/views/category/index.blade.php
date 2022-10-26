@@ -12,12 +12,32 @@ Category
 
     .dataTables_wrapper .dataTables_paginate {
         float: none;
-        text-align: center
+        text-align: center;
+        padding: 4px 10px 10px 10px;
     }
 
-    .main-content, #createCategoryModal div, #editCategoryModal div, #deleteCategoryModal div {
+    .active>.page-link,
+    .page-link.active,
+    .btn-primary,
+    .btn-primary {
+        background-color: #293A80;
+        border-color: #293A80;
+    }
+
+    .page-link {
+        color: #293A80;
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+        padding: 10px 10px 4px 10px;
+    }
+
+    .main-content,
+    #deleteCategoryModal div {
         font-family: 'Poppins';
     }
+
 </style>
 @endsection
 
@@ -34,22 +54,18 @@ Category
 </div>
 @endif
 <div class="px-4 py-4 main-content">
+    @include('category.create')
     <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Category Lists
         </p>
-        {{-- <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal"
-            data-bs-target="#createCategoryModal">
-            Create Category
-        </button> --}}
-        <a href="/category/create" class="btn btn-primary fs-16px">Create Category</a>
     </div>
-    <div>
+    <div class="bg-white rounded">
         <table id="datatable" class="table">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th>#</th>
+                    <th class="text-center">#</th>
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
@@ -60,16 +76,11 @@ Category
                     @csrf
                     @method('DELETE')
                     <tr>
-                        <td style="width: 10%;">{{$loop->iteration}}</td>
+                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                         <td style="width: 80%;">{{$category->name}}</td>
                         <td style="width: 10%;">
-                            {{-- <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
-                                data-bs-toggle="modal" data-bs-target="#editCategoryModal"
-                                data-myName="{{$category->name}}" data-myId="{{$category->id}}">
-                                <i class="icofont-pencil-alt-2 text-light"></i>
-                            </button> --}}
                             <a href="/category/edit/{{$category->id}}" class="btn btn-info fs-16px"><i
-                                class="icofont-pencil-alt-2 text-light"></i></a>
+                                    class="icofont-pencil-alt-2 text-light"></i></a>
                             <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
                                 data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"
                                 data-myId="{{$category->id}}">
@@ -84,35 +95,6 @@ Category
     </div>
 </div>
 
-{{-- <!-- Create Category Modal -->
-<div class="modal" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p class="modal-title fs-22px" id="createCategoryModalLabel">Create Category</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @include('category.create')
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Edit Category Modal -->
-<div class="modal" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p class="modal-title fs-22px" id="editCategoryModalLabel">Edit Category</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @include('category.edit')
-            </div>
-        </div>
-    </div>
-</div> --}}
 <!-- Delete Category Modal -->
 <div class="modal" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -156,16 +138,6 @@ Category
             "pagingType": 'full_numbers',
         });
     });
-
-    // $('#editCategoryModal').on('show.bs.modal', function (event) {
-    //     var button = $(event.relatedTarget);
-    //     var name = button.attr('data-myName');
-    //     var id = button.attr('data-myId');
-
-    //     var modal = $(this)
-    //     modal.find('.modal-body #name').val(name);
-    //     modal.find('.modal-body #category_id').val(id);
-    // });
 
     $('#deleteCategoryModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);

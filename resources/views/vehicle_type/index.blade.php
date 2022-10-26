@@ -10,14 +10,33 @@ Vehicle Type
         display: none;
     }
 
-    .dataTables_wrapper .dataTables_paginate {
-        float: none;
-        text-align: center
+    .active>.page-link,
+    .page-link.active,
+    .btn-primary {
+        background-color: #293A80;
+        border-color: #293A80;
     }
 
-    .main-content, #deleteVehicleTypeModal div {
+    .page-link {
+        color: #293A80;
+    }
+
+    .dataTables_wrapper .dataTables_paginate {
+        float: none;
+        text-align: center;
+        padding: 4px 10px 10px 10px;
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+        padding: 10px 10px 4px 10px;
+    }
+
+    .main-content,
+    #deleteVehicleTypeModal div {
         font-family: 'Poppins';
     }
+
 </style>
 @endsection
 
@@ -34,18 +53,14 @@ Vehicle Type
 </div>
 @endif
 <div class="px-4 py-4 main-content">
+    @include('vehicle_type.create')
     <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Vehicle Type Lists
         </p>
-        {{-- <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal"
-            data-bs-target="#createVehicleTypeModal">
-            Create Vehicle Type
-        </button> --}}
-        <a href="/vehicle_type/create" class="btn btn-primary fs-16px">Create Vehicle Type</a>
     </div>
-    <div>
+    <div class="bg-white rounded">
         <table id="datatable" class="table">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
@@ -63,13 +78,8 @@ Vehicle Type
                         <td style="width: 10%;">{{$loop->iteration}}</td>
                         <td style="width: 80%;">{{$vehicle_type->name}}</td>
                         <td style="width: 10%;">
-                            {{-- <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
-                                data-bs-toggle="modal" data-bs-target="#editVehicleTypeModal"
-                                data-myName="{{$vehicle_type->name}}" data-myId="{{$vehicle_type->id}}">
-                                <i class="icofont-pencil-alt-2 text-light"></i>
-                            </button> --}}
                             <a href="/vehicle_type/edit/{{$vehicle_type->id}}" class="btn btn-info fs-16px"><i
-                                class="icofont-pencil-alt-2 text-light"></i></a>
+                                    class="icofont-pencil-alt-2 text-light"></i></a>
                             <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
                                 data-bs-toggle="modal" data-bs-target="#deleteVehicleTypeModal"
                                 data-myId="{{$vehicle_type->id}}">
@@ -84,37 +94,9 @@ Vehicle Type
     </div>
 </div>
 
-{{-- <!-- Create Vehicle Type Modal -->
-<div class="modal" id="createVehicleTypeModal" tabindex="-1" aria-labelledby="createVehicleTypeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p class="modal-title fs-22px" id="createVehicleTypeModalLabel">Create Vehicle Type</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @include('vehicle_type.create')
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Edit Vehicle Type Modal -->
-<div class="modal" id="editVehicleTypeModal" tabindex="-1" aria-labelledby="editVehicleTypeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p class="modal-title fs-22px" id="editVehicleTypeModalLabel">Edit Vehicle Type</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @include('vehicle_type.edit')
-            </div>
-        </div>
-    </div>
-</div> --}}
 <!-- Delete Vehicle Type Modal -->
-<div class="modal" id="deleteVehicleTypeModal" tabindex="-1" aria-labelledby="deleteVehicleTypeModalLabel" aria-hidden="true">
+<div class="modal" id="deleteVehicleTypeModal" tabindex="-1" aria-labelledby="deleteVehicleTypeModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -156,16 +138,6 @@ Vehicle Type
             "pagingType": 'full_numbers',
         });
     });
-
-    // $('#editVehicleTypeModal').on('show.bs.modal', function (event) {
-    //     var button = $(event.relatedTarget);
-    //     var name = button.attr('data-myName');
-    //     var id = button.attr('data-myId');
-
-    //     var modal = $(this)
-    //     modal.find('.modal-body #name').val(name);
-    //     modal.find('.modal-body #vehicle_type_id').val(id);
-    // });
 
     $('#deleteVehicleTypeModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);

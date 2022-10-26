@@ -22,6 +22,15 @@ Dashboard
         font-family: 'Poppins';
     }
 
+    .active > .page-link, .page-link.active, .btn-primary{
+        background-color: #293A80;
+        border-color: #293A80;
+    }
+
+    .page-link{
+        color: #293A80;
+    }
+
     .container-summary-box {
         margin-right: 10px;
         align-items: center;

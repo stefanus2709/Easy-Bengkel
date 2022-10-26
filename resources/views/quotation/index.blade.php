@@ -19,6 +19,15 @@ Purchase In
         text-align: center
     }
 
+    .active > .page-link, .page-link.active, .btn-primary{
+        background-color: #293A80;
+        border-color: #293A80;
+    }
+
+    .page-link{
+        color: #293A80;
+    }
+
     .main-content,
     #deletePurchaseInModal div {
         font-family: 'Poppins';

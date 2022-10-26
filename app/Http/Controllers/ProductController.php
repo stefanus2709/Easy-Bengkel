@@ -13,8 +13,12 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(){
+        $categories = Category::all();
+        $vehicle_types = VehicleType::all();
+        $brands = Brand::all();
+        $suppliers = Supplier::all();
         $products = Product::all();
-        return view('product.index', compact('products'));
+        return view('product.index', compact('products', 'categories', 'vehicle_types', 'brands', 'suppliers'));
     }
 
     public function create(){

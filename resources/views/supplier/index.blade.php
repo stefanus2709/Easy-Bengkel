@@ -12,12 +12,32 @@ Supplier
 
     .dataTables_wrapper .dataTables_paginate {
         float: none;
-        text-align: center
+        text-align: center;
+        padding: 4px 10px 10px 10px;
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+        padding: 10px 10px 4px 10px;
+    }
+
+    .active>.page-link,
+    .page-link.active,
+    .btn-primary {
+        background-color: #293A80;
+        border-color: #293A80;
+    }
+
+    .page-link {
+        color: #293A80;
+    }
+
+    .left-form,
+    .right-form {
+        padding: 0 5px 0 0;
     }
 
     .main-content,
-    #createSupplierModal div,
-    #editSupplierModal div,
     #deleteSupplierModal div {
         font-family: 'Poppins';
     }
@@ -38,17 +58,14 @@ Supplier
 </div>
 @endif
 <div class="px-4 py-4 main-content">
+    @include('supplier.create')
     <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Supplier Lists
         </p>
-        <button type="button" class="btn btn-primary fs-16px" data-bs-toggle="modal"
-            data-bs-target="#createSupplierModal">
-            Create Supplier
-        </button>
     </div>
-    <div>
+    <div class="bg-white rounded">
         <table class="table" id="datatable">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
@@ -85,36 +102,6 @@ Supplier
                 @endforeach
             </tbody>
         </table>
-    </div>
-</div>
-
-<!-- Create Supplier Modal -->
-<div class="modal" id="createSupplierModal" tabindex="-1" aria-labelledby="createSupplierModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p class="modal-title fs-22px" id="createSupplierModalLabel">Create Supplier</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @include('supplier.create')
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Edit Supplier Modal -->
-<div class="modal" id="editSupplierModal" tabindex="-1" aria-labelledby="editSupplierModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p class="modal-title fs-22px" id="editSupplierModalLabel">Edit Supplier</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @include('supplier.edit')
-            </div>
-        </div>
     </div>
 </div>
 
@@ -161,22 +148,6 @@ Supplier
             "pageLength": 5,
             "pagingType": 'full_numbers',
         });
-    });
-
-    $('#editSupplierModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var name = button.attr('data-myName');
-        var company_name = button.attr('data-myCompanyName');
-        var phone_number = button.attr('data-myPhoneNumber');
-        var address = button.attr('data-myAddress');
-        var id = button.attr('data-myId');
-
-        var modal = $(this)
-        modal.find('.modal-body #name').val(name);
-        modal.find('.modal-body #company_name').val(company_name);
-        modal.find('.modal-body #phone_number').val(phone_number);
-        modal.find('.modal-body #address').val(address);
-        modal.find('.modal-body #supplier_id').val(id);
     });
 
     $('#deleteSupplierModal').on('show.bs.modal', function (event) {

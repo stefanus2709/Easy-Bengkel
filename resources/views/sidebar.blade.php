@@ -11,10 +11,10 @@
 
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 pt-2 bg-light">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 pt-2 bg-white">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-primary text-decoration-none">
-                    <span class="fs-16px fw-bold d-none d-sm-inline text-primary">MUTIARA JAYA MOTOR</span>
+                    <span class="fs-16px fw-bold d-none d-sm-inline text-primary">EASYBENGKEL</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <p class="mb-2 text-dark fs-12px">Main Menu</p>
@@ -71,11 +71,11 @@
                 </ul>
             </div>
         </div>
-        <div class="col px-1 py-0 content">
+        <div class="col px-1 py-0 content" style="background-color: #DEE2E6;">
             @include('navbar')
             @yield('content')
         </div>
     </div>
 </div>
-    
+
 @yield('scripts')
