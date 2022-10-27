@@ -11,11 +11,11 @@ class PurchaseInController extends Controller
 {
     public function index(){
         $po_ins = PurchaseIn::orderBy('created_at', 'DESC')->get();
-        return view('po_in.index', compact('po_ins'));
+        $suppliers = Supplier::all();
+        return view('po_in.index', compact('po_ins', 'suppliers'));
     }
 
     public function create(){
-        $suppliers = Supplier::all();
         return view('po_in.create', compact('suppliers'));
     }
 

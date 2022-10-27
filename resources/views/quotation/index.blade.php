@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Purchase In
+Quotation
 @endsection
 
 @section('custom-css')
@@ -16,20 +16,28 @@ Purchase In
 
     .dataTables_wrapper .dataTables_paginate {
         float: none;
-        text-align: center
+        text-align: center;
+        padding: 4px 10px 10px 10px;
     }
 
-    .active > .page-link, .page-link.active, .btn-primary{
+    .dataTables_length,
+    .dataTables_filter {
+        padding: 10px 10px 4px 10px;
+    }
+
+    .active>.page-link,
+    .page-link.active,
+    .btn-primary {
         background-color: #293A80;
         border-color: #293A80;
     }
 
-    .page-link{
+    .page-link {
         color: #293A80;
     }
 
     .main-content,
-    #deletePurchaseInModal div {
+    #deleteQuotationModal div {
         font-family: 'Poppins';
     }
 
@@ -49,18 +57,18 @@ Purchase In
 </div>
 @endif
 <div class="px-4 py-4 main-content">
+    @include('quotation.create')
     <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Quotation
         </p>
-        <a href="/quotation/create" class="btn btn-primary fs-16px">Create Quotation</a>
     </div>
-    <div>
+    <div class="bg-white rounded">
         <table class="table" id="datatable">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th>#</th>
+                    <th class="text-center">#</th>
                     <th>Customer Name</th>
                     <th>Date</th>
                     <th>Total Price</th>
@@ -68,20 +76,26 @@ Purchase In
                 </tr>
             </thead>
             <tbody>
-                @foreach ($quotation as $quotations)
+                @foreach ($quotations as $quotation)
                 <tr>
-                    <td style="width: 10%;">{{$loop->iteration}}</td>
-                    <td style="width: 25%;">{{$quotations->customer_name}}</td>
-                    <td style="width: 25%;">{{$quotations->date}}</td>
-                    <td style="width: 25%;">{{number_format($quotations->total_price, 0, ',', '.')}}</td>
+                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                    <td style="width: 25%;">{{$quotation->customer_name}}</td>
+                    <td style="width: 25%;">{{$quotation->date}}</td>
+                    <td style="width: 25%;">
+                        {{number_format($quotation->total_price, 0, ',', '.')}}
+                        <button class="btn btn-danger ml-2" style="font-size: 10px;">Not Finalized</button>
+                    </td>
                     <td style="width: 10%;">
-                        @if (!$quotations->finalized)
-                        <a href="/quotation/edit/{{$quotations->id}}" class="btn btn-info fs-16px"><i class="icofont-pencil-alt-2 text-light"></i></a>
+                        @if (!$quotation->finalized)
+                        <a href="/quotation/edit/{{$quotation->id}}" class="btn btn-info fs-16px"><i
+                                class="icofont-pencil-alt-2 text-light"></i></a>
                         @else
-                        <a href="/quotation/edit/{{$quotations->id}}" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
+                        <a href="/quotation/edit/{{$quotation->id}}" class="btn btn-success fs-16px"><i
+                                class="icofont-search-1"></i></a>
                         @endif
                         <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
-                            data-bs-toggle="modal" data-bs-target="#deleteQuotationModal" data-myId="{{$quotations->id}}">
+                            data-bs-toggle="modal" data-bs-target="#deleteQuotationModal"
+                            data-myId="{{$quotation->id}}">
                             <i class="icofont-trash text-light"></i>
                         </button>
                     </td>
@@ -93,11 +107,12 @@ Purchase In
 </div>
 
 <!-- Delete Purchase In Modal -->
-<div class="modal" id="deletePurchaseInModal" tabindex="-1" aria-labelledby="deletePurchaseInModalLabel" aria-hidden="true">
+<div class="modal" id="deleteQuotationModal" tabindex="-1" aria-labelledby="deleteQuotationModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title fs-22px" id="deletePurchaseInModalLabel">Delete PurchaseIn</p>
+                <p class="modal-title fs-22px" id="deleteQuotationModalLabel">Delete Quotation</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -106,9 +121,9 @@ Purchase In
                         @csrf
                         @method('DELETE')
                         <div class="">
-                            <label class="form-label">Are you sure you want to delete this PO?</label>
+                            <label class="form-label">Are you sure you want to delete this Quotation?</label>
                             <p>The data will gone forever</p>
-                            <input type="hidden" class="mb-3" name="po_in_id" id="po_in_id">
+                            <input type="hidden" class="mb-3" name="quotation_id" id="quotation_id">
                         </div>
                         <div class="text-end">
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -138,12 +153,12 @@ Purchase In
             "pagingType": 'full_numbers',
         });
 
-        $('#deletePurchaseInModal').on('show.bs.modal', function (event) {
+        $('#deleteQuotationModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var id = button.attr('data-myId');
 
             var modal = $(this)
-            modal.find('.modal-body #po_in_id').val(id);
+            modal.find('.modal-body #quotation_id').val(id);
         });
     });
 

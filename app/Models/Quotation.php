@@ -10,7 +10,7 @@ class Quotation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_name', 'date', 'total_price',
+        'customer_name', 'date', 'total_price', 'finalized',
     ];
 
     public function details(){

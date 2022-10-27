@@ -6,21 +6,35 @@ Edit Purchase In
 
 @section('custom-css')
 <style>
-    #datatable {
-        font-size: 12px;
-    }
-
     .dataTables_info {
         display: none;
     }
 
     .dataTables_wrapper .dataTables_paginate {
         float: none;
-        text-align: center
+        text-align: center;
+        padding: 4px 10px 10px 10px;
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+        padding: 10px 10px 4px 10px;
+    }
+
+    .active>.page-link,
+    .page-link.active,
+    .btn-primary {
+        background-color: #293A80;
+        border-color: #293A80;
+    }
+
+    .page-link {
+        color: #293A80;
     }
 
     .main-content,
-    .po-item-content {
+    .po-item-content,
+    #deleteSupplierModal div {
         font-family: 'Poppins';
     }
 
@@ -40,8 +54,8 @@ Edit Purchase In
 </div>
 @endif
 <div class="px-4 py-4 main-content">
-    <div class="d-flex justify-content-between mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Edit Purchase In
         </p>
         @if ($po_in->finalized)
@@ -57,136 +71,142 @@ Edit Purchase In
         @endif
 
     </div>
-    <form action="/po_in/update/{{$po_in->id}}" method="POST">
-        @csrf
-        @method('PATCH')
-        <div class="mb-3">
-            @if(!blank($po_in->details))
-            <fieldset disabled>
-                <label for="disabledSelect" class="form-label">Select Supplier</label>
-                <select id="disabledSelect" class="form-select">
-                    <option>{{$po_in->supplier->name}}-{{$po_in->supplier->company_name}}</option>
+    <div class="bg-white rounded p-3 mb-2">
+        <form action="/po_in/update/{{$po_in->id}}" method="POST">
+            @csrf
+            @method('PATCH')
+            <div class="mb-3">
+                @if(!blank($po_in->details))
+                <fieldset disabled>
+                    <label for="disabledSelect" class="form-label">Select Supplier</label>
+                    <select id="disabledSelect" class="form-select">
+                        <option>{{$po_in->supplier->name}}-{{$po_in->supplier->company_name}}</option>
+                    </select>
+                </fieldset>
+                <input type="hidden" name="supplier_id" value="{{$po_in->supplier->id}}">
+                @elseif (!blank($suppliers))
+                <label for="select" class="form-label">Select Supplier</label>
+                <select id="select" class="selectpicker form-control" data-live-search="true" multiple data-max-options="1"
+                    name="supplier_id">
+                    @foreach ($suppliers as $supplier)
+                    <option value="{{$supplier->id}}">{{$supplier->name}}-{{$supplier->company_name}}</option>
+                    @endforeach
                 </select>
-            </fieldset>
-            <input type="hidden" name="supplier_id" value="{{$po_in->supplier->id}}">
-            @elseif (!blank($suppliers))
-            <label for="select" class="form-label">Select Supplier</label>
-            <select id="select" class="selectpicker form-control" data-live-search="true" multiple data-max-options="1"
-                name="supplier_id">
-                @foreach ($suppliers as $supplier)
-                <option value="{{$supplier->id}}">{{$supplier->name}}-{{$supplier->company_name}}</option>
-                @endforeach
-            </select>
-            @endif
-            @error('supplier_id')
-            <span class="text-danger">The supplier field is required.</span>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="inputPurchaseInDate" class="form-label">Purchase Date</label>
-            <input type="date" class="form-control" id="date" name="date" placeholder="Input Purchase Date"
-                value="{{$po_in->date}}">
-            @error('date')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-        </div>
-        <div class="text-end">
-            <a href="/po_in" class="btn btn-secondary">Back</a>
-            @if ($po_in->finalized)
-            <button type="submit" class="btn btn-primary" disabled>Update</button>
-            @else
-            <button type="submit" class="btn btn-primary">Update</button>
-            @endif
-        </div>
-    </form>
+                @endif
+                @error('supplier_id')
+                <span class="text-danger">The supplier field is required.</span>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="inputPurchaseInDate" class="form-label">Purchase Date</label>
+                <input type="date" class="form-control" id="date" name="date" placeholder="Input Purchase Date"
+                    value="{{$po_in->date}}">
+                @error('date')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+            <div class="text-end">
+                <a href="/po_in" class="btn btn-secondary">Back</a>
+                @if ($po_in->finalized)
+                <button type="submit" class="btn btn-primary" disabled>Update</button>
+                @else
+                <button type="submit" class="btn btn-primary">Update</button>
+                @endif
+            </div>
+        </form>
+    </div>
 </div>
-<div class="px-4 py-4 po-item-content">
+<div class="px-4 po-item-content">
     <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-3 align-middle">
+    <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0">
             Item list stock
         </p>
     </div>
-    <form action="/po_in/{{$po_in->id}}/details/store" method="POST">
-        @csrf
-        <div class="row g-3 align-items-center mb-3">
-            <div class="col-md-5">
-                @if (!blank($po_in->supplier->products))
-                <label for="select" class="form-label">Select Product</label>
-                <select id="select" class="selectpicker form-control" data-live-search="true" multiple
-                    data-max-options="1" name="product_id">
-                    @foreach ($po_in->supplier->products as $product)
-                    <option value="{{$product->id}}">{{$product->name}}</option>
-                    @endforeach
-                </select>
-                @else
-                <fieldset disabled>
-                    <label for="disabledSelect" class="form-label">Select Product</label>
-                    <select id="disabledSelect" class="form-select">
-                        <option>No Products Data</option>
-                    </select>
-                </fieldset>
-                @endif
-                @error('product_id')
-                <span class="text-danger">The product field is required.</span>
-                @enderror
-            </div>
-            <div class="col-sm">
-                <label for="inputQuantity" class="form-label">Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Input Quantity">
-                @error('quantity')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
-            </div>
-            @if ($po_in->finalized)
-            <div class="col-sm" style="vertical-align: bottom">
-                <button type="submit" class="btn btn-primary" disabled>Create</button>
-            </div>
-            @else
-            <div class="col-sm" style="vertical-align: bottom">
-                <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-            @endif
+    <div class="bg-white rounded mb-3">
+        <div class="px-3 py-3">
+            <form action="/po_in/{{$po_in->id}}/details/store" method="POST">
+                @csrf
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-5">
+                        @if (!blank($po_in->supplier->products))
+                        <label for="select" class="form-label">Select Product</label>
+                        <select id="select" class="selectpicker form-control" data-live-search="true" multiple
+                            data-max-options="1" name="product_id">
+                            @foreach ($po_in->supplier->products as $product)
+                            <option value="{{$product->id}}">{{$product->name}}</option>
+                            @endforeach
+                        </select>
+                        @else
+                        <fieldset disabled>
+                            <label for="disabledSelect" class="form-label">Select Product</label>
+                            <select id="disabledSelect" class="form-select">
+                                <option>No Products Data</option>
+                            </select>
+                        </fieldset>
+                        @endif
+                        @error('product_id')
+                        <span class="text-danger">The product field is required.</span>
+                        @enderror
+                    </div>
+                    <div class="col-sm">
+                        <label for="inputQuantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Input Quantity">
+                        @error('quantity')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    @if ($po_in->finalized)
+                    <div class="col-sm" style="vertical-align: bottom">
+                        <button type="submit" class="btn btn-primary" disabled>Create</button>
+                    </div>
+                    @else
+                    <div class="col-sm" style="vertical-align: bottom">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                    @endif
+                </div>
+            </form>
         </div>
-    </form>
-    <div>
-        <table class="table" id="datatable">
-            <thead>
-                <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th>#</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    @if (!$po_in->finalized)
-                    <th>Action</th>
-                    @else
-                    <th>Total Price</th>
-                    @endif
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($po_in->details as $detail)
-                <tr>
-                    <td style="width: 10%;">{{$loop->iteration}}</td>
-                    <td style="width: 25%;">{{$detail->product->name}}</td>
-                    <td style="width: 25%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
-                    <td style="width: 25%;">{{number_format($detail->price, 0, ',', '.')}}</td>
-                    @if (!$po_in->finalized)
-                    <td style="width: 10%;">
-                        <a href="/po_in/{{$po_in->id}}/details/edit/{{$detail->id}}" class="btn btn-info fs-16px"><i
-                                class="icofont-pencil-alt-2 text-light"></i></a>
-                        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
-                            data-bs-toggle="modal" data-bs-target="#deletePurchaseInProductModal" data-myId="{{$detail->id}}">
-                            <i class="icofont-trash text-light"></i>
-                        </button>
-                    </td>
-                    @else
-                    <td style="width: 10%;">{{number_format($detail->price*$detail->quantity, 0, ',', '.')}}</td>
-                    @endif
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div>
+            <table class="table" id="datatable">
+                <thead>
+                    <tr style="background-color: #293A80; color: white; border-radius: 5px">
+                        <th class="text-center">#</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        @if (!$po_in->finalized)
+                        <th>Action</th>
+                        @else
+                        <th>Total Price</th>
+                        @endif
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($po_in->details as $detail)
+                    <tr>
+                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                        <td style="width: 35%;">{{$detail->product->name}}</td>
+                        <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
+                        <td style="width: 25%;">{{number_format($detail->price, 0, ',', '.')}}</td>
+                        @if (!$po_in->finalized)
+                        <td style="width: 10%;">
+                            <a href="/po_in/{{$po_in->id}}/details/edit/{{$detail->id}}" class="btn btn-info fs-16px"><i
+                                    class="icofont-pencil-alt-2 text-light"></i></a>
+                            <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
+                                data-bs-toggle="modal" data-bs-target="#deletePurchaseInProductModal" data-myId="{{$detail->id}}">
+                                <i class="icofont-trash text-light"></i>
+                            </button>
+                        </td>
+                        @else
+                        <td style="width: 10%;">{{number_format($detail->price*$detail->quantity, 0, ',', '.')}}</td>
+                        @endif
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

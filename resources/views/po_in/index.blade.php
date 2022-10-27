@@ -14,18 +14,26 @@ Purchase In
         display: none;
     }
 
-    .active > .page-link, .page-link.active, .btn-primary{
+    .dataTables_wrapper .dataTables_paginate {
+        float: none;
+        text-align: center;
+        padding: 4px 10px 10px 10px;
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+        padding: 10px 10px 4px 10px;
+    }
+
+    .active>.page-link,
+    .page-link.active,
+    .btn-primary {
         background-color: #293A80;
         border-color: #293A80;
     }
 
-    .page-link{
+    .page-link {
         color: #293A80;
-    }
-
-    .dataTables_wrapper .dataTables_paginate {
-        float: none;
-        text-align: center
     }
 
     .main-content,
@@ -49,18 +57,18 @@ Purchase In
 </div>
 @endif
 <div class="px-4 py-4 main-content">
+    @include('po_in.create')
     <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Purchase In
         </p>
-        <a href="/po_in/create" class="btn btn-primary fs-16px">Create PO</a>
     </div>
-    <div>
+    <div class="bg-white rounded">
         <table class="table" id="datatable">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th>#</th>
+                    <th class="text-center">#</th>
                     <th>Name</th>
                     <th>Date</th>
                     <th>Total Purchase</th>
@@ -70,7 +78,7 @@ Purchase In
             <tbody>
                 @foreach ($po_ins as $po_in)
                 <tr>
-                    <td style="width: 10%;">{{$loop->iteration}}</td>
+                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 25%;">{{$po_in->supplier->name}}</td>
                     <td style="width: 25%;">{{$po_in->date}}</td>
                     <td style="width: 25%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>

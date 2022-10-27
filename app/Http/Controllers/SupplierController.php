@@ -34,12 +34,12 @@ class SupplierController extends Controller
         return redirect('/supplier');
     }
 
-    // public function edit($id){
-    //     $supplier = Supplier::findOrFail($id);
-    //     return view('supplier.edit', compact('supplier'));
-    // }
+    public function edit($id){
+        $supplier = Supplier::findOrFail($id);
+        return view('supplier.edit', compact('supplier'));
+    }
 
-    public function update(Request $request){
+    public function update(Request $request, $id){
         $request->validate([
             'name' => 'required',
             'company_name' => 'required',
@@ -47,7 +47,7 @@ class SupplierController extends Controller
             'address' => 'required',
         ]);
 
-        Supplier::findOrFail($request->supplier_id)->update([
+        Supplier::findOrFail($id)->update([
             'name' => $request->name,
             'company_name' => $request->company_name,
             'phone_number' => $request->phone_number,

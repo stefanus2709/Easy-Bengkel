@@ -19,11 +19,9 @@ Route::group(['middleware' => ['auth']], function () {
     //dashboard
     Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
-    //create sama edit ga terpakai karena pakai popup & langsung pakai javascript
-
     //brand
     Route::get('/brand', 'App\Http\Controllers\BrandController@index')->name('brand');
-    Route::get('/brand/create', 'App\Http\Controllers\BrandController@create')->name('brand-create');
+    // Route::get('/brand/create', 'App\Http\Controllers\BrandController@create')->name('brand-create');
     Route::post('/brand/store', 'App\Http\Controllers\BrandController@store')->name('brand-store');
     Route::get('/brand/edit/{id}', 'App\Http\Controllers\BrandController@edit')->name('brand-edit');
     Route::patch('/brand/update/{id}', 'App\Http\Controllers\BrandController@update')->name('brand-update');
@@ -31,7 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //category
     Route::get('/category', 'App\Http\Controllers\CategoryController@index')->name('category');
-    Route::get('/category/create', 'App\Http\Controllers\CategoryController@create')->name('category-create');
+    // Route::get('/category/create', 'App\Http\Controllers\CategoryController@create')->name('category-create');
     Route::post('/category/store', 'App\Http\Controllers\CategoryController@store')->name('category-store');
     Route::get('/category/edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('category-edit');
     Route::patch('/category/update/{id}', 'App\Http\Controllers\CategoryController@update')->name('category-update');
@@ -47,7 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //po_in
     Route::get('/po_in', 'App\Http\Controllers\PurchaseInController@index')->name('po_in');
-    Route::get('/po_in/create', 'App\Http\Controllers\PurchaseInController@create')->name('po_in-create');
+    // Route::get('/po_in/create', 'App\Http\Controllers\PurchaseInController@create')->name('po_in-create');
     Route::post('/po_in/store', 'App\Http\Controllers\PurchaseInController@store')->name('po_in-store');
     Route::get('/po_in/edit/{id}', 'App\Http\Controllers\PurchaseInController@edit')->name('po_in-edit');
     Route::patch('/po_in/update/{id}', 'App\Http\Controllers\PurchaseInController@update')->name('po_in-update');
@@ -63,7 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //product
     Route::get('/product', 'App\Http\Controllers\ProductController@index')->name('product');
-    Route::get('/product/create', 'App\Http\Controllers\ProductController@create')->name('product-create');
+    // Route::get('/product/create', 'App\Http\Controllers\ProductController@create')->name('product-create');
     Route::post('/product/store', 'App\Http\Controllers\ProductController@store')->name('product-store');
     Route::get('/product/edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('product-edit');
     Route::patch('/product/update', 'App\Http\Controllers\ProductController@update')->name('product-update');
@@ -72,7 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //quotation
     Route::get('/quotation', 'App\Http\Controllers\QuotationController@index')->name('quotation');
-    Route::get('/quotation/create', 'App\Http\Controllers\QuotationController@create')->name('quotation-create');
+    // Route::get('/quotation/create', 'App\Http\Controllers\QuotationController@create')->name('quotation-create');
     Route::post('/quotation/store', 'App\Http\Controllers\QuotationController@store')->name('quotation-store');
     Route::get('/quotation/edit/{id}', 'App\Http\Controllers\QuotationController@edit')->name('quotation-edit');
     Route::patch('/quotation/update/{id}', 'App\Http\Controllers\QuotationController@update')->name('quotation-update');
@@ -88,13 +86,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/supplier', 'App\Http\Controllers\SupplierController@index')->name('supplier');
     // Route::get('/supplier/create', 'App\Http\Controllers\SupplierController@create')->name('supplier-create');
     Route::post('/supplier/store', 'App\Http\Controllers\SupplierController@store')->name('supplier-store');
-    // Route::get('/supplier/edit/{id}', 'App\Http\Controllers\SupplierController@edit')->name('supplier-edit');
-    Route::patch('/supplier/update', 'App\Http\Controllers\SupplierController@update')->name('supplier-update');
+    Route::get('/supplier/edit/{id}', 'App\Http\Controllers\SupplierController@edit')->name('supplier-edit');
+    Route::patch('/supplier/update/{id}', 'App\Http\Controllers\SupplierController@update')->name('supplier-update');
     Route::delete('/supplier/delete', 'App\Http\Controllers\SupplierController@delete')->name('supplier-delete');
 
     //vehicle_type
     Route::get('/vehicle_type', 'App\Http\Controllers\VehicleTypeController@index')->name('vehicle_type');
-    Route::get('/vehicle_type/create', 'App\Http\Controllers\VehicleTypeController@create')->name('vehicle_type-create');
+    // Route::get('/vehicle_type/create', 'App\Http\Controllers\VehicleTypeController@create')->name('vehicle_type-create');
     Route::post('/vehicle_type/store', 'App\Http\Controllers\VehicleTypeController@store')->name('vehicle_type-store');
     Route::get('/vehicle_type/edit/{id}', 'App\Http\Controllers\VehicleTypeController@edit')->name('vehicle_type-edit');
     Route::patch('/vehicle_type/update/{id}', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type-update');

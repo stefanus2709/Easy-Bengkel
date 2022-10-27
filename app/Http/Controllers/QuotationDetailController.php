@@ -36,15 +36,27 @@ class QuotationDetailController extends Controller
         return redirect('/quotation/edit/'.$quotation_id);
     }
 
-    public function edit(){
-
+    public function edit($quotation_id, $id){
+        $quotation_detail = QuotationDetail::findOrFail($id);
+        return view('quotation.edit-product', compact('quotation_detail'));
     }
 
-    public function update(){
+    public function update(Request $request, $quotation_id, $id){
+        $request->validate([
+            'quantity' => 'required',
+            'price' => 'required',
+        ]);
 
+        QuotationDetail::findOrFail($id)->update([
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+        ]);
+
+        return redirect('/quotation/edit/'.$quotation_id);
     }
 
-    public function delete(){
-
+    public function delete(Request $request){
+        QuotationDetail::destroy($request->quotation_detail_id);
+        return back();
     }
 }

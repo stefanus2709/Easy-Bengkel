@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class QuotationController extends Controller
 {
     public function index(){
-        $quotation = Quotation::all();
-        return view('quotation.index', compact('quotation'));
+        $quotations = Quotation::all();
+        return view('quotation.index', compact('quotations'));
     }
 
     public function create(){
@@ -60,6 +60,6 @@ class QuotationController extends Controller
     }
 
     public function delete(){
-        
+
     }
 }

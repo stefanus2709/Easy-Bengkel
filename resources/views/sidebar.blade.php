@@ -3,9 +3,11 @@
     body {
         font-family: 'Roboto';
     }
+
     .content {
         font-family: 'Poppins';
     }
+
 </style>
 @endsection
 
@@ -36,7 +38,7 @@
                     <li class="nav-item">
                         <a href="/po_in" class="nav-link align-middle pL-3 py-1 text-dark fw-normal fs-16px mb-3">
                             <i class="icofont-cart"></i> <span class="ms-1 d-none d-sm-inline">Purchase
-                                Order</span></span>
+                                In</span></span>
                         </a>
                     </li>
 
@@ -63,11 +65,6 @@
                                 Type</span></span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a href="/item" class="nav-link align-middle pl-3 py-1 text-dark fw-normal fs-16px">
-                            <i class="icofont-box"></i> <span class="ms-1 d-none d-sm-inline">Items (ga dipake)</span></span>
-                        </a>
-                    </li> --}}
                 </ul>
             </div>
         </div>

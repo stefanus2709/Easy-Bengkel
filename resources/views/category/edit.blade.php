@@ -12,11 +12,33 @@ Update Category
 
     .dataTables_wrapper .dataTables_paginate {
         float: none;
-        text-align: center
+        text-align: center;
+        padding: 4px 10px 10px 10px;
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+        padding: 10px 10px 4px 10px;
+    }
+
+    .active>.page-link,
+    .page-link.active,
+    .btn-primary {
+        background-color: #293A80;
+        border-color: #293A80;
+    }
+
+    .page-link {
+        color: #293A80;
+    }
+
+    .left-form,
+    .right-form {
+        padding: 0 5px 0 0;
     }
 
     .main-content,
-    #deleteCategoryModal div {
+    #deleteSupplierModal div {
         font-family: 'Poppins';
     }
 
@@ -27,11 +49,11 @@ Update Category
 <div class="px-4 py-4 main-content">
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Update Category
         </p>
     </div>
-    <div>
+    <div class="bg-white rounded p-3 mb-3">
         <form action="/category/update/{{$category->id}}" method="POST">
             @csrf
             @method('PATCH')

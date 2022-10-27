@@ -86,13 +86,8 @@ Supplier
                     <td style="width: 15%;">{{$supplier->phone_number}}</td>
                     <td style="width: 25%;">{{$supplier->address}}</td>
                     <td style="width: 10%;">
-                        <button type="button" class="btn btn-info fs-16px edit" style="font-size: 16px;"
-                            data-bs-toggle="modal" data-bs-target="#editSupplierModal" data-myName="{{$supplier->name}}"
-                            data-myCompanyName="{{$supplier->company_name}}"
-                            data-myPhoneNumber="{{$supplier->phone_number}}" data-myAddress="{{$supplier->address}}"
-                            data-myId="{{$supplier->id}}">
-                            <i class="icofont-pencil-alt-2 text-light"></i>
-                        </button>
+                        <a href="/supplier/edit/{{$supplier->id}}" class="btn btn-info fs-16px"><i
+                            class="icofont-pencil-alt-2 text-light"></i></a>
                         <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
                             data-bs-toggle="modal" data-bs-target="#deleteSupplierModal" data-myId="{{$supplier->id}}">
                             <i class="icofont-trash text-light"></i>
