@@ -14,13 +14,34 @@ Low Stock Product
         display: none;
     }
 
+    .active>.page-link,
+    .page-link.active,
+    .btn-primary {
+        background-color: #293A80;
+        border-color: #293A80;
+    }
+
+    .left-form {
+        padding: 0 5px 0 0;
+    }
+
+    .page-link {
+        color: #293A80;
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+        padding: 10px 10px 4px 10px;
+    }
+
     .dataTables_wrapper .dataTables_paginate {
         float: none;
-        text-align: center
+        text-align: center;
+        padding: 4px 10px 10px 10px;
     }
 
     .main-content,
-        {
+    #deleteProductModal div {
         font-family: 'Poppins';
     }
 
@@ -41,12 +62,12 @@ Low Stock Product
 @endif
 <div class="px-4 py-4 main-content">
     <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Low Stock Product Lists
         </p>
     </div>
-    <div>
+    <div class="bg-white rounded">
         <table class="table" id="datatable">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">

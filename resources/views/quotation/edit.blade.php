@@ -123,23 +123,26 @@ Edit Quotation
                 <div class="row g-3 align-items-center">
                     <div class="col-md-5">
                         @if (!blank($products))
-                            <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
-                            <label for="select" class="form-label">Select Product</label>
-                            <select id="select-product" class="selectpicker form-control" data-live-search="true" multiple
-                                data-max-options="1" name="product_id"
-                                onchange="getProductId('selling_price', this.selling_price.value)">
-                                @foreach ($products as $product)
-                                <option value="{{$product->id}}" data-rc="{{$product->selling_price}}">{{$product->name}}
-                                </option>
-                                @endforeach
-                            </select>
+                        <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
+                        <label for="select" class="form-label">Select Product</label>
+                        <select id="select-product" class="selectpicker form-control" data-live-search="true" multiple
+                            data-max-options="1" name="product_id"
+                            onchange="getProductId('selling_price', this.selling_price.value)">
+                            @foreach ($products as $product)
+                            @if ($product->quantity != 0)
+                            <option value="{{$product->id}}" data-rc="{{$product->selling_price}}"
+                                data-qty="{{$product->quantity}}">{{$product->name}}
+                            </option>
+                            @endif
+                            @endforeach
+                        </select>
                         @else
-                            <fieldset disabled>
-                                <label for="disabledSelect" class="form-label">Select Product</label>
-                                <select id="disabledSelect" class="form-select">
-                                    <option>No Products Data</option>
-                                </select>
-                            </fieldset>
+                        <fieldset disabled>
+                            <label for="disabledSelect" class="form-label">Select Product</label>
+                            <select id="disabledSelect" class="form-select">
+                                <option>No Products Data</option>
+                            </select>
+                        </fieldset>
                         @endif
                         @error('product_id')
                         <span class="text-danger">The product field is required.</span>
@@ -148,7 +151,7 @@ Edit Quotation
                     <div class="col-sm">
                         <label for="inputQuantity" class="form-label">Quantity</label>
                         <input type="number" class="form-control" id="quantity" name="quantity"
-                            placeholder="Input Quantity">
+                            placeholder="Input Quantity" min="1" max="">
                         @error('quantity')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -156,7 +159,7 @@ Edit Quotation
                     <div class="col-sm">
                         <label for="sellingPrice" class="form-label">Selling Price</label>
                         <input type="format_po" class="form-control" id="selling_price" name="selling_price"
-                            placeholder="Input Selling Price" disabled>
+                            placeholder="Input Selling Price">
                         @error('selling_price')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -210,7 +213,8 @@ Edit Quotation
                         <td style="width: 30%;">{{$detail->product->name}}</td>
                         <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
                         <td style="width: 20%;">{{number_format($detail->selling_price, 0, ',', '.')}}</td>
-                        <td style="width: 20%;">{{number_format($detail->selling_price*$detail->quantity, 0, ',', '.')}}</td>
+                        <td style="width: 20%;">{{number_format($detail->selling_price*$detail->quantity, 0, ',', '.')}}
+                        </td>
                         @endif
                     </tr>
                     @endforeach
@@ -313,8 +317,10 @@ Edit Quotation
 
         selection.onchange = function (event) {
             var rc = event.target.options[event.target.selectedIndex].dataset.rc;
+            var qty = event.target.options[event.target.selectedIndex].dataset.qty;
             document.getElementById('selling_price').value = rc;
-            console.log("rc: " + rc);
+            document.getElementById('quantity').value = qty;
+            document.getElementById('quantity').max = qty;
         };
     });
 

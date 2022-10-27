@@ -69,7 +69,7 @@ Supplier
         <table class="table" id="datatable">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th>#</th>
+                    <th class="text-center">#</th>
                     <th>Name</th>
                     <th>Company Name</th>
                     <th>Phone Number</th>
@@ -80,7 +80,7 @@ Supplier
             <tbody>
                 @foreach ($suppliers as $supplier)
                 <tr>
-                    <td style="width: 10%;">{{$loop->iteration}}</td>
+                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 15%;">{{$supplier->name}}</td>
                     <td style="width: 25%;">{{$supplier->company_name}}</td>
                     <td style="width: 15%;">{{$supplier->phone_number}}</td>

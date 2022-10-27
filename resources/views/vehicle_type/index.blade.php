@@ -64,7 +64,7 @@ Vehicle Type
         <table id="datatable" class="table">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th>#</th>
+                    <th class="text-center">#</th>
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
@@ -75,7 +75,7 @@ Vehicle Type
                     @csrf
                     @method('DELETE')
                     <tr>
-                        <td style="width: 10%;">{{$loop->iteration}}</td>
+                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                         <td style="width: 80%;">{{$vehicle_type->name}}</td>
                         <td style="width: 10%;">
                             <a href="/vehicle_type/edit/{{$vehicle_type->id}}" class="btn btn-info fs-16px"><i

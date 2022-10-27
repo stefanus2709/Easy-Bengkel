@@ -10,7 +10,7 @@ Brand
         display: none;
     }
 
-    .dataTables_wrapper .dataTables_paginate,  {
+    .dataTables_wrapper .dataTables_paginate {
         float: none;
         text-align: center;
         padding: 4px 10px 10px 10px;
@@ -64,7 +64,7 @@ Brand
         <table class="table" id="datatable">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th>#</th>
+                    <th class="text-center">#</th>
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
@@ -72,7 +72,7 @@ Brand
             <tbody>
                 @foreach ($brands as $brand)
                 <tr>
-                    <td style="width: 10%;">{{$loop->iteration}}</td>
+                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 80%;">{{$brand->name}}</td>
                     <td style="width: 10%;">
                         <a href="/brand/edit/{{$brand->id}}" class="btn btn-info fs-16px"><i

@@ -57,76 +57,138 @@ Dashboard
 @section('content')
 <div class="px-4 py-4 main-content">
     <!-- Button trigger modal -->
-    <div class="mb-3 align-middle">
-        <p class="fs-22px mb-0 pb-0">
+    <div class="mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
             Dashboard
         </p>
     </div>
-    <div class="mb-3 align-middle">
-        <p class="fs-16px mb-0 pb-0">
+    <div class="mb-2 align-middle">
+        <p class="fs-16px mb-0 pb-0 fw-bold">
             Summary
         </p>
     </div>
-    <div class="d-flex justify-content-between mb-3">
-        <a href="/product"
-            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-success border border-success text-decoration-none">
-            <div class="d-flex">
-                <i class="icofont-inbox"></i>
+    <div class="bg-white rounded p-3 mb-3">
+        <div class="d-flex justify-content-between mb-3">
+            <a href="/product"
+                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-success border border-success text-decoration-none">
+                <div class="d-flex">
+                    <i class="icofont-inbox"></i>
+                </div>
+                <div class="container-summary-text fw-bold">
+                    <p class="mb-0 pb-0">
+                        Total All Products
+                    </p>
+                    <p class="mb-0 pb-0 value">
+                        {{count($products)}}
+                    </p>
+                </div>
+            </a>
+            <a href="/product/low"
+                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-danger border border-danger text-decoration-none">
+                <div class="d-flex">
+                    <i class="icofont-inbox"></i>
+                </div>
+                <div class="container-summary-text fw-bold">
+                    <p class="mb-0 pb-0">
+                        Low Stock Products
+                    </p>
+                    <p class="mb-0 pb-0 value">
+                        {{count($low_products)}}
+                    </p>
+                </div>
+            </a>
+            <a href="/po_in/this_month"
+                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-warning border border-warning text-decoration-none">
+                <div class="d-flex">
+                    <i class="icofont-inbox"></i>
+                </div>
+                <div class="container-summary-text fw-bold">
+                    <p class="mb-0 pb-0">
+                        Total Purchase ({{ date('F')}})
+                    </p>
+                    <p class="mb-0 pb-0 value">
+                        Rp {{number_format($total_purchase, 0, ',', '.')}}
+                    </p>
+                </div>
+            </a>
+            <div
+                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-primary border border-primary">
+                <div class="d-flex">
+                    <i class="icofont-inbox"></i>
+                </div>
+                <div class="container-summary-text fw-bold">
+                    <p class="mb-0 pb-0">
+                        Least Sold Products
+                    </p>
+                    <p class="mb-0 pb-0 value">
+                        123
+                    </p>
+                </div>
             </div>
-            <div class="container-summary-text fw-bold">
-                <p class="mb-0 pb-0">
-                    Total All Products
-                </p>
-                <p class="mb-0 pb-0 value">
-                    {{count($products)}}
-                </p>
-            </div>
-        </a>
-        <a href="/product/low"
-            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-danger border border-danger text-decoration-none">
-            <div class="d-flex">
-                <i class="icofont-inbox"></i>
-            </div>
-            <div class="container-summary-text fw-bold">
-                <p class="mb-0 pb-0">
-                    Low Stock Products
-                </p>
-                <p class="mb-0 pb-0 value">
-                    {{count($low_products)}}
-                </p>
-            </div>
-        </a>
-        <a href="/po_in/this_month"
-            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-warning border border-warning text-decoration-none">
-            <div class="d-flex">
-                <i class="icofont-inbox"></i>
-            </div>
-            <div class="container-summary-text fw-bold">
-                <p class="mb-0 pb-0">
-                    Total Purchase ({{ date('F')}})
-                </p>
-                <p class="mb-0 pb-0 value">
-                    Rp {{number_format($total_purchase, 0, ',', '.')}}
-                </p>
-            </div>
-        </a>
-        <div
-            class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-primary border border-primary">
-            <div class="d-flex">
-                <i class="icofont-inbox"></i>
-            </div>
-            <div class="container-summary-text fw-bold">
-                <p class="mb-0 pb-0">
-                    Least Sold Products
-                </p>
-                <p class="mb-0 pb-0 value">
-                    123
-                </p>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="/product"
+                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-success border border-success text-decoration-none">
+                <div class="d-flex">
+                    <i class="icofont-inbox"></i>
+                </div>
+                <div class="container-summary-text fw-bold">
+                    <p class="mb-0 pb-0">
+                        Total All Products
+                    </p>
+                    <p class="mb-0 pb-0 value">
+                        {{count($products)}}
+                    </p>
+                </div>
+            </a>
+            <a href="/product/low"
+                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-danger border border-danger text-decoration-none">
+                <div class="d-flex">
+                    <i class="icofont-inbox"></i>
+                </div>
+                <div class="container-summary-text fw-bold">
+                    <p class="mb-0 pb-0">
+                        Low Stock Products
+                    </p>
+                    <p class="mb-0 pb-0 value">
+                        {{count($low_products)}}
+                    </p>
+                </div>
+            </a>
+            <a href="/po_in/this_month"
+                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-warning border border-warning text-decoration-none">
+                <div class="d-flex">
+                    <i class="icofont-inbox"></i>
+                </div>
+                <div class="container-summary-text fw-bold">
+                    <p class="mb-0 pb-0">
+                        Total Purchase ({{ date('F')}})
+                    </p>
+                    <p class="mb-0 pb-0 value">
+                        Rp {{number_format($total_purchase, 0, ',', '.')}}
+                    </p>
+                </div>
+            </a>
+            <div
+                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-primary border border-primary">
+                <div class="d-flex">
+                    <i class="icofont-inbox"></i>
+                </div>
+                <div class="container-summary-text fw-bold">
+                    <p class="mb-0 pb-0">
+                        Least Sold Products
+                    </p>
+                    <p class="mb-0 pb-0 value">
+                        123
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+    
     <div class="mb-3 align-middle">
-        <p class="fs-16px mb-0 pb-0">
+        <p class="fs-16px mb-0 pb-0 fw-bold">
             5 Best Selling Products
         </p>
     </div>

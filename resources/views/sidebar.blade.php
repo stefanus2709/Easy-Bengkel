@@ -68,7 +68,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col px-1 py-0 content" style="background-color: #DEE2E6;">
+        <div class="col px-0 py-0 content" style="background-color: #DEE2E6;">
             @include('navbar')
             @yield('content')
         </div>
