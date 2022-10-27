@@ -86,8 +86,8 @@ Edit Purchase In
                 <input type="hidden" name="supplier_id" value="{{$po_in->supplier->id}}">
                 @elseif (!blank($suppliers))
                 <label for="select" class="form-label">Select Supplier</label>
-                <select id="select" class="selectpicker form-control" data-live-search="true" multiple data-max-options="1"
-                    name="supplier_id">
+                <select id="select" class="selectpicker form-control" data-live-search="true" multiple
+                    data-max-options="1" name="supplier_id">
                     @foreach ($suppliers as $supplier)
                     <option value="{{$supplier->id}}">{{$supplier->name}}-{{$supplier->company_name}}</option>
                     @endforeach
@@ -131,10 +131,10 @@ Edit Purchase In
                     <div class="col-md-5">
                         @if (!blank($po_in->supplier->products))
                         <label for="select" class="form-label">Select Product</label>
-                        <select id="select" class="selectpicker form-control" data-live-search="true" multiple
+                        <select id="select-product" class="selectpicker form-control" data-live-search="true" multiple
                             data-max-options="1" name="product_id">
                             @foreach ($po_in->supplier->products as $product)
-                            <option value="{{$product->id}}">{{$product->name}}</option>
+                            <option value="{{$product->id}}" data-rc="{{$product->price}}">{{$product->name}}</option>
                             @endforeach
                         </select>
                         @else
@@ -151,8 +151,17 @@ Edit Purchase In
                     </div>
                     <div class="col-sm">
                         <label for="inputQuantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Input Quantity">
+                        <input type="number" class="form-control" id="quantity" name="quantity"
+                            placeholder="Input Quantity" min="1">
                         @error('quantity')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-sm">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" name="price"
+                            placeholder="Input Selling Price" min="0">
+                        @error('price')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
@@ -195,7 +204,8 @@ Edit Purchase In
                             <a href="/po_in/{{$po_in->id}}/details/edit/{{$detail->id}}" class="btn btn-info fs-16px"><i
                                     class="icofont-pencil-alt-2 text-light"></i></a>
                             <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
-                                data-bs-toggle="modal" data-bs-target="#deletePurchaseInProductModal" data-myId="{{$detail->id}}">
+                                data-bs-toggle="modal" data-bs-target="#deletePurchaseInProductModal"
+                                data-myId="{{$detail->id}}">
                                 <i class="icofont-trash text-light"></i>
                             </button>
                         </td>
@@ -296,6 +306,13 @@ Edit Purchase In
             var modal = $(this)
             modal.find('.modal-body #po_detail_id').val(id);
         });
+
+        var selection = document.getElementById("select-product");
+
+        selection.onchange = function (event) {
+            var rc = event.target.options[event.target.selectedIndex].dataset.rc;
+            document.getElementById('price').value = rc;
+        };
     });
 
 </script>

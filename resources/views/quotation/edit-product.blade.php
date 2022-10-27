@@ -54,14 +54,14 @@ Edit Quotation Product
             @method('PATCH')
             <div class="mb-3">
                 <label for="inputQuotationProductQty" class="form-label">Product Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" value="{{$quotation_detail->quantity}}">
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{$quotation_detail->quantity}}" min="1" max="{{$quotation_detail->quantity}}">
                 @error('quantity')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="inputQuotationProductPrice" class="form-label">Product Price</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{$quotation_detail->selling_price}}">
+                <label for="inputQuotationProductPrice" class="form-label">Selling Price</label>
+                <input type="number" class="form-control" id="price" name="price" value="{{$quotation_detail->selling_price}}" min="0">
                 @error('price')
                 <span class="text-danger">{{$message}}</span>
                 @enderror

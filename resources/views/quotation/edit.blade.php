@@ -158,8 +158,8 @@ Edit Quotation
                     </div>
                     <div class="col-sm">
                         <label for="sellingPrice" class="form-label">Selling Price</label>
-                        <input type="format_po" class="form-control" id="selling_price" name="selling_price"
-                            placeholder="Input Selling Price">
+                        <input type="number" class="form-control" id="selling_price" name="selling_price"
+                            placeholder="Input Selling Price" min="0">
                         @error('selling_price')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
