@@ -81,10 +81,14 @@ Quotation
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 25%;">{{$quotation->customer_name}}</td>
                     <td style="width: 25%;">{{$quotation->date}}</td>
-                    <td style="width: 25%;">
-                        {{number_format($quotation->total_price, 0, ',', '.')}}
-                        <button class="btn btn-danger ml-2" style="font-size: 10px;">Not Finalized</button>
+                    @if ($quotation->finalized)
+                    <td style="width: 25%;">{{number_format($quotation->total_price, 0, ',', '.')}}</td>
+                    @else
+                    <td style="width: 25%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
+                            Finalized</button>
                     </td>
+                    @endif
+
                     <td style="width: 10%;">
                         @if (!$quotation->finalized)
                         <a href="/quotation/edit/{{$quotation->id}}" class="btn btn-info fs-16px"><i

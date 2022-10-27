@@ -29,7 +29,7 @@ class PurchaseInController extends Controller
             'supplier_id' => $request->supplier_id,
             'date' => $request->date,
             'total_price' => 0,
-            'finalized' => 0,
+            'finalized' => false,
         ]);
 
         $last_po = PurchaseIn::orderBy('created_at', 'desc')->first();
@@ -80,7 +80,7 @@ class PurchaseInController extends Controller
 
         $po_in->update([
             'total_price' => $total_price,
-            'finalized' => 1,
+            'finalized' => true,
         ]);
 
         return redirect('/po_in');

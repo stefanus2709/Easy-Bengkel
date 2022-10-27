@@ -81,12 +81,20 @@ Purchase In
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 25%;">{{$po_in->supplier->name}}</td>
                     <td style="width: 25%;">{{$po_in->date}}</td>
+                    @if ($po_in->finalized)
                     <td style="width: 25%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>
+                    @else
+                    <td style="width: 25%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
+                            Finalized</button>
+                    </td>
+                    @endif
                     <td style="width: 10%;">
                         @if (!$po_in->finalized)
-                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-info fs-16px"><i class="icofont-pencil-alt-2 text-light"></i></a>
+                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-info fs-16px"><i
+                                class="icofont-pencil-alt-2 text-light"></i></a>
                         @else
-                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
+                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-success fs-16px"><i
+                                class="icofont-search-1"></i></a>
                         @endif
                         <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
                             data-bs-toggle="modal" data-bs-target="#deletePurchaseInModal" data-myId="{{$po_in->id}}">
@@ -101,7 +109,8 @@ Purchase In
 </div>
 
 <!-- Delete Purchase In Modal -->
-<div class="modal" id="deletePurchaseInModal" tabindex="-1" aria-labelledby="deletePurchaseInModalLabel" aria-hidden="true">
+<div class="modal" id="deletePurchaseInModal" tabindex="-1" aria-labelledby="deletePurchaseInModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">

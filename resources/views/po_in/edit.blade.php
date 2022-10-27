@@ -186,11 +186,11 @@ Edit Purchase In
                 <tbody>
                     @foreach ($po_in->details as $detail)
                     <tr>
+                        @if (!$po_in->finalized)
                         <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                         <td style="width: 35%;">{{$detail->product->name}}</td>
                         <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
                         <td style="width: 25%;">{{number_format($detail->price, 0, ',', '.')}}</td>
-                        @if (!$po_in->finalized)
                         <td style="width: 10%;">
                             <a href="/po_in/{{$po_in->id}}/details/edit/{{$detail->id}}" class="btn btn-info fs-16px"><i
                                     class="icofont-pencil-alt-2 text-light"></i></a>
@@ -200,7 +200,11 @@ Edit Purchase In
                             </button>
                         </td>
                         @else
-                        <td style="width: 10%;">{{number_format($detail->price*$detail->quantity, 0, ',', '.')}}</td>
+                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                        <td style="width: 30%;">{{$detail->product->name}}</td>
+                        <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
+                        <td style="width: 20%;">{{number_format($detail->price, 0, ',', '.')}}</td>
+                        <td style="width: 20%;">{{number_format($detail->price*$detail->quantity, 0, ',', '.')}}</td>
                         @endif
                     </tr>
                     @endforeach
