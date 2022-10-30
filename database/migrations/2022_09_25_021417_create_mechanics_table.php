@@ -16,7 +16,6 @@ class CreateMechanicsTable extends Migration
         Schema::create('mechanics', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('company_name');
             $table->string('phone_number');
             $table->longText('address')->nullable();
             $table->bigInteger('salary');
