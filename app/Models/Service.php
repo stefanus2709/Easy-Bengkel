@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Service extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description',
+        'vehicle_type_id', 'name', 'price'
     ];
+
+    public function details(){
+        return $this->hasMany('App\Models\ServiceDetail', 'service_id');
+    }
 }

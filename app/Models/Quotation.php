@@ -10,10 +10,14 @@ class Quotation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_name', 'date', 'total_price', 'finalized'
+        'mechanic_id', 'customer_name', 'date', 'total_price', 'finalized'
     ];
 
     public function details(){
         return $this->hasMany('App\Models\QuotationDetail', 'quotation_id');
+    }
+
+    public function mechanic(){
+        return $this->hasOne('App\Models\Mechanic');
     }
 }
