@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Quotation;
+use App\Models\Mechanic;
+use App\Models\Service;
 use App\Models\QuotationDetail;
 use Illuminate\Http\Request;
 
@@ -11,20 +13,17 @@ class QuotationController extends Controller
 {
     public function index(){
         $quotations = Quotation::all();
-        return view('quotation.index', compact('quotations'));
-    }
-
-    public function create(){
-        return view('quotation.create',);
+        $mechanics = Mechanic::all();
+        return view('quotation.index', compact('quotations', 'mechanics'));
     }
 
     public function store(Request $request){
         $request->validate([
-            'customer_name' => 'required',
             'date' => 'required',
         ]);
 
         Quotation::create([
+            'mechanic_id' => $request->mechanic_id,
             'customer_name' => $request->customer_name,
             'date' => $request->date,
             'total_price' => 0,
@@ -35,29 +34,25 @@ class QuotationController extends Controller
 
         return redirect('/quotation/edit/'.$last_quotation->id)->with('success', 'Quotation has been created');
     }
-    public function getProduct($id)
-    {
-        $product = Product::findOrFail($id)->pluck('selling_price')->first();
-        return $product;
-    }
 
     public function edit($id){
         $quotation = Quotation::findOrFail($id);
         $products = Product::all();
-        return view('quotation.edit', compact('quotation', 'products'));
+        $mechanics = Mechanic::all();
+        $services = Service::all();
+        return view('quotation.edit', compact('quotation', 'products', 'mechanics', 'services'));
     }
 
     public function update(Request $request, $id){
         $request->validate([
-            'customer_name' => 'required',
             'date' => 'required',
         ]);
         Quotation::findOrFail($id)->update([
+            'mechanic_id' => $request->mechanic_id,
             'customer_name' => $request->customer_name,
             'date' => $request->date,
-            'total_price' => $request->total_price
         ]);
-        return redirect('/quotation');
+        return redirect('/quotation/edit/'.$id)->with('success', 'Quotation has been updated');
     }
 
     public function delete(Request $request){
@@ -87,6 +82,6 @@ class QuotationController extends Controller
             'finalized' => true,
         ]);
 
-        return redirect('/quotation');
+        return redirect('/quotation')->with('success', 'Quotation has been finalized');
     }
 }

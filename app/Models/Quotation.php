@@ -17,7 +17,11 @@ class Quotation extends Model
         return $this->hasMany('App\Models\QuotationDetail', 'quotation_id');
     }
 
+    public function service_details(){
+        return $this->hasMany('App\Models\ServiceDetail', 'quotation_id');
+    }
+
     public function mechanic(){
-        return $this->hasOne('App\Models\Mechanic');
+        return $this->belongsTo('App\Models\Mechanic', 'mechanic_id');
     }
 }

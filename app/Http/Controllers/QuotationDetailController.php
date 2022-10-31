@@ -9,14 +9,6 @@ use Illuminate\Http\Request;
 
 class QuotationDetailController extends Controller
 {
-    public function index(){
-
-    }
-
-    public function create(){
-
-    }
-
     public function store(Request $request, $quotation_id){
         $request->validate([
             'product_id' => 'required',
@@ -36,7 +28,7 @@ class QuotationDetailController extends Controller
         return redirect('/quotation/edit/'.$quotation_id);
     }
 
-    public function edit($quotation_id, $id){
+    public function edit($id){
         $quotation_detail = QuotationDetail::findOrFail($id);
         return view('quotation.edit-product', compact('quotation_detail'));
     }
@@ -44,15 +36,15 @@ class QuotationDetailController extends Controller
     public function update(Request $request, $quotation_id, $id){
         $request->validate([
             'quantity' => 'required',
-            'price' => 'required',
+            'selling_price' => 'required',
         ]);
 
         QuotationDetail::findOrFail($id)->update([
             'quantity' => $request->quantity,
-            'price' => $request->price,
+            'selling_price' => $request->selling_price,
         ]);
 
-        return redirect('/quotation/edit/'.$quotation_id);
+        return redirect('/quotation/edit/'.$quotation_id)->with('success', 'Product has been updated');
     }
 
     public function delete(Request $request){

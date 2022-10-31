@@ -59,14 +59,14 @@ Edit Quotation
             Edit Quotation
         </p>
         @if ($quotation->finalized)
-        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
+        <button type="button" class="btn btn-success fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
             data-bs-target="#finalizeQuotationModal" disabled>
             Finalized
         </button>
         @else
-        <button type="button" class="btn btn-success fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
+        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
             data-bs-target="#finalizeQuotationModal">
-            Finalize
+            Not Finalized
         </button>
         @endif
     </div>
@@ -75,8 +75,30 @@ Edit Quotation
             @csrf
             @method('PATCH')
             <div class="mb-3">
-                <label for="inputQuotationDate" class="form-label">Customer Name</label>
-                <input type="name" class="form-control" id="name" name="name" placeholder="Input Customer Name"
+                @if(!blank($quotation->service_details))
+                <fieldset disabled>
+                    <label for="disabledSelect" class="form-label">Select Mechanic</label>
+                    <select id="disabledSelect" class="form-select">
+                        <option>{{$quotation->mechanic->name}}</option>
+                    </select>
+                </fieldset>
+                <input type="hidden" name="mechanic_id" value="{{$quotation->mechanic->id}}">
+                @elseif (!blank($mechanics))
+                <label for="select" class="form-label">Select Mechanic</label>
+                <select id="select" class="selectpicker form-control" data-live-search="true" multiple
+                    data-max-options="1" name="mechanic_id">
+                    @foreach ($mechanics as $mechanic)
+                    <option value="{{$mechanic->id}}">{{$mechanic->name}}</option>
+                    @endforeach
+                </select>
+                @endif
+                @error('mechanic_id')
+                <span class="text-danger">The mechanic field is required.</span>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="inputCustomerName" class="form-label">Customer Name</label>
+                <input type="name" class="form-control" id="customer_name" name="customer_name" placeholder="Input Customer Name"
                     value="{{$quotation->customer_name}}">
                 @error('name')
                 <span class="text-danger">{{$message}}</span>
@@ -100,157 +122,20 @@ Edit Quotation
             </div>
             <div class="text-end">
                 <a href="/quotation" class="btn btn-secondary">Back</a>
-                @if ($quotation->finalized)
-                <button type="submit" class="btn btn-primary" disabled>Update</button>
-                @else
+                @if (!$quotation->finalized)
                 <button type="submit" class="btn btn-primary">Update</button>
                 @endif
             </div>
         </form>
     </div>
 </div>
+@if ($quotation->mechanic_id != null)
+    <div class="px-4 quotation-item-content">
+        @include('quotation.service-list')
+    </div>
+@endif
 <div class="px-4 quotation-item-content">
-    <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-2 align-middle">
-        <p class="fs-22px mb-0 pb-0 fw-bolder">
-            Quotation List
-        </p>
-    </div>
-    <div class="bg-white rounded mb-3">
-        <div class="px-3 py-3">
-            <form action="/quotation/{{$quotation->id}}/details/store" method="POST">
-                @csrf
-                <div class="row g-3 align-items-center">
-                    <div class="col-md-5">
-                        @if (!blank($products))
-                        <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
-                        <label for="select" class="form-label">Select Product</label>
-                        <select id="select-product" class="selectpicker form-control" data-live-search="true" multiple
-                            data-max-options="1" name="product_id"
-                            onchange="getProductId('selling_price', this.selling_price.value)">
-                            @foreach ($products as $product)
-                            @if ($product->quantity != 0)
-                            <option value="{{$product->id}}" data-rc="{{$product->selling_price}}"
-                                data-qty="{{$product->quantity}}">{{$product->name}}
-                            </option>
-                            @endif
-                            @endforeach
-                        </select>
-                        @else
-                        <fieldset disabled>
-                            <label for="disabledSelect" class="form-label">Select Product</label>
-                            <select id="disabledSelect" class="form-select">
-                                <option>No Products Data</option>
-                            </select>
-                        </fieldset>
-                        @endif
-                        @error('product_id')
-                        <span class="text-danger">The product field is required.</span>
-                        @enderror
-                    </div>
-                    <div class="col-sm">
-                        <label for="inputQuantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity"
-                            placeholder="Input Quantity" min="1" max="">
-                        @error('quantity')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="col-sm">
-                        <label for="sellingPrice" class="form-label">Selling Price</label>
-                        <input type="number" class="form-control" id="selling_price" name="selling_price"
-                            placeholder="Input Selling Price" min="0">
-                        @error('selling_price')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    @if ($quotation->finalized)
-                    <div class="col-sm" style="vertical-align: bottom">
-                        <button type="submit" class="btn btn-primary" disabled>Create</button>
-                    </div>
-                    @else
-                    <div class="col-sm" style="vertical-align: bottom">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                    </div>
-                    @endif
-                </div>
-            </form>
-        </div>
-        <div>
-            <table class="table" id="datatable">
-                <thead>
-                    <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                        <th class="text-center">#</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        @if (!$quotation->finalized)
-                        <th>Action</th>
-                        @else
-                        <th>Total Price</th>
-                        @endif
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($quotation->details as $detail)
-                    <tr>
-                        @if (!$quotation->finalized)
-                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
-                        <td style="width: 35%;">{{$detail->product->name}}</td>
-                        <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
-                        <td style="width: 25%;">{{number_format($detail->selling_price, 0, ',', '.')}}</td>
-                        <td style="width: 10%;">
-                            <a href="/quotation/{{$quotation->id}}/details/edit/{{$detail->id}}"
-                                class="btn btn-info fs-16px"><i class="icofont-pencil-alt-2 text-light"></i></a>
-                            <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
-                                data-bs-toggle="modal" data-bs-target="#deleteQuotationProductModal"
-                                data-myId="{{$detail->id}}">
-                                <i class="icofont-trash text-light"></i>
-                            </button>
-                        </td>
-                        @else
-                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
-                        <td style="width: 30%;">{{$detail->product->name}}</td>
-                        <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
-                        <td style="width: 20%;">{{number_format($detail->selling_price, 0, ',', '.')}}</td>
-                        <td style="width: 20%;">{{number_format($detail->selling_price*$detail->quantity, 0, ',', '.')}}
-                        </td>
-                        @endif
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- Delete Quotation Product Modal -->
-<div class="modal" id="deleteQuotationProductModal" tabindex="-1" aria-labelledby="deleteQuotationProductModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p class="modal-title fs-22px" id="deleteQuotationProductModalLabel">Delete Quotation Product</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <form action="/quotation/{{$quotation->id}}/details/delete" method="POST" id="editForm">
-                        @csrf
-                        @method('DELETE')
-                        <div class="">
-                            <label class="form-label">Are you sure you want to delete this?</label>
-                            <p>The data will gone forever</p>
-                            <input type="hidden" class="mb-3" name="po_detail_id" id="po_detail_id">
-                        </div>
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('quotation.product-list')
 </div>
 
 <!-- Finalize Quotation Modal -->
@@ -297,16 +182,31 @@ Edit Quotation
             "pageLength": 5,
             "pagingType": 'full_numbers',
         });
-        $('select[name=product_id]').selectpicker('val', '{{$quotation->product_id}}');
+
+        var serviceTable = $('#service-table').DataTable({
+            "pageLength": 5,
+            "pagingType": 'full_numbers',
+        });
+
+        // $('select[name=product_id]').selectpicker('val', '{{$quotation->product_id}}');
 
         $('#deleteQuotationProductModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var id = button.attr('data-myId');
 
             var modal = $(this)
-            modal.find('.modal-body #po_detail_id').val(id);
+            modal.find('.modal-body #quotation_detail_id').val(id);
         });
 
+        $('#deleteQuotationServiceModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.attr('data-myId');
+
+            var modal = $(this)
+            modal.find('.modal-body #service_detail_id').val(id);
+        });
+
+        $('select[name=mechanic_id]').selectpicker('val', '{{$quotation->mechanic_id}}');
 
         // var product_price = document.querySelector("#select-product");
         // var price = product_price.options[product_price.selectedIndex].getAttribute('selling_price');
@@ -314,6 +214,7 @@ Edit Quotation
         // console.log(product_price);
 
         var selection = document.getElementById("select-product");
+        var selectionService = document.getElementById("select-service");
 
         selection.onchange = function (event) {
             var rc = event.target.options[event.target.selectedIndex].dataset.rc;
@@ -321,6 +222,11 @@ Edit Quotation
             document.getElementById('selling_price').value = rc;
             document.getElementById('quantity').value = qty;
             document.getElementById('quantity').max = qty;
+        };
+
+        selectionService.onchange = function (event) {
+            var rc = event.target.options[event.target.selectedIndex].dataset.rc;
+            document.getElementById('price').value = rc;
         };
     });
 

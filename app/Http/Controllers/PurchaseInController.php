@@ -34,7 +34,7 @@ class PurchaseInController extends Controller
 
         $last_po = PurchaseIn::orderBy('created_at', 'desc')->first();
 
-        return redirect('/po_in/edit/'.$last_po->id)->with('success', 'Purchase has been created');
+        return redirect('/po_in/edit/'.$last_po->id)->with('success', 'PO has been created');
     }
 
     public function edit($id){
@@ -54,7 +54,7 @@ class PurchaseInController extends Controller
             'date' => $request->date,
         ]);
 
-        return redirect('/po_in');
+        return redirect('/po_in')->with('success', 'PO has been updated');
     }
 
     public function delete(Request $request){

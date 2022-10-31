@@ -7,6 +7,27 @@
     <form action="/quotation/store" method="POST">
         @csrf
         <div class="mb-3">
+            @if (!blank($mechanics))
+            <label for="select" class="form-label">Select Mechanic</label>
+            <select id="select" class="selectpicker form-control" data-live-search="true" multiple
+                data-max-options="1" name="mechanic_id">
+                @foreach ($mechanics as $mechanic)
+                <option value="{{$mechanic->id}}">{{$mechanic->name}}</option>
+                @endforeach
+            </select>
+            @else
+            <fieldset disabled>
+                <label for="disabledSelect" class="form-label">Select Mechanic</label>
+                <select id="disabledSelect" class="form-select">
+                    <option>No Mechanics Data</option>
+                </select>
+            </fieldset>
+            @endif
+            @error('mechanic_id')
+            <span class="text-danger">The mechanic field is required.</span>
+            @enderror
+        </div>
+        <div class="mb-3">
             <label for="inputCustomerName" class="form-label">Customer Name</label>
             <input type="text" class="form-control" id="customer_name" name="customer_name"
                 placeholder="Input Customer Name">

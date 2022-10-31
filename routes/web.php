@@ -68,6 +68,22 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/product/delete', 'App\Http\Controllers\ProductController@delete')->name('product-delete');
     Route::get('/product/low', 'App\Http\Controllers\ProductController@low_product')->name('low-product');
 
+    //mechanic
+    Route::get('/mechanic', 'App\Http\Controllers\MechanicController@index')->name('mechanic');
+    // Route::get('/mechanic/create', 'App\Http\Controllers\MechanicController@create')->name('mechanic-create');
+    Route::post('/mechanic/store', 'App\Http\Controllers\MechanicController@store')->name('mechanic-store');
+    Route::get('/mechanic/edit/{id}', 'App\Http\Controllers\MechanicController@edit')->name('mechanic-edit');
+    Route::patch('/mechanic/update', 'App\Http\Controllers\MechanicController@update')->name('mechanic-update');
+    Route::delete('/mechanic/delete', 'App\Http\Controllers\MechanicController@delete')->name('mechanic-delete');
+
+    //service
+    Route::get('/service', 'App\Http\Controllers\ServiceController@index')->name('service');
+    // Route::get('/service/create', 'App\Http\Controllers\ServiceController@create')->name('service-create');
+    Route::post('/service/store', 'App\Http\Controllers\ServiceController@store')->name('service-store');
+    Route::get('/service/edit/{id}', 'App\Http\Controllers\ServiceController@edit')->name('service-edit');
+    Route::patch('/service/update', 'App\Http\Controllers\ServiceController@update')->name('service-update');
+    Route::delete('/service/delete', 'App\Http\Controllers\ServiceController@delete')->name('service-delete');
+
     //quotation
     Route::get('/quotation', 'App\Http\Controllers\QuotationController@index')->name('quotation');
     // Route::get('/quotation/create', 'App\Http\Controllers\QuotationController@create')->name('quotation-create');
@@ -83,6 +99,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/quotation/{quotation_id}/details/edit/{id}', 'App\Http\Controllers\QuotationDetailController@edit')->name('quotation_details-edit');
     Route::patch('/quotation/{quotation_id}/details/update/{id}', 'App\Http\Controllers\QuotationDetailController@update')->name('quotation_details-update');
     Route::delete('/quotation/{quotation_id}/details/delete', 'App\Http\Controllers\QuotationDetailController@delete')->name('quotation_details-delete');
+
+    //service detail
+    Route::post('/service/{quotation_id}/details/store', 'App\Http\Controllers\ServiceDetailController@store')->name('service_details-store');
+    Route::get('/service/{quotation_id}/details/edit/{id}', 'App\Http\Controllers\ServiceDetailController@edit')->name('service_details-edit');
+    Route::patch('/service/{quotation_id}/details/update/{id}', 'App\Http\Controllers\ServiceDetailController@update')->name('service_details-update');
+    Route::delete('/service/{quotation_id}/details/delete', 'App\Http\Controllers\ServiceDetailController@delete')->name('service_details-delete');
 
     //supplier
     Route::get('/supplier', 'App\Http\Controllers\SupplierController@index')->name('supplier');

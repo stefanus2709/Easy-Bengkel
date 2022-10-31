@@ -297,6 +297,7 @@ Edit Purchase In
             "pageLength": 5,
             "pagingType": 'full_numbers',
         });
+        
         $('select[name=supplier_id]').selectpicker('val', '{{$po_in->supplier_id}}');
 
         $('#deletePurchaseInProductModal').on('show.bs.modal', function (event) {
