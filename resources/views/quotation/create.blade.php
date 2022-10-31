@@ -11,6 +11,7 @@
             <label for="select" class="form-label">Select Mechanic</label>
             <select id="select" class="selectpicker form-control" data-live-search="true" multiple
                 data-max-options="1" name="mechanic_id">
+                <option value="">No Mechanic</option>
                 @foreach ($mechanics as $mechanic)
                 <option value="{{$mechanic->id}}">{{$mechanic->name}}</option>
                 @endforeach

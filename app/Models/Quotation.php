@@ -22,6 +22,44 @@ class Quotation extends Model
     }
 
     public function mechanic(){
-        return $this->belongsTo('App\Models\Mechanic', 'mechanic_id');
+        return $this->belongsTo('App\Models\Mechanic');
+    }
+
+    public function check_qty($quotation){
+        foreach ($quotation->details as $detail) {
+            if($detail->product->quantity - $detail->quantity < 0)
+                return false;
+        }
+        return true;
+    }
+
+    public function total_product_price($quotation){
+        $total_price = 0;
+        foreach ($quotation->details as $detail) {
+            $total_price += $detail->selling_price * $detail->quantity;
+        }
+
+        return $total_price;
+    }
+
+    public function total_service_price($quotation){
+        $total_price = 0;
+        foreach ($quotation->service_details as $detail) {
+            $total_price += $detail->service->price;
+        }
+
+        return $total_price;
+    }
+
+    public function total_service_product_price($quotation){
+        $total_price = 0;
+        foreach ($quotation->details as $detail) {
+            $total_price += $detail->selling_price * $detail->quantity;
+        }
+        foreach ($quotation->service_details as $detail) {
+            $total_price += $detail->service->price;
+        }
+
+        return $total_price;
     }
 }

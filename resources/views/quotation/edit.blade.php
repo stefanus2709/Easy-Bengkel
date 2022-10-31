@@ -75,18 +75,20 @@ Edit Quotation
             @csrf
             @method('PATCH')
             <div class="mb-3">
-                @if(!blank($quotation->service_details))
+                @if(!blank($quotation->service_details) || $quotation->finalized)
                 <fieldset disabled>
                     <label for="disabledSelect" class="form-label">Select Mechanic</label>
                     <select id="disabledSelect" class="form-select">
-                        <option>{{$quotation->mechanic->name}}</option>
+                        <option>{{$quotation->mechanic_id == null ? 'No Mechanic' : $quotation->mechanic->name}}
+                        </option>
                     </select>
                 </fieldset>
-                <input type="hidden" name="mechanic_id" value="{{$quotation->mechanic->id}}">
+                <input type="hidden" name="mechanic_id" value="{{$quotation->mechanic_id}}">
                 @elseif (!blank($mechanics))
                 <label for="select" class="form-label">Select Mechanic</label>
                 <select id="select" class="selectpicker form-control" data-live-search="true" multiple
                     data-max-options="1" name="mechanic_id">
+                    <option value="">No Mechanic</option>
                     @foreach ($mechanics as $mechanic)
                     <option value="{{$mechanic->id}}">{{$mechanic->name}}</option>
                     @endforeach
@@ -98,16 +100,27 @@ Edit Quotation
             </div>
             <div class="mb-3">
                 <label for="inputCustomerName" class="form-label">Customer Name</label>
-                <input type="name" class="form-control" id="customer_name" name="customer_name" placeholder="Input Customer Name"
-                    value="{{$quotation->customer_name}}">
+                @if($quotation->finalized)
+                <input type="name" class="form-control" id="customer_name" name="customer_name"
+                    placeholder="Input Customer Name"
+                    value="{{$quotation->customer_name == null ? "No Name" : $quotation->customer_name}}" disabled>
+                @else
+                <input type="name" class="form-control" id="customer_name" name="customer_name"
+                    placeholder="Input Customer Name" value="{{$quotation->customer_name}}">
+                @endif
                 @error('name')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="inputQuotationDate" class="form-label">Quotation Date</label>
+                @if($quotation->finalized)
+                <input type="date" class="form-control" id="date" name="date" placeholder="Input Quotation Date"
+                    value="{{$quotation->date}}" disabled>
+                @else
                 <input type="date" class="form-control" id="date" name="date" placeholder="Input Quotation Date"
                     value="{{$quotation->date}}">
+                @endif
                 @error('date')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
@@ -115,7 +128,9 @@ Edit Quotation
             <div class="mb-3">
                 <label for="inputTotalPrice" class="form-label">Total Price</label>
                 <input type="text" class="form-control" id="total_price" name="total_price"
-                    placeholder="Input Total Price" value="{{$quotation->total_price}}" disabled>
+                    placeholder="Input Total Price"
+                    value="{{number_format($quotation->total_price == 0 ? $quotation->total_service_product_price($quotation) : $quotation->total_price, 0, ',', '.')}}"
+                    disabled>
                 @error('total_price')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
@@ -130,9 +145,9 @@ Edit Quotation
     </div>
 </div>
 @if ($quotation->mechanic_id != null)
-    <div class="px-4 quotation-item-content">
-        @include('quotation.service-list')
-    </div>
+<div class="px-4 quotation-item-content">
+    @include('quotation.service-list')
+</div>
 @endif
 <div class="px-4 quotation-item-content">
     @include('quotation.product-list')

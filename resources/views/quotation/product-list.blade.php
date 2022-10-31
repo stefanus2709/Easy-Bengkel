@@ -110,6 +110,11 @@
                 @endforeach
             </tbody>
         </table>
+        <hr>
+        <div class="d-flex justify-content-between mb-2 align-middle px-3 pb-3 fw-bolder">
+            <div>Total Product Price</div>
+            <div>{{number_format($quotation->total_product_price($quotation), 0, ',', '.')}}</div>
+        </div>
     </div>
 </div>
 

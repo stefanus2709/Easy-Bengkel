@@ -5,7 +5,7 @@
     </p>
 </div>
 <div class="bg-white rounded mb-3">
-    @if (!$quotation->finalized)
+    @if (!$quotation->finalized && $quotation->mechanic_id != null)
     <div class="px-3 py-3">
         <form action="/service/{{$quotation->id}}/details/store" method="POST">
             @csrf
@@ -15,7 +15,7 @@
                     <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
                     <label for="select" class="form-label">Select Service</label>
                     <select id="select-service" class="selectpicker form-control" data-live-search="true" multiple
-                        data-max-options="1" name="service_id" onchange="getServiceId('price', this.price.value)">
+                        data-max-options="1" name="service_id">
                         @foreach ($services as $service)
                         <option value="{{$service->id}}" data-rc="{{$service->price}}">
                             {{$service->name}}
@@ -91,6 +91,11 @@
                 @endforeach
             </tbody>
         </table>
+        <hr>
+        <div class="d-flex justify-content-between mb-2 align-middle px-3 pb-3 fw-bolder">
+            <div>Total Service Price</div>
+            <div>{{number_format($quotation->total_service_price($quotation), 0, ',', '.')}}</div>
+        </div>
     </div>
 </div>
 

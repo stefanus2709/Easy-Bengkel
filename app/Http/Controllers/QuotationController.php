@@ -69,6 +69,11 @@ class QuotationController extends Controller
             return redirect('/quotation/edit/'.$quotation->id)->with('failed', 'Cannot finalize, there is no item to stock!');
         }
 
+        foreach ($quotation->details as $detail) {
+            if($detail->product->quantity - $detail->quantity < 0)
+                return redirect('/quotation/edit/'.$quotation->id)->with('failed', $detail->product->name.' only have '.$detail->product->quantity.' stock left!');
+        }
+
         foreach ($quotation_details as $detail) {
             $detail->product->update([
                 'quantity' => $detail->product->quantity - $detail->quantity,

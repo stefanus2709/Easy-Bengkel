@@ -73,7 +73,7 @@ Edit Product
                     <div class="mb-3">
                         <label for="inputQuantity" class="form-label">Quantity</label>
                         <input type="number" class="form-control" id="quantity" name="quantity"
-                            placeholder="Input Quantity" value="{{number_format($product->quantity, 0, ',', '.')}}">
+                            placeholder="Input Quantity" value="{{number_format($product->quantity, 0, ',', '.')}}" disabled>
                         @error('quantity')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -154,40 +154,10 @@ Edit Product
     </div>
 </div>
 <div class="px-4 main-content">
-    <!-- Button trigger modal -->
-    <div class="d-flex justify-content-between mb-2 align-middle">
-        <p class="fs-22px mb-0 pb-0 fw-bolder">
-            History Product Stock
-        </p>
-    </div>
-    <div class="bg-white rounded mb-3">
-        <table class="table" id="datatable">
-            <thead>
-                <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th class="text-center">#</th>
-                    <th>Supplier</th>
-                    <th>Date</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($product_details as $detail)
-                <tr>
-                    <td class="text-center" style="width: 5%;">{{$loop->iteration}}</td>
-                    <td style="width: 20%;">{{$detail->purchaseIn->supplier->name}} - {{$detail->purchaseIn->supplier->company_name}}</td>
-                    <td style="width: 8%;">{{$detail->purchaseIn->date}}</td>
-                    <td style="width: 8%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
-                    <td style="width: 8%;">{{number_format($detail->price, 0, ',', '.')}}</td>
-                    <td style="width: 5%;">
-                        <a href="/po_in/edit/{{$detail->purchaseIn->id}}" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    @include('product.stock-history')
+</div>
+<div class="px-4 main-content">
+    @include('product.sold-history')
 </div>
 @endsection
 @section('scripts')
@@ -202,7 +172,11 @@ Edit Product
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var table = $('#datatable').DataTable({
+        var stockTable = $('#stockTable').DataTable({
+            "pageLength": 5,
+            "pagingType": 'full_numbers',
+        });
+        var soldTable = $('#soldTable').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
         });

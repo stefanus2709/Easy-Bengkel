@@ -71,7 +71,9 @@ Quotation
                     <th class="text-center">#</th>
                     <th>Customer Name</th>
                     <th>Date</th>
+                    <th>Mechanic</th>
                     <th>Total Price</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -79,16 +81,23 @@ Quotation
                 @foreach ($quotations as $quotation)
                 <tr>
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
-                    <td style="width: 25%;">{{$quotation->customer_name}}</td>
-                    <td style="width: 25%;">{{$quotation->date}}</td>
+                    <td style="width: 16%;">
+                        {{$quotation->customer_name == null ? 'No Name' : $quotation->customer_name}}</td>
+                    <td style="width: 16%;">{{$quotation->date}}</td>
+                    <td style="width: 16%;">
+                        {{$quotation->mechanic_id == null ? 'No Mechanic' : $quotation->mechanic->name}}</td>
+                    <td style="width: 16%;">
+                        {{number_format($quotation->total_price == 0 ? $quotation->total_service_product_price($quotation) : $quotation->total_price, 0, ',', '.')}}
+                    </td>
                     @if ($quotation->finalized)
-                    <td style="width: 25%;">{{number_format($quotation->total_price, 0, ',', '.')}}</td>
+                    <td style="width: 16%;"><button class="btn btn-success ml-2" style="font-size: 10px;">
+                            Finalized</button>
+                    </td>
                     @else
-                    <td style="width: 25%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
+                    <td style="width: 16%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
                             Finalized</button>
                     </td>
                     @endif
-
                     <td style="width: 10%;">
                         @if (!$quotation->finalized)
                         <a href="/quotation/edit/{{$quotation->id}}" class="btn btn-info fs-16px"><i
