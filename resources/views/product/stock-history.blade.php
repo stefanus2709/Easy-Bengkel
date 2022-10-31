@@ -12,14 +12,14 @@
                 <th>Supplier</th>
                 <th>Date</th>
                 <th>Qty</th>
-                <th>Price</th>
+                <th>Buy Price</th>
                 <th>Total Price</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @php
-                $itr = 0;
+                $itr = 1;
             @endphp
             @foreach ($stock_details as $detail)
             @if ($detail->purchaseIn->finalized)

@@ -88,6 +88,6 @@ class PurchaseInController extends Controller
 
     public function purchase_this_month(){
         $total_purchases = PurchaseIn::orderBy('created_at', 'DESC')->whereMonth('date', now()->month)->where('finalized', true)->get();
-        return view('po_in.this_month', compact('total_purchases'));
+        return view('po_in.purchase_this_month', compact('total_purchases'));
     }
 }

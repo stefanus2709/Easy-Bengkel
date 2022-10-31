@@ -92,7 +92,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('/quotation/update/{id}', 'App\Http\Controllers\QuotationController@update')->name('quotation-update');
     Route::delete('/quotation/delete/{id}', 'App\Http\Controllers\QuotationController@delete')->name('quotation-delete');
     Route::patch('/quotation/finalize/{id}', 'App\Http\Controllers\QuotationController@finalize')->name('quotation-finalize');
-    Route::get('/quotation/this_month', 'App\Http\Controllers\QuotationController@purchase_this_month')->name('quotation_this_month');
+    Route::get('/quotation/this_month', 'App\Http\Controllers\QuotationController@sales_this_month')->name('quotation_this_month');
 
     //quotation detail
     Route::post('/quotation/{quotation_id}/details/store', 'App\Http\Controllers\QuotationDetailController@store')->name('quotation_details-store');

@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-{{ date('F')}} Purchase In
+{{ date('F')}} Sales
 @endsection
 
 @section('custom-css')
@@ -64,26 +64,26 @@
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            {{ date('F')}} Purchase In
+            {{ date('F')}} Sales
         </p>
     </div>
     <div class="bg-white rounded">
         <table class="table" id="datatable">
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th>#</th>
-                    <th>Name</th>
+                    <th class="text-center">#</th>
+                    <th>Customer Name</th>
                     <th>Date</th>
-                    <th>Total Purchase</th>
+                    <th>Total Sales</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($total_purchases as $po_in)
+                @foreach ($total_sales as $quotation)
                 <tr>
-                    <td style="width: 10%;">{{$loop->iteration}}</td>
-                    <td style="width: 25%;">{{$po_in->supplier->name}}</td>
-                    <td style="width: 25%;">{{$po_in->date}}</td>
-                    <td style="width: 25%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>
+                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                    <td style="width: 25%;">{{$quotation->customer_name == null ? 'No Name' : $quotation->customer_name}}</td>
+                    <td style="width: 25%;">{{$quotation->date}}</td>
+                    <td style="width: 25%;">{{number_format($quotation->total_price, 0, ',', '.')}}</td>
                 </tr>
                 @endforeach
             </tbody>

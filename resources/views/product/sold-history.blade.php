@@ -9,17 +9,17 @@
         <thead>
             <tr style="background-color: #293A80; color: white; border-radius: 5px">
                 <th class="text-center">#</th>
-                <th>Supplier</th>
+                <th>Customer</th>
                 <th>Date</th>
                 <th>Qty</th>
-                <th>Price</th>
+                <th>Sell Price</th>
                 <th>Total Price</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @php
-                $itr = 0;
+                $itr = 1;
             @endphp
             @foreach ($sold_details as $detail)
             @if ($detail->quotation->finalized)
@@ -35,7 +35,7 @@
                 </td>
             </tr>
             @php
-                $itr = ++;
+                $itr++;
             @endphp
             @endif
             @endforeach

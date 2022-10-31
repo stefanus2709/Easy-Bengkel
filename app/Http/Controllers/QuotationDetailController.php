@@ -28,7 +28,7 @@ class QuotationDetailController extends Controller
         return redirect('/quotation/edit/'.$quotation_id);
     }
 
-    public function edit($id){
+    public function edit($quotation_id, $id){
         $quotation_detail = QuotationDetail::findOrFail($id);
         return view('quotation.edit-product', compact('quotation_detail'));
     }

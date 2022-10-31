@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class QuotationController extends Controller
 {
     public function index(){
-        $quotations = Quotation::all();
+        $quotations = Quotation::orderBy('created_at', 'DESC')->get();
         $mechanics = Mechanic::all();
         return view('quotation.index', compact('quotations', 'mechanics'));
     }
@@ -88,5 +88,10 @@ class QuotationController extends Controller
         ]);
 
         return redirect('/quotation')->with('success', 'Quotation has been finalized');
+    }
+
+    public function sales_this_month(){
+        $total_sales = Quotation::orderBy('created_at', 'DESC')->whereMonth('date', now()->month)->where('finalized', true)->get();
+        return view('quotation.sales_this_month', compact('total_sales'));
     }
 }

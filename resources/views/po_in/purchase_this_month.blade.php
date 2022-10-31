@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Low Stock Product
+{{ date('F')}} Purchase In
 @endsection
 
 @section('custom-css')
@@ -64,7 +64,7 @@ Low Stock Product
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            Low Stock Product Lists
+            {{ date('F')}} Purchase In
         </p>
     </div>
     <div class="bg-white rounded">
@@ -72,28 +72,18 @@ Low Stock Product
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
                     <th class="text-center">#</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Brand</th>
-                    <th>Vehicle</th>
-                    <th>Supplier</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Selling Price</th>
+                    <th>Supplier Name</th>
+                    <th>Date</th>
+                    <th>Total Purchase</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($low_products as $product)
+                @foreach ($total_purchases as $po_in)
                 <tr>
-                    <td class="text-center" style="width: 5%;">{{$loop->iteration}}</td>
-                    <td style="width: 20%;">{{$product->name}}</td>
-                    <td style="width: 8%;">{{$product->category->name}}</td>
-                    <td style="width: 8%;">{{$product->brand->name}}</td>
-                    <td style="width: 8%;">{{$product->vehicle_type->name}}</td>
-                    <td style="width: 15%;">{{$product->supplier->name}}-{{$product->supplier->company_name}}</td>
-                    <td style="width: 5%;">{{number_format($product->quantity, 0, ',', '.')}}</td>
-                    <td style="width: 8%;">{{number_format($product->price, 0, ',', '.')}}</td>
-                    <td style="width: 8%;">{{number_format($product->selling_price, 0, ',', '.')}}</td>
+                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                    <td style="width: 25%;">{{$po_in->supplier->name}}</td>
+                    <td style="width: 25%;">{{$po_in->date}}</td>
+                    <td style="width: 25%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -118,6 +108,7 @@ Low Stock Product
             "pageLength": 5,
             "pagingType": 'full_numbers',
         });
+
     });
 
 </script>
