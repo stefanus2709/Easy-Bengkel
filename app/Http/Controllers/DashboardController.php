@@ -21,10 +21,10 @@ class DashboardController extends Controller
         $total_income = $quotations->sum('total_price');
         $total_expense = $purchaseIns->sum('total_price');
         $low_products = Product::where('quantity', '<=', '5')->get();
-        $best_products = $products->sortByDesc('item_sold');
+        $best_products = $products->sortByDesc('item_sold')->where('item_sold', '!=', 0);
         $today_purchases = $purchaseIns->where('date', Carbon::now()->format('Y-m-d'));
         $today_quotations = $quotations->where('date', Carbon::now()->format('Y-m-d'));
-        
-        return view('dashboard', compact('total_profit', 'total_income', 'total_expense', 'products', 'low_products', 'best_products','quotations', 'today_quotations', 'today_purchases'));
+
+        return view('dashboard.dashboard', compact('total_profit', 'total_income', 'total_expense', 'products', 'low_products', 'best_products','quotations', 'today_quotations', 'today_purchases'));
     }
 }
