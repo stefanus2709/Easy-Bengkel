@@ -38,7 +38,7 @@ class QuotationController extends Controller
 
     public function edit($id){
         $quotation = Quotation::findOrFail($id);
-        $products = Product::all();
+        $products = Product::where('quantity', '!=', 0)->get();
         $mechanics = Mechanic::all();
         $services = Service::all();
         return view('quotation.edit', compact('quotation', 'products', 'mechanics', 'services'));
