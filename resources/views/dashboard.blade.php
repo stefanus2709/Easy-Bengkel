@@ -143,20 +143,19 @@ Dashboard
                 class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #53BEEA; overflow: hidden; margin-right: 15px">
                 <div class="d-flex px-2">
                     <div class="container-summary-text fw-bold" style="width: 100%">
-                        <p class="mb-0 pb-0 poppins-medium fs-16px">Total Profit</p>
+                        <p class="mb-2 pb-0 poppins-medium fs-16px">Total Profit</p>
                         <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">Rp {{number_format($total_profit, 0, ',', '.')}}</p>
                     </div>
                     <div class="d-flex">
                         <i style="font-size: 75px" class="icofont-coins"></i>
                     </div>
                 </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;"></div>
             </a>
             <a href="" 
                 class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #49A361; overflow: hidden; margin-right: 15px">
                 <div class="d-flex px-2">
                     <div class="container-summary-text fw-bold" style="width: 100%">
-                        <p class="mb-0 pb-0 poppins-medium fs-16px">Total Income</p>
+                        <p class="mb-2 pb-0 poppins-medium fs-16px">Total Income</p>
                         <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
                             Rp {{number_format($total_income, 0, ',', '.')}}</p>
                     </div>
@@ -164,15 +163,12 @@ Dashboard
                         <i style="font-size: 75px" class="icofont-coins"></i>
                     </div>
                 </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;">
-                    
-                </div>
             </a>
             <a href="" 
                 class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #CD5542; overflow: hidden; margin-right: 15px">
                 <div class="d-flex px-2">
                     <div class="container-summary-text fw-bold" style="width: 100%">
-                        <p class="mb-0 pb-0 poppins-medium fs-16px">
+                        <p class="mb-2 pb-0 poppins-medium fs-16px">
                             Total Expense
                         </p>
                         <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
@@ -183,76 +179,13 @@ Dashboard
                         <i style="font-size: 75px" class="icofont-coins"></i>
                     </div>
                 </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;"></div>
             </a>
-            {{-- <a href="" 
-                class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #53BEEA; overflow: hidden;">
-                <div class="d-flex">
-                    <div class="container-summary-text fw-bold" style="width: 100%">
-                        <p class="mb-0 pb-0 poppins-medium fs-16px">
-                            Total Income
-                        </p>
-                        <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
-                            {{count($products)}}
-                        </p>
-                    </div>
-                    <div class="d-flex">
-                        <i style="font-size: 75px" class="icofont-coins"></i>
-                    </div>
-                </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;">
-                    
-                </div>
-            </a> --}}
-            
-            {{-- <a href="/product/low"
-                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-danger border border-danger text-decoration-none" style="margin-right: 15px">
-                <div class="d-flex">
-                    <i class="icofont-inbox"></i>
-                </div>
-                <div class="container-summary-text fw-bold">
-                    <p class="mb-0 pb-0">
-                        Low Stock Products
-                    </p>
-                    <p class="mb-0 pb-0 value">
-                        {{count($low_products)}}
-                    </p>
-                </div>
-            </a>
-             --}}
-            {{-- <a href="/po_in/this_month"
-                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-warning border border-warning text-decoration-none" style="margin-right: 15px">
-                <div class="d-flex">
-                    <i class="icofont-inbox"></i>
-                </div>
-                <div class="container-summary-text fw-bold">
-                    <p class="mb-0 pb-0">
-                        Total Purchase ({{ date('F')}})
-                    </p>
-                    <p class="mb-0 pb-0 value">
-                        Rp {{number_format($total_purchase, 0, ',', '.')}}
-                    </p>
-                </div>
-            </a> --}}
-            {{-- <a href="/quotation/this_month"
-                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-primary border border-primary"  style="margin-right: 15px">
-                <div class="d-flex">
-                    <i class="icofont-inbox"></i>
-                </div>
-                <div class="container-summary-text fw-bold">
-                    <p class="mb-0 pb-0">
-                        Total Sales ({{ date('F')}})
-                    </p>
-                    <p class="mb-0 pb-0 value">
-                        Rp {{number_format($total_sales, 0, ',', '.')}}
-                    </p>
-                </div>
-            </a> --}}
+
             <a href="" 
                 class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #384AAD; overflow: hidden;">
                 <div class="d-flex px-2">
                     <div class="container-summary-text fw-bold" style="width: 100%">
-                        <p class="mb-0 pb-0 poppins-medium fs-16px">
+                        <p class="mb-2 pb-0 poppins-medium fs-16px">
                             Total Product
                         </p>
                         <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
@@ -263,9 +196,6 @@ Dashboard
                         <i style="font-size: 75px" class="icofont-coins"></i>
                     </div>
                 </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;">
-                    
-                </div>
              </a>
         </div>
 
@@ -274,7 +204,7 @@ Dashboard
                 class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #3693BB; overflow: hidden; margin-right: 15px">
                 <div class="d-flex">
                     <div class="container-summary-text fw-bold" style="width: 100%">
-                        <p class="mb-0 pb-0 poppins-medium fs-16px">
+                        <p class="mb-2 pb-0 poppins-medium fs-16px">
                             Low Stock Products
                         </p>
                         <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
@@ -285,28 +215,12 @@ Dashboard
                         <i style="font-size: 75px" class="icofont-coins"></i>
                     </div>
                 </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;"></div>
             </a>
-
-            {{-- <a href="/product/low"
-                class="container-sm d-flex justify-content-evenly py-4 container-summary-box bg-danger border border-danger text-decoration-none"  style="margin-right: 15px">
-                <div class="d-flex">
-                    <i class="icofont-inbox"></i>
-                </div>
-                <div class="container-summary-text fw-bold">
-                    <p class="mb-0 pb-0">
-                        Low Stock Products
-                    </p>
-                    <p class="mb-0 pb-0 value">
-                        {{count($low_products)}}
-                    </p>
-                </div>
-            </a> --}}
             <a href="" 
                 class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #E79F3C; overflow: hidden; margin-right: 15px">
                 <div class="d-flex">
                     <div class="container-summary-text fw-bold" style="width: 100%">
-                        <p class="mb-0 pb-0 poppins-medium fs-16px">
+                        <p class="mb-2 pb-0 poppins-medium fs-16px">
                             Supplier
                         </p>
                         <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
@@ -317,7 +231,6 @@ Dashboard
                         <i style="font-size: 75px" class="icofont-coins"></i>
                     </div>
                 </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;"></div>
             </a>
             <a href="" 
                 class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #CD5542; overflow: hidden; margin-right: 15px; visibility: hidden;">
@@ -334,7 +247,6 @@ Dashboard
                         <i style="font-size: 75px" class="icofont-coins"></i>
                     </div>
                 </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;"></div>
             </a>
             <a href="" 
                 class="container-sm py-4 container-summary-box text-decoration-none" style="background-color: #384AAD; overflow: hidden; visibility: hidden;">
@@ -351,11 +263,7 @@ Dashboard
                         <i style="font-size: 75px" class="icofont-coins"></i>
                     </div>
                 </div>
-                <div style=" height: 22px; background-color: black; position: relative; width: 150%; left: -12px; bottom: -24px; opacity: 0.3;">
-                    
-                </div>
             </a>
-            
         </div>
     </div>
 
