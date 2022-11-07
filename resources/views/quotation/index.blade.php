@@ -3,7 +3,7 @@
 @section('page-title')
 Quotation
 @endsection
-
+@section('quotation','active text-white')
 @section('custom-css')
 <style>
     #datatable {

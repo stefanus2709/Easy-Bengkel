@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(){
+    public function index() {
         $categories = Category::all();
         $vehicle_types = VehicleType::all();
         $brands = Brand::all();
@@ -22,7 +22,7 @@ class ProductController extends Controller
         return view('product.index', compact('products', 'categories', 'vehicle_types', 'brands', 'suppliers'));
     }
 
-    public function create(){
+    public function create() {
         $categories = Category::all();
         $vehicle_types = VehicleType::all();
         $brands = Brand::all();
@@ -30,7 +30,7 @@ class ProductController extends Controller
         return view('product.create', compact('categories', 'vehicle_types', 'brands', 'suppliers'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request) {
         $request->validate([
             'category_id' => 'required',
             'vehicle_type_id' => 'required',
@@ -42,7 +42,7 @@ class ProductController extends Controller
             'name' => 'required',
         ]);
 
-        if($request->quantity > 0){
+        if($request->quantity > 0) {
             Product::create([
                 'category_id' => $request->category_id,
                 'vehicle_type_id' => $request->vehicle_type_id,
@@ -70,7 +70,6 @@ class ProductController extends Controller
                 'item_sold' => 0,
             ]);
         }
-
         return redirect('/product')->with('success', 'Product has been created');
     }
 

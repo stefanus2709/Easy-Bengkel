@@ -1,4 +1,10 @@
-<nav class="navbar navbar-expand-lg bg-white">
+<style>
+    .nav-border {
+        border-left: 2px solid #F1F1F1;
+    }
+</style>
+
+<nav class="nav-border navbar navbar-expand-lg bg-white">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <i class="icofont-dashboard"></i>

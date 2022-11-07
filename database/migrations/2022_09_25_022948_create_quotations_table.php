@@ -21,6 +21,7 @@ class CreateQuotationsTable extends Migration
             $table->date('date');
             $table->bigInteger('total_price');
             $table->boolean('finalized');
+            $table->bigInteger('total_profit');
             $table->timestamps();
         });
     }

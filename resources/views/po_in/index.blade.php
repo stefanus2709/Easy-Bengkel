@@ -3,7 +3,7 @@
 @section('page-title')
 Purchase In
 @endsection
-
+@section('po_in','active text-white')
 @section('custom-css')
 <style>
     #datatable {

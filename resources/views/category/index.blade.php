@@ -3,7 +3,7 @@
 @section('page-title')
 Category
 @endsection
-
+@section('category','active text-white')
 @section('custom-css')
 <style>
     .dataTables_info {

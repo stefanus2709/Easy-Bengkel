@@ -27,6 +27,7 @@ class QuotationController extends Controller
             'customer_name' => $request->customer_name,
             'date' => $request->date,
             'total_price' => 0,
+            'total_profit' => 0,
             'finalized' => false,
         ]);
 
@@ -63,7 +64,9 @@ class QuotationController extends Controller
     public function finalize($id){
         $quotation = Quotation::findOrFail($id);
         $quotation_details = QuotationDetail::where('quotation_id', $id)->get();
+        $price = 0;
         $total_price = 0;
+        $total_profit = 0;
 
         if(count($quotation_details) == 0){
             return redirect('/quotation/edit/'.$quotation->id)->with('failed', 'Cannot finalize, there is no item to stock!');
@@ -80,10 +83,13 @@ class QuotationController extends Controller
                 'item_sold' => $detail->product->item_sold + $detail->quantity,
             ]);
             $total_price += $detail->quantity * $detail->selling_price;
+            $price += $detail->product->price * $detail->quantity;
+            $total_profit = $total_price - $price;
         }
 
         $quotation->update([
             'total_price' => $total_price,
+            'total_profit' => $total_profit,
             'finalized' => true,
         ]);
 

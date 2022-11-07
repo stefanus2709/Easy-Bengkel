@@ -3,7 +3,7 @@
 @section('page-title')
 Supplier
 @endsection
-
+@section('supplier','active text-white')
 @section('custom-css')
 <style>
     .dataTables_info {

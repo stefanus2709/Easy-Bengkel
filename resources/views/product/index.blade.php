@@ -3,7 +3,7 @@
 @section('page-title')
 Product
 @endsection
-
+@section('product','active text-white')
 @section('custom-css')
 <style>
     #datatable {

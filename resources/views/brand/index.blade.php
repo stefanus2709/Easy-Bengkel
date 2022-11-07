@@ -3,7 +3,7 @@
 @section('page-title')
 Brand
 @endsection
-
+@section('brand','active text-white')
 @section('custom-css')
 <style>
     .dataTables_info {

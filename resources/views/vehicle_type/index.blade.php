@@ -3,7 +3,7 @@
 @section('page-title')
 Vehicle Type
 @endsection
-
+@section('vehicle_type','active text-white')
 @section('custom-css')
 <style>
     .dataTables_info {

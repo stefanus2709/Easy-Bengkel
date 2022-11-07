@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\PurchaseIn;
 use App\Models\Quotation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,9 +14,17 @@ class DashboardController extends Controller
     public function index(){
         $brands = Brand::all();
         $products = Product::all();
-        $low_products = Product::where('quantity', '<', '5')->get();
-        $total_purchase = PurchaseIn::whereMonth('date', now()->month)->sum('total_price');
-        $total_sales = Quotation::whereMonth('date', now()->month)->sum('total_price');
-        return view('dashboard', compact('products', 'low_products', 'total_purchase', 'total_sales'));
+        $quotations = Quotation::all();
+        $purchaseIns = PurchaseIn::all();
+
+        $total_profit = Quotation::all()->sum('total_profit');
+        $total_income = $quotations->sum('total_price');
+        $total_expense = $purchaseIns->sum('total_price');
+        $low_products = Product::where('quantity', '<=', '5')->get();
+        $best_products = $products->sortByDesc('item_sold');
+        $today_purchases = $purchaseIns->where('date', Carbon::now()->format('Y-m-d'));
+        $today_quotations = $quotations->where('date', Carbon::now()->format('Y-m-d'));
+        
+        return view('dashboard', compact('total_profit', 'total_income', 'total_expense', 'products', 'low_products', 'best_products','quotations', 'today_quotations', 'today_purchases'));
     }
 }
