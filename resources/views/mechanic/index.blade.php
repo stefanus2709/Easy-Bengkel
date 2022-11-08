@@ -82,7 +82,7 @@ Mechanic
                 <tr>
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 15%;">{{$mechanic->name}}</td>
-                    <td style="width: 25%;">{{$mechanic->salary}}</td>
+                    <td style="width: 25%;">{{number_format($mechanic->salary, 0, ',', '.')}}</td>
                     <td style="width: 15%;">{{$mechanic->phone_number}}</td>
                     <td style="width: 25%;">{{$mechanic->address}}</td>
                     <td style="width: 10%;">

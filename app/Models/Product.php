@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        // 'item_id', 
+        // 'item_id',
         'name', 'category_id', 'vehicle_type_id', 'brand_id', 'supplier_id',
         'quantity', 'price', 'selling_price', 'available', 'item_sold',
     ];
@@ -33,5 +33,14 @@ class Product extends Model
 
     public function supplier(){
         return $this->belongsTo('App\Models\Supplier');
+    }
+
+    public function total_assets($products){
+        $total_asset = 0;
+        foreach ($products as $product) {
+            $total_asset += $product->quantity * $product->price;
+        }
+
+        return $total_asset;
     }
 }

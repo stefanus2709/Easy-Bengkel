@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mechanic;
+use App\Models\Quotation;
 
 class MechanicController extends Controller
 {
@@ -34,7 +35,8 @@ class MechanicController extends Controller
 
     public function edit($id){
         $mechanic = Mechanic::findOrFail($id);
-        return view('mechanic.edit', compact('mechanic'));
+        $quotations = Quotation::where('mechanic_id', $id)->get();
+        return view('mechanic.edit', compact('mechanic', 'quotations'));
     }
 
     public function update(Request $request, $id){

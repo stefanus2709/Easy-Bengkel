@@ -62,21 +62,21 @@ class QuotationController extends Controller
 
     public function finalize($id){
         $quotation = Quotation::findOrFail($id);
-        $quotation_details = QuotationDetail::where('quotation_id', $id)->get();
         $price = 0;
         $total_price = 0;
         $total_profit = 0;
+        $total_service = 0;
 
-        if(count($quotation_details) == 0){
-            return redirect('/quotation/edit/'.$quotation->id)->with('failed', 'Cannot finalize, there is no item to stock!');
+        if(count($quotation->details) == 0){
+            return redirect('/quotation/edit/'.$quotation->id)->with('failed', 'Cannot finalize, there is no item to data!');
         }
+
+        // foreach ($quotation->details as $detail) {
+        //     if($detail->product->quantity - $detail->quantity < 0)
+        //         return redirect('/quotation/edit/'.$quotation->id)->with('failed', $detail->product->name.' only have '.$detail->product->quantity.' stock left!');
+        // }
 
         foreach ($quotation->details as $detail) {
-            if($detail->product->quantity - $detail->quantity < 0)
-                return redirect('/quotation/edit/'.$quotation->id)->with('failed', $detail->product->name.' only have '.$detail->product->quantity.' stock left!');
-        }
-
-        foreach ($quotation_details as $detail) {
             $detail->product->update([
                 'quantity' => $detail->product->quantity - $detail->quantity,
                 'item_sold' => $detail->product->item_sold + $detail->quantity,
@@ -86,8 +86,15 @@ class QuotationController extends Controller
             $total_profit = $total_price - $price;
         }
 
+        if($quotation->mechanic_id != null){
+            $mechanic = Mechanic::findOrFail($quotation->mechanic_id);
+            $mechanic->update([
+                'salary' => $quotation->total_service_price($quotation)
+            ]);
+        }
+
         $quotation->update([
-            'total_price' => $total_price,
+            'total_price' => $total_price + $quotation->total_service_price($quotation),
             'total_profit' => $total_profit,
             'finalized' => true,
         ]);

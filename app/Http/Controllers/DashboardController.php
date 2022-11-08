@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Supplier;
 use App\Models\PurchaseIn;
 use App\Models\Quotation;
 use Carbon\Carbon;
@@ -16,6 +17,8 @@ class DashboardController extends Controller
         $products = Product::all();
         $quotations = Quotation::all();
         $purchaseIns = PurchaseIn::all();
+        $suppliers = Supplier::all();
+        $total_asset = Product::total_assets($products);
 
         $total_profit = Quotation::all()->sum('total_profit');
         $total_income = $quotations->sum('total_price');
@@ -25,6 +28,7 @@ class DashboardController extends Controller
         $today_purchases = $purchaseIns->where('date', Carbon::now()->format('Y-m-d'));
         $today_quotations = $quotations->where('date', Carbon::now()->format('Y-m-d'));
 
-        return view('dashboard.dashboard', compact('total_profit', 'total_income', 'total_expense', 'products', 'low_products', 'best_products','quotations', 'today_quotations', 'today_purchases'));
+        return view('dashboard.dashboard', compact('total_profit', 'total_income', 'total_expense', 'products',
+        'low_products', 'total_asset', 'best_products','quotations', 'today_quotations', 'today_purchases', 'suppliers'));
     }
 }

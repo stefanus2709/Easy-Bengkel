@@ -73,6 +73,7 @@ Quotation
                     <th>Date</th>
                     <th>Mechanic</th>
                     <th>Total Price</th>
+                    <th>Total Profit</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -81,20 +82,23 @@ Quotation
                 @foreach ($quotations as $quotation)
                 <tr>
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
-                    <td style="width: 16%;">
+                    <td style="width: 13%;">
                         {{$quotation->customer_name == null ? 'No Name' : $quotation->customer_name}}</td>
-                    <td style="width: 16%;">{{$quotation->date}}</td>
-                    <td style="width: 16%;">
+                    <td style="width: 13%;">{{$quotation->date}}</td>
+                    <td style="width: 13%;">
                         {{$quotation->mechanic_id == null ? 'No Mechanic' : $quotation->mechanic->name}}</td>
-                    <td style="width: 16%;">
+                    <td style="width: 13%;">
                         {{number_format($quotation->total_price == 0 ? $quotation->total_service_product_price($quotation) : $quotation->total_price, 0, ',', '.')}}
                     </td>
+                    <td style="width: 13%;">
+                        {{number_format($quotation->total_profit, 0, ',', '.')}}
+                    </td>
                     @if ($quotation->finalized)
-                    <td style="width: 16%;"><button class="btn btn-success ml-2" style="font-size: 10px;">
+                    <td style="width: 13%;"><button class="btn btn-success ml-2" style="font-size: 10px;">
                             Finalized</button>
                     </td>
                     @else
-                    <td style="width: 16%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
+                    <td style="width: 13%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
                             Finalized</button>
                     </td>
                     @endif
