@@ -10,12 +10,8 @@ class ServiceDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'service_id', 'quotation_id'
+        'quotation_id', 'description', 'time', 'price'
     ];
-
-    public function service(){
-        return $this->belongsTo('App\Models\Service');
-    }
 
     public function quotation(){
         return $this->belongsTo('App\Models\Quotation');

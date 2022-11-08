@@ -9,16 +9,19 @@ class ServiceDetailController extends Controller
 {
     public function store(Request $request, $quotation_id){
         $request->validate([
-            'service_id' => 'required',
-            'quotation_id' => 'required',
+            'description' => 'required',
+            'time' => 'required',
+            'price' => 'required',
         ]);
 
         ServiceDetail::create([
-            'service_id' => $request->service_id,
             'quotation_id' => $quotation_id,
+            'description' => $request->description,
+            'time' => $request->time,
+            'price' => $request->price,
         ]);
 
-        return redirect('/quotation/edit/'.$quotation_id);
+        return redirect('/quotation/edit/'.$quotation_id)->with('success', 'Mechanic has been updated');
     }
 
     public function delete(Request $request){

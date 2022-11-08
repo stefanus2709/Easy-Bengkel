@@ -31,7 +31,7 @@ class SupplierController extends Controller
             'address' => $request->address,
         ]);
 
-        return redirect('/supplier');
+        return redirect('/supplier')->with('success', 'Supplier has been created');
     }
 
     public function edit($id){
@@ -54,7 +54,7 @@ class SupplierController extends Controller
             'address' => $request->address,
         ]);
 
-        return redirect('/supplier');
+        return redirect('/supplier')->with('success', 'Supplier has been updated');
     }
 
     public function delete(Request $request){

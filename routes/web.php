@@ -73,16 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/mechanic/create', 'App\Http\Controllers\MechanicController@create')->name('mechanic-create');
     Route::post('/mechanic/store', 'App\Http\Controllers\MechanicController@store')->name('mechanic-store');
     Route::get('/mechanic/edit/{id}', 'App\Http\Controllers\MechanicController@edit')->name('mechanic-edit');
-    Route::patch('/mechanic/update', 'App\Http\Controllers\MechanicController@update')->name('mechanic-update');
+    Route::patch('/mechanic/update/{id}', 'App\Http\Controllers\MechanicController@update')->name('mechanic-update');
     Route::delete('/mechanic/delete', 'App\Http\Controllers\MechanicController@delete')->name('mechanic-delete');
-
-    //service
-    Route::get('/service', 'App\Http\Controllers\ServiceController@index')->name('service');
-    // Route::get('/service/create', 'App\Http\Controllers\ServiceController@create')->name('service-create');
-    Route::post('/service/store', 'App\Http\Controllers\ServiceController@store')->name('service-store');
-    Route::get('/service/edit/{id}', 'App\Http\Controllers\ServiceController@edit')->name('service-edit');
-    Route::patch('/service/update', 'App\Http\Controllers\ServiceController@update')->name('service-update');
-    Route::delete('/service/delete', 'App\Http\Controllers\ServiceController@delete')->name('service-delete');
 
     //quotation
     Route::get('/quotation', 'App\Http\Controllers\QuotationController@index')->name('quotation');

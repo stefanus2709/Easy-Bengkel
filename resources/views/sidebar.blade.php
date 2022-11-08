@@ -11,7 +11,7 @@
     .nav_item {
         height: 40px;
     }
-    
+
 </style>
 @endsection
 
@@ -66,6 +66,11 @@
                             <i class="icofont-car-alt-4"></i> <span class="ms-1 d-none d-sm-inline">Vehicle Type</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/mechanic" class="nav-link align-middle pl-3 py-1 text-dark fw-normal fs-16px @yield('mechanic')">
+                            <i class="icofont-wrench"></i> <span class="ms-1 d-none d-sm-inline">Mechanic</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -79,5 +84,5 @@
 @yield('scripts')
 
 <script>
- 
+
 </script>

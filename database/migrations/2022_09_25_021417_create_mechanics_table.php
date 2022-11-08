@@ -18,7 +18,7 @@ class CreateMechanicsTable extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->longText('address')->nullable();
-            $table->bigInteger('salary');
+            $table->bigInteger('salary')->default(0);
             $table->timestamps();
         });
     }

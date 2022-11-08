@@ -45,7 +45,7 @@ class Quotation extends Model
     public function total_service_price($quotation){
         $total_price = 0;
         foreach ($quotation->service_details as $detail) {
-            $total_price += $detail->service->price;
+            $total_price += $detail->price;
         }
 
         return $total_price;
@@ -57,7 +57,7 @@ class Quotation extends Model
             $total_price += $detail->selling_price * $detail->quantity;
         }
         foreach ($quotation->service_details as $detail) {
-            $total_price += $detail->service->price;
+            $total_price += $detail->price;
         }
 
         return $total_price;

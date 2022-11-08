@@ -11,42 +11,27 @@
             @csrf
             <div class="row g-3 align-items-center">
                 <div class="col-md-5">
-                    @if (!blank($services))
-                    <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
-                    <label for="select" class="form-label">Select Service</label>
-                    <select id="select-service" class="selectpicker form-control" data-live-search="true" multiple
-                        data-max-options="1" name="service_id">
-                        @foreach ($services as $service)
-                        <option value="{{$service->id}}" data-rc="{{$service->price}}">
-                            {{$service->name}}
-                        </option>
-                        @endforeach
-                    </select>
-                    @else
-                    <fieldset disabled>
-                        <label for="disabledSelect" class="form-label">Select Service</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>No Services Data</option>
-                        </select>
-                    </fieldset>
-                    @endif
-                    @error('service_id')
-                    <span class="text-danger">The service field is required.</span>
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Input Description">
+                    @error('description')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="col-sm">
+                    <label for="time" class="form-label">Time</label>
+                    <input type="time" class="form-control" id="time" name="time" placeholder="Input Price">
+                    @error('time')
+                    <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
                 <div class="col-sm">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" class="form-control" id="price" name="price" placeholder="Input Price" min="0"
-                        disabled>
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Input Price" min="0">
                     @error('price')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
-                @if ($quotation->finalized)
-                <div class="col-sm" style="vertical-align: bottom">
-                    <button type="submit" class="btn btn-primary" disabled>Create</button>
-                </div>
-                @else
+                @if (!$quotation->finalized)
                 <div class="col-sm" style="vertical-align: bottom">
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
@@ -60,7 +45,8 @@
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
                     <th class="text-center">#</th>
-                    <th>Service Name</th>
+                    <th>Description</th>
+                    <th>Time</th>
                     <th>Price</th>
                     @if (!$quotation->finalized)
                     <th>Action</th>
@@ -72,8 +58,9 @@
                 <tr>
                     @if (!$quotation->finalized)
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
-                    <td style="width: 40%;">{{$detail->service->name}}</td>
-                    <td style="width: 40%;">{{number_format($detail->service->price, 0, ',', '.')}}</td>
+                    <td style="width: 27%;">{{$detail->description}}</td>
+                    <td style="width: 27%;"><time>{{$detail->time}}</time></td>
+                    <td style="width: 27%;">{{number_format($detail->price, 0, ',', '.')}}</td>
                     <td style="width: 10%;">
                         <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
                             data-bs-toggle="modal" data-bs-target="#deleteQuotationServiceModal"
@@ -83,8 +70,9 @@
                     </td>
                     @else
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
-                    <td style="width: 45%;">{{$detail->service->name}}</td>
-                    <td style="width: 45%;">{{number_format($detail->service->price, 0, ',', '.')}}
+                    <td style="width: 30%;">{{$detail->description}}</td>
+                    <td style="width: 30%;"><time>{{$detail->time}}</time></td>
+                    <td style="width: 30%;">{{number_format($detail->price, 0, ',', '.')}}</td>
                     </td>
                     @endif
                 </tr>
