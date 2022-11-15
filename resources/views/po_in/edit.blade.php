@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Edit Purchase In
+Edit Purchase Order
 @endsection
 
 @section('custom-css')
@@ -56,7 +56,7 @@ Edit Purchase In
 <div class="px-4 py-4 main-content">
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            Edit Purchase In
+            Edit Purchase Order
         </p>
         @if ($po_in->finalized)
         <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
@@ -224,13 +224,13 @@ Edit Purchase In
     </div>
 </div>
 
-<!-- Delete Purchase In Product Modal -->
+<!-- Delete Purchase Order Product Modal -->
 <div class="modal" id="deletePurchaseInProductModal" tabindex="-1" aria-labelledby="deletePurchaseInProductModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title fs-22px" id="deletePurchaseInProductModalLabel">Delete Purchase In Product</p>
+                <p class="modal-title fs-22px" id="deletePurchaseInProductModalLabel">Delete Purchase Order Product</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -253,13 +253,13 @@ Edit Purchase In
     </div>
 </div>
 
-<!-- Finalize Purchase In Modal -->
+<!-- Finalize Purchase Order Modal -->
 <div class="modal" id="finalizePurchaseInModal" tabindex="-1" aria-labelledby="finalizePurchaseInModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title fs-22px" id="finalizePurchaseInModalLabel">Finalize Purchase In</p>
+                <p class="modal-title fs-22px" id="finalizePurchaseInModalLabel">Finalize Purchase Order</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -297,7 +297,7 @@ Edit Purchase In
             "pageLength": 5,
             "pagingType": 'full_numbers',
         });
-        
+
         $('select[name=supplier_id]').selectpicker('val', '{{$po_in->supplier_id}}');
 
         $('#deletePurchaseInProductModal').on('show.bs.modal', function (event) {

@@ -127,7 +127,6 @@
             </div>
         </div>
         <div class="text-end">
-            <a href="/product" class="btn btn-secondary">Back</a>
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </form>

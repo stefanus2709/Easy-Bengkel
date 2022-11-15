@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-{{ date('F')}} Purchase In
+{{ date('F')}} Purchase Order
 @endsection
 
 @section('custom-css')
@@ -64,7 +64,7 @@
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            {{ date('F')}} Purchase In
+            {{ date('F')}} Purchase Order
         </p>
     </div>
     <div class="bg-white rounded">

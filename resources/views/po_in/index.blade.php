@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Purchase In
+Purchase Order
 @endsection
 @section('po_in','active text-white')
 @section('custom-css')
@@ -61,7 +61,7 @@ Purchase In
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            Purchase In
+            Purchase Order
         </p>
     </div>
     <div class="bg-white rounded">
@@ -108,7 +108,7 @@ Purchase In
     </div>
 </div>
 
-<!-- Delete Purchase In Modal -->
+<!-- Delete Purchase Order Modal -->
 <div class="modal" id="deletePurchaseInModal" tabindex="-1" aria-labelledby="deletePurchaseInModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

@@ -15,7 +15,6 @@
             @enderror
         </div>
         <div class="text-end">
-            <a href="/vehicle_type" class="btn btn-secondary">Back</a>
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </form>

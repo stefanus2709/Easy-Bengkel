@@ -123,7 +123,7 @@ Quotation
     </div>
 </div>
 
-<!-- Delete Purchase In Modal -->
+<!-- Delete Purchase Order Modal -->
 <div class="modal" id="deleteQuotationModal" tabindex="-1" aria-labelledby="deleteQuotationModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

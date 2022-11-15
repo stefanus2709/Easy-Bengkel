@@ -45,7 +45,6 @@
         </div>
 
         <div class="text-end">
-            <a href="/quotation" class="btn btn-secondary">Back</a>
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </form>
