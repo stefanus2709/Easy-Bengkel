@@ -31,7 +31,7 @@
                 <td style="width: 8%;">{{number_format($detail->price, 0, ',', '.')}}</td>
                 <td style="width: 8%;">{{number_format($detail->quantity*$detail->price, 0, ',', '.')}}</td>
                 <td style="width: 5%;">
-                    <a href="/po_in/edit/{{$detail->purchase_in_id}}" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
+                    <a href="/po_in/edit/{{$detail->purchase_in_id}}" target="_blank" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
                 </td>
             </tr>
             @php

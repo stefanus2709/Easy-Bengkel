@@ -30,7 +30,7 @@
                     <td class="poppins-medium fs-14px" style="width: 10%;">
                         {{number_format($product->selling_price, 0, ',', '.')}}</td>
                     <td class="text-center" style="width: 8%; padding-right: 30px !important;">
-                        <a href="/product/edit/{{$product->id}}" class="btn btn-success btn-action-style" style="text-align: center">
+                        <a href="/product/edit/{{$product->id}}" target="_blank" class="btn btn-success btn-action-style" style="text-align: center">
                             <i class="icofont-search-1 text-light"></i>
                         </a>
                     </td>

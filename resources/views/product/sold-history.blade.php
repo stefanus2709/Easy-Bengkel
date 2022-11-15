@@ -31,7 +31,7 @@
                 <td style="width: 8%;">{{number_format($detail->selling_price, 0, ',', '.')}}</td>
                 <td style="width: 8%;">{{number_format($detail->quantity*$detail->selling_price, 0, ',', '.')}}</td>
                 <td style="width: 5%;">
-                    <a href="/quotation/edit/{{$detail->quotation_id}}" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
+                    <a href="/quotation/edit/{{$detail->quotation_id}}" target="_blank" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
                 </td>
             </tr>
             @php

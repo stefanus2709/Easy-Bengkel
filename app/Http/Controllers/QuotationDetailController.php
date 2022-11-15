@@ -22,7 +22,7 @@ class QuotationDetailController extends Controller
             'product_id' => $request->product_id,
             'quotation_id' => $quotation_id,
             'quantity' => $request->quantity,
-            'selling_price' => $product->selling_price,
+            'selling_price' => $request->selling_price,
         ]);
 
         return redirect('/quotation/edit/'.$quotation_id);

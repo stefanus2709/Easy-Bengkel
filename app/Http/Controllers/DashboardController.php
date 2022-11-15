@@ -20,6 +20,7 @@ class DashboardController extends Controller
         $suppliers = Supplier::all();
         $total_asset = Product::total_assets($products);
 
+        $assets = Product::where('quantity', '!=', '0')->get();
         $total_profit = Quotation::all()->sum('total_profit');
         $total_income = $quotations->sum('total_price');
         $total_expense = $purchaseIns->sum('total_price');
@@ -29,6 +30,6 @@ class DashboardController extends Controller
         $today_quotations = $quotations->where('date', Carbon::now()->format('Y-m-d'));
 
         return view('dashboard.dashboard', compact('total_profit', 'total_income', 'total_expense', 'products',
-        'low_products', 'total_asset', 'best_products','quotations', 'today_quotations', 'today_purchases', 'suppliers'));
+        'low_products', 'assets', 'total_asset', 'best_products','quotations', 'today_quotations', 'today_purchases', 'suppliers'));
     }
 }
