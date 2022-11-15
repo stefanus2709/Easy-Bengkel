@@ -82,18 +82,69 @@ Mechanic
                 <tr>
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 15%;">{{$mechanic->name}}</td>
-                    <td style="width: 25%;">{{number_format($mechanic->salary, 0, ',', '.')}}</td>
+                    <td style="width: 25%;">Rp. {{number_format($mechanic->salary, 0, ',', '.')}}</td>
                     <td style="width: 15%;">{{$mechanic->phone_number}}</td>
                     <td style="width: 25%;">{{$mechanic->address}}</td>
-                    <td style="width: 10%;">
+                    <td style="width: 15%;">
+                        <button type="button" class="btn btn-success fs-16px" data-bs-toggle="modal"
+                            data-bs-target="#salaryMechanicModal{{$mechanic->id}}"><i
+                                class="icofont-money"></i></button>
                         <a href="/mechanic/edit/{{$mechanic->id}}" class="btn btn-info fs-16px"><i
-                            class="icofont-pencil-alt-2 text-light"></i></a>
-                        <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
-                            data-bs-toggle="modal" data-bs-target="#deleteMechanicModal" data-myId="{{$mechanic->id}}">
+                                class="icofont-pencil-alt-2 text-light"></i></a>
+                        <button type="button" class="btn btn-danger fs-16px edit" data-bs-toggle="modal"
+                            data-bs-target="#deleteMechanicModal" data-myId="{{$mechanic->id}}">
                             <i class="icofont-trash text-light"></i>
                         </button>
                     </td>
                 </tr>
+                <!-- Salary Mechanic Modal -->
+                <div class="modal" id="salaryMechanicModal{{$mechanic->id}}" tabindex="-1"
+                    aria-labelledby="salaryMechanicModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title fs-22px" id="salaryMechanicModalLabel">Salary Mechanic</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <form action="/mechanic/take/salary/{{$mechanic->id}}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <div class="">
+                                            <div>
+                                                <label class="form-label">Mechanic
+                                                    Name</label>
+                                                <input type="text" class="form-control mb-3"
+                                                    placeholder="{{$mechanic->name}}" disabled>
+                                            </div>
+                                            <div>
+                                                <label class="form-label">Salary</label>
+                                                <input type="text" class="form-control mb-3"
+                                                    placeholder="Rp. {{$mechanic->salary}}" disabled>
+                                            </div>
+                                            @if ($mechanic->salary <= 0) <div>
+                                                <label class="form-label">Take Salary</label>
+                                                <input type="text" class="form-control mb-3" placeholder="No Salary"
+                                                    disabled>
+                                        </div>
+                                        @else
+                                        <div>
+                                            <label for="inputTake" class="form-label">Take Salary</label>
+                                            <input type="text" class="form-control mb-3" id="take" name="take"
+                                                placeholder="Input Salary Take" @error('take') is invalid @enderror>
+                                        </div>
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-danger">Take Salary</button>
+                                        </div>
+                                        @endif
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
             </tbody>
         </table>

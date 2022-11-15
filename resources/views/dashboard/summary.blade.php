@@ -14,7 +14,7 @@
         </div>
     </a>
     <!-- Total Asset Modal -->
-    <div class="modal fade" id="totalAsset" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="totalAsset" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <a href="" class="container-sm py-4 container-summary-box text-decoration-none"
         style="background-color: #49A361; overflow: hidden; margin-right: 15px">

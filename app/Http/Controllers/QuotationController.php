@@ -89,7 +89,7 @@ class QuotationController extends Controller
         if($quotation->mechanic_id != null){
             $mechanic = Mechanic::findOrFail($quotation->mechanic_id);
             $mechanic->update([
-                'salary' => $quotation->total_service_price($quotation)
+                'salary' => $mechanic->salary + $quotation->total_service_price($quotation)
             ]);
         }
 

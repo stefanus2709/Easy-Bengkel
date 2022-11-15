@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mechanic extends Model
+class SalaryDetail extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'phone_number', 'address', 'salary'
+        'mechanic_id', 'time', 'salary_taken'
     ];
 
-    public function salary_details(){
-        return $this->hasMany('App\Models\SalaryDetail');
+    public function mechanic(){
+        return $this->belongsTo('App\Models\Mechanic', 'mechanic_id');
     }
 }

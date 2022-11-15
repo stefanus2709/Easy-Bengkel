@@ -87,6 +87,9 @@ Update Supplier
 <div class="px-4 main-content">
     @include('mechanic.service-history')
 </div>
+<div class="px-4 main-content">
+    @include('mechanic.salary-taken-history')
+</div>
 @endsection
 
 @section('scripts')
@@ -101,6 +104,12 @@ Update Supplier
 <script type="text/javascript">
     $(document).ready(function () {
         var serviceTable = $('#serviceTable').DataTable({
+            "pageLength": 5,
+            "pagingType": 'full_numbers',
+        });
+    });
+    $(document).ready(function () {
+        var salaryTable = $('#salaryTable').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
         });

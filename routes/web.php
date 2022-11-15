@@ -75,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/mechanic/edit/{id}', 'App\Http\Controllers\MechanicController@edit')->name('mechanic-edit');
     Route::patch('/mechanic/update/{id}', 'App\Http\Controllers\MechanicController@update')->name('mechanic-update');
     Route::delete('/mechanic/delete', 'App\Http\Controllers\MechanicController@delete')->name('mechanic-delete');
+    Route::patch('/mechanic/take/salary/{id}', 'App\Http\Controllers\MechanicController@take_salary')->name('mechanic-take_salary');
 
     //quotation
     Route::get('/quotation', 'App\Http\Controllers\QuotationController@index')->name('quotation');
