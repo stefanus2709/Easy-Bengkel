@@ -35,7 +35,7 @@ class Product extends Model
         return $this->belongsTo('App\Models\Supplier');
     }
 
-    public function total_assets($products){
+    public static function total_assets($products){
         $total_asset = 0;
         foreach ($products as $product) {
             $total_asset += $product->quantity * $product->price;
