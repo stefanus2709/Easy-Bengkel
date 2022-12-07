@@ -59,8 +59,7 @@ Edit Purchase Order
             Edit Purchase Order
         </p>
         @if ($po_in->finalized)
-        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
-            data-bs-target="#finalizePurchaseInModal" disabled>
+        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;">
             Finalized
         </button>
         @else

@@ -4,13 +4,13 @@
     </p>
 </div>
 <div class="bg-white rounded p-3 mb-3">
-    <form action="/quotation/store" method="POST">
+    <form class="needs-validation" action="/quotation/store" method="POST" novalidate>
         @csrf
         <div class="mb-3">
             @if (!blank($mechanics))
             <label for="select" class="form-label">Select Mechanic</label>
             <select id="select" class="selectpicker form-control" data-live-search="true" multiple
-                data-max-options="1" name="mechanic_id">
+                data-max-options="1" name="mechanic_id" required>
                 <option value="">No Mechanic</option>
                 @foreach ($mechanics as $mechanic)
                 <option value="{{$mechanic->id}}">{{$mechanic->name}}</option>
@@ -31,17 +31,14 @@
         <div class="mb-3">
             <label for="inputCustomerName" class="form-label">Customer Name</label>
             <input type="text" class="form-control" id="customer_name" name="customer_name"
-                placeholder="Input Customer Name">
-            @error('customer_name')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+                placeholder="Input Customer Name (can be empty)">
         </div>
         <div class="mb-3">
             <label for="inputDate" class="form-label">Date</label>
-            <input type="date" class="form-control" id="date" name="date" placeholder="Input Date">
-            @error('date')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+            <input type="date" class="form-control" id="date" name="date" placeholder="Input Date" required>
+            <div class="invalid-feedback">
+                Please input quotation date!
+            </div>
         </div>
 
         <div class="text-end">

@@ -82,7 +82,3 @@
 </div>
 
 @yield('scripts')
-
-<script>
-
-</script>

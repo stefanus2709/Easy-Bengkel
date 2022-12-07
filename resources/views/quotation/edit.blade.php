@@ -59,8 +59,7 @@ Edit Quotation
             Edit Quotation
         </p>
         @if ($quotation->finalized)
-        <button type="button" class="btn btn-success fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
-            data-bs-target="#finalizeQuotationModal" disabled>
+        <button type="button" class="btn btn-success fs-16px" style="font-size: 16px;">
             Finalized
         </button>
         @else

@@ -56,99 +56,80 @@ Edit Product
         </p>
     </div>
     <div class="bg-white rounded p-3">
-        <form action="/product/update/" method="POST">
+        <form class="row g-3 needs-validation" action="/product/update/" method="POST" novalidate>
             @csrf
             @method('PATCH')
             <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}">
-            <div class="d-flex justify-content-around">
-                <div class="container-md left-form">
-                    <div class="mb-3">
-                        <label for="inputName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="name" name="name"
-                            placeholder="Input Product Name" value="{{$product->name}}">
-                        @error('name')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputQuantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity"
-                            placeholder="Input Quantity" value="{{number_format($product->quantity, 0, ',', '.')}}" disabled>
-                        @error('quantity')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="price" name="price"
-                            placeholder="Input Price" value="{{$product->price}}">
-                        @error('price')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputSellingPrice" class="form-label">Selling Price</label>
-                        <input type="number" class="form-control" id="selling_price" name="selling_price"
-                            placeholder="Input Selling Price" value="{{$product->selling_price}}">
-                        @error('selling_price')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
+            <div class="col-md-3">
+                <label for="select" class="form-label">Category</label>
+                <select id="category" class="selectpicker form-control" data-live-search="true"
+                    name="category_id" required>
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="select" class="form-label">Vehicle Type</label>
+                <select id="vehicle_type" class="selectpicker form-control" data-live-search="true"
+                    name="vehicle_type_id" required>
+                    @foreach ($vehicle_types as $vehicle_type)
+                    <option value="{{$vehicle_type->id}}">{{$vehicle_type->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="select" class="form-label">Brand</label>
+                <select id="brand" class="selectpicker form-control" data-live-search="true"
+                    name="brand_id" required>
+                    @foreach ($brands as $brand)
+                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="select" class="form-label">Supplier</label>
+                <select id="supplier" class="selectpicker form-control" data-live-search="true"
+                    name="supplier_id" value="{{$product->supplier_id}}" required>
+                    @foreach ($suppliers as $supplier)
+                    <option value="{{$supplier->id}}">{{$supplier->name}}-{{$supplier->company_name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="inputName" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="name" name="name"
+                    placeholder="Input Product Name" value="{{$product->name}}" required>
+                <div class="invalid-feedback">
+                    Please input product name!
                 </div>
-                <div class="container-md right-form">
-                    <div class="mb-3">
-                        <label for="select" class="form-label">Category</label>
-                        <select id="category" class="selectpicker form-control" data-live-search="true"
-                            name="category_id">
-                            @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('category_id')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="select" class="form-label">Vehicle Type</label>
-                        <select id="vehicle_type" class="selectpicker form-control" data-live-search="true"
-                            name="vehicle_type_id">
-                            @foreach ($vehicle_types as $vehicle_type)
-                            <option value="{{$vehicle_type->id}}">{{$vehicle_type->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('vehicle_type_id')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="select" class="form-label">Brand</label>
-                        <select id="brand" class="selectpicker form-control" data-live-search="true"
-                            name="brand_id">
-                            @foreach ($brands as $brand)
-                            <option value="{{$brand->id}}">{{$brand->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('brand_id')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="select" class="form-label">Supplier</label>
-                        <select id="supplier" class="selectpicker form-control" data-live-search="true"
-                            name="supplier_id" value="{{$product->supplier_id}}">
-                            @foreach ($suppliers as $supplier)
-                            <option value="{{$supplier->id}}">{{$supplier->name}}-{{$supplier->company_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @error('supplier_id')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                    <div class="text-end">
-                        <a href="/product" class="btn btn-secondary">Back</a>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
+            </div>
+            <div class="col-md-3">
+                <label for="inputQuantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity"
+                    placeholder="Input Quantity" value="{{number_format($product->quantity, 0, ',', '.')}}" disabled>
+            </div>
+            <div class="col-md-3">
+                <label for="inputPrice" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price"
+                    placeholder="Input Price" value="{{$product->price}}" required>
+                <div class="invalid-feedback">
+                    Please input product Price!
                 </div>
+            </div>
+            <div class="col-md-3">
+                <label for="inputSellingPrice" class="form-label">Selling Price</label>
+                <input type="number" class="form-control" id="selling_price" name="selling_price"
+                    placeholder="Input Selling Price" value="{{$product->selling_price}}" required>
+                <div class="invalid-feedback">
+                    Please input product selling price!
+                </div>
+            </div>
+
+            <div class="text-end">
+                <a href="/product" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>
@@ -186,5 +167,23 @@ Edit Product
         $('select[name=supplier_id]').selectpicker('val', '{{$product->supplier_id}}');
     });
 
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
 </script>
 @endsection

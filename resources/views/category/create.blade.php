@@ -4,14 +4,14 @@
     </p>
 </div>
 <div class="bg-white rounded p-3 mb-3">
-    <form action="/category/store" method="POST">
+    <form class="needs-validation" action="/category/store" method="POST" novalidate>
         @csrf
         <div class="mb-3">
             <label for="inputCategoryName" class="form-label">Category Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Input Category Name" @error('terms') is invalid @enderror>
-            @error('name')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+            <input type="text" class="form-control" id="name" name="name" placeholder="Input Category Name" required>
+            <div class="invalid-feedback">
+                Please input category name!
+            </div>
         </div>
         <div class="text-end">
             <button type="submit" class="btn btn-primary">Create</button>
