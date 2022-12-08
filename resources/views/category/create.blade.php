@@ -10,7 +10,7 @@
             <label for="inputCategoryName" class="form-label">Category Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Input Category Name" required>
             <div class="invalid-feedback">
-                Please input category name!
+                Please input category name
             </div>
         </div>
         <div class="text-end">

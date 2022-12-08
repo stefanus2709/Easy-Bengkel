@@ -4,14 +4,14 @@
     </p>
 </div>
 <div class="bg-white rounded p-3 mb-3">
-    <form action="/brand/store" method="POST">
+    <form class="row g-3 needs-validation" action="/brand/store" method="POST" novalidate>
         @csrf
-        <div class="bg-white rounded mb-3">
+        <div class="bg-white rounded">
             <label for="inputBrandName" class="form-label">Brand Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Input Brand Name">
-            @error('name')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+            <input type="text" class="form-control" id="name" name="name" placeholder="Input Brand Name" required>
+            <div class="invalid-feedback">
+                Please input brand name
+            </div>
         </div>
         <div class="text-end">
             <button type="submit" class="btn btn-primary">Create</button>

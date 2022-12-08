@@ -61,8 +61,11 @@ Update Category
                 <label for="inputCategoryName" class="form-label">Category Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{$category->name}}" required>
                 <div class="invalid-feedback">
-                    Please input category name!
+                    Please input category name
                 </div>
+                @error('name')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
             <div class="text-end">
                 <a href="/category" class="btn btn-secondary">Back</a>

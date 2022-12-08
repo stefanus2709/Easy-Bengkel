@@ -4,28 +4,38 @@
     </p>
 </div>
 <div class="bg-white rounded p-3 mb-3">
-    <form action="/supplier/store" method="POST">
+    <form class="row g-3 needs-validation" action="/supplier/store" method="POST" novalidate>
         @csrf
-        <div class="d-flex justify-content-around">
-            <div class="container-md left-form">
-                <div>
-                    <label for="inputSupplierName" class="form-label">Supplier Name</label>
-                    <input type="text" class="form-control mb-3" id="name" name="name" placeholder="Input Supplier Name" @error('name') is invalid @enderror>
-                </div>
-                <div>
-                    <label for="inputCompanyName" class="form-label">Company Name</label>
-                    <input type="text" class="form-control mb-3" id="company_name" name="company_name" placeholder="Input Company Name" @error('company_name') is invalid @enderror>
-                </div>
+        <div class="col-md-6">
+            <label for="inputSupplierName" class="form-label">Supplier Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Input Supplier Name"
+                required>
+            <div class="invalid-feedback">
+                Please input supplier name
             </div>
-            <div class="container-md right-form">
-                <div>
-                    <label for="inputPhoneNumber" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control mb-3" id="phone_number" name="phone_number" placeholder="Input Phone Number" @error('phone_number') is invalid @enderror>
-                </div>
-                <div>
-                    <label for="inputAddress" class="form-label">Address</label>
-                    <input type="text" class="form-control mb-3" id="address" name="address" placeholder="Input Address" @error('address') is invalid @enderror>
-                </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputCompanyName" class="form-label">Company Name</label>
+            <input type="text" class="form-control" id="company_name" name="company_name"
+                placeholder="Input Company Name" required>
+            <div class="invalid-feedback">
+                Please input company name
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputPhoneNumber" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone_number" name="phone_number"
+                placeholder="Input Phone Number" required>
+            <div class="invalid-feedback">
+                Please input supplier phone number
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Input Address"
+                required>
+            <div class="invalid-feedback">
+                Please input supplier address
             </div>
         </div>
         <div class="text-end">

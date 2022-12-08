@@ -59,23 +59,23 @@ Edit Purchase Order
             Edit Purchase Order
         </p>
         @if ($po_in->finalized)
-        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;">
+        <button type="button" class="btn btn-success fs-16px" style="font-size: 16px;">
             Finalized
         </button>
         @else
-        <button type="button" class="btn btn-success fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
+        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;" data-bs-toggle="modal"
             data-bs-target="#finalizePurchaseInModal">
-            Finalize
+            Not Finalize
         </button>
         @endif
 
     </div>
     <div class="bg-white rounded p-3 mb-2">
-        <form action="/po_in/update/{{$po_in->id}}" method="POST">
+        <form class="needs-validation" action="/po_in/update/{{$po_in->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
             <div class="mb-3">
-                @if(!blank($po_in->details))
+                @if(!blank($po_in->details) || $po_in->finalized)
                 <fieldset disabled>
                     <label for="disabledSelect" class="form-label">Select Supplier</label>
                     <select id="disabledSelect" class="form-select">
@@ -86,7 +86,7 @@ Edit Purchase Order
                 @elseif (!blank($suppliers))
                 <label for="select" class="form-label">Select Supplier</label>
                 <select id="select" class="selectpicker form-control" data-live-search="true" multiple
-                    data-max-options="1" name="supplier_id">
+                    data-max-options="1" name="supplier_id" required>
                     @foreach ($suppliers as $supplier)
                     <option value="{{$supplier->id}}">{{$supplier->name}}-{{$supplier->company_name}}</option>
                     @endforeach
@@ -98,17 +98,20 @@ Edit Purchase Order
             </div>
             <div class="mb-3">
                 <label for="inputPurchaseInDate" class="form-label">Purchase Date</label>
-                <input type="date" class="form-control" id="date" name="date" placeholder="Input Purchase Date"
-                    value="{{$po_in->date}}">
-                @error('date')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
+                @if ($po_in->finalized)
+                    <input type="date" class="form-control" id="date" name="date" placeholder="Input Purchase Date"
+                    value="{{$po_in->date}}" disabled>
+                @else
+                    <input type="date" class="form-control" id="date" name="date" placeholder="Input Purchase Date"
+                    value="{{$po_in->date}}" required>
+                @endif
+                <div class="invalid-feedback">
+                    Please input purchase date
+                </div>
             </div>
             <div class="text-end">
                 <a href="/po_in" class="btn btn-secondary">Back</a>
-                @if ($po_in->finalized)
-                <button type="submit" class="btn btn-primary" disabled>Update</button>
-                @else
+                @if (!$po_in->finalized)
                 <button type="submit" class="btn btn-primary">Update</button>
                 @endif
             </div>
@@ -123,15 +126,16 @@ Edit Purchase Order
         </p>
     </div>
     <div class="bg-white rounded mb-3">
+        @if (!$po_in->finalized)
         <div class="px-3 py-3">
-            <form action="/po_in/{{$po_in->id}}/details/store" method="POST">
+            <form class="needs-validation" action="/po_in/{{$po_in->id}}/details/store" method="POST" novalidate>
                 @csrf
-                <div class="row g-3 align-items-center">
-                    <div class="col-md-5">
+                <div class="row g-3">
+                    <div class="col-md-4">
                         @if (!blank($po_in->supplier->products))
                         <label for="select" class="form-label">Select Product</label>
                         <select id="select-product" class="selectpicker form-control" data-live-search="true" multiple
-                            data-max-options="1" name="product_id">
+                            data-max-options="1" name="product_id" required>
                             @foreach ($po_in->supplier->products as $product)
                             <option value="{{$product->id}}" data-rc="{{$product->price}}">{{$product->name}}</option>
                             @endforeach
@@ -148,34 +152,29 @@ Edit Purchase Order
                         <span class="text-danger">The product field is required.</span>
                         @enderror
                     </div>
-                    <div class="col-sm">
+                    <div class="col-md-4">
                         <label for="inputQuantity" class="form-label">Quantity</label>
                         <input type="number" class="form-control" id="quantity" name="quantity"
-                            placeholder="Input Quantity" min="1">
-                        @error('quantity')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
+                            placeholder="Input Quantity" min="1" required>
+                        <div class="invalid-feedback">
+                            Please input quantity (more than 0)
+                        </div>
                     </div>
-                    <div class="col-sm">
+                    <div class="col-md-4">
                         <label for="price" class="form-label">Price</label>
                         <input type="number" class="form-control" id="price" name="price"
-                            placeholder="Input Selling Price" min="0">
-                        @error('price')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
+                            placeholder="Input Selling Price" min="1" required disabled>
+                        <div class="invalid-feedback">
+                            Please input price (more than 0)
+                        </div>
                     </div>
-                    @if ($po_in->finalized)
-                    <div class="col-sm" style="vertical-align: bottom">
-                        <button type="submit" class="btn btn-primary" disabled>Create</button>
-                    </div>
-                    @else
-                    <div class="col-sm" style="vertical-align: bottom">
+                    <div class="text-end">
                         <button type="submit" class="btn btn-primary">Create</button>
                     </div>
-                    @endif
                 </div>
             </form>
         </div>
+        @endif
         <div>
             <table class="table" id="datatable">
                 <thead>
@@ -315,5 +314,23 @@ Edit Purchase Order
         };
     });
 
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
 </script>
 @endsection

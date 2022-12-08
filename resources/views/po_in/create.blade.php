@@ -32,7 +32,7 @@
             <input type="date" class="form-control" id="date" name="date"
                 placeholder="Input Purchase Date" required>
             <div class="invalid-feedback">
-                Please input purchase date!
+                Please input purchase date
             </div>
         </div>
         <div class="text-end">

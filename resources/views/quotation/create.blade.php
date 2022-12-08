@@ -37,7 +37,7 @@
             <label for="inputDate" class="form-label">Date</label>
             <input type="date" class="form-control" id="date" name="date" placeholder="Input Date" required>
             <div class="invalid-feedback">
-                Please input quotation date!
+                Please input quotation date
             </div>
         </div>
 

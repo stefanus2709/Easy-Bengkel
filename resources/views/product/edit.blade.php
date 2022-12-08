@@ -102,7 +102,7 @@ Edit Product
                 <input type="text" class="form-control" id="name" name="name"
                     placeholder="Input Product Name" value="{{$product->name}}" required>
                 <div class="invalid-feedback">
-                    Please input product name!
+                    Please input product name
                 </div>
             </div>
             <div class="col-md-3">
@@ -115,7 +115,7 @@ Edit Product
                 <input type="number" class="form-control" id="price" name="price"
                     placeholder="Input Price" value="{{$product->price}}" required>
                 <div class="invalid-feedback">
-                    Please input product Price!
+                    Please input product price
                 </div>
             </div>
             <div class="col-md-3">
@@ -123,7 +123,7 @@ Edit Product
                 <input type="number" class="form-control" id="selling_price" name="selling_price"
                     placeholder="Input Selling Price" value="{{$product->selling_price}}" required>
                 <div class="invalid-feedback">
-                    Please input product selling price!
+                    Please input product selling price
                 </div>
             </div>
 

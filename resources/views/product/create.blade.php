@@ -82,7 +82,7 @@
             <label for="inputProductName" class="form-label">Product Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Input Product Name" required>
             <div class="invalid-feedback">
-                Please input product name!
+                Please input product name
             </div>
         </div>
         <div class="col-md-3">
@@ -90,14 +90,14 @@
             <input type="number" class="form-control" id="quantity" name="quantity"
                 placeholder="Input Quantity" required>
             <div class="invalid-feedback">
-                Please input product quantity!
+                Please input product quantity
             </div>
         </div>
         <div class="col-md-3">
             <label for="inputProductPrice" class="form-label">Price</label>
             <input type="number" class="form-control" id="price" name="price" placeholder="Input Price" required>
             <div class="invalid-feedback">
-                Please input product Price!
+                Please input product price
             </div>
         </div>
         <div class="col-md-3">
@@ -105,7 +105,7 @@
             <input type="number" class="form-control" id="selling_price" name="selling_price"
                 placeholder="Input Selling Price" required>
             <div class="invalid-feedback">
-                Please input product selling price!
+                Please input product selling price
             </div>
         </div>
         <div class="text-end">

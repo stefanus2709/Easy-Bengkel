@@ -70,7 +70,7 @@ Edit Quotation
         @endif
     </div>
     <div class="bg-white rounded p-3 mb-2">
-        <form action="/quotation/update/{{$quotation->id}}" method="POST">
+        <form class="needs-validation" action="/quotation/update/{{$quotation->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
             <div class="mb-3">
@@ -86,7 +86,7 @@ Edit Quotation
                 @elseif (!blank($mechanics))
                 <label for="select" class="form-label">Select Mechanic</label>
                 <select id="select" class="selectpicker form-control" data-live-search="true" multiple
-                    data-max-options="1" name="mechanic_id">
+                    data-max-options="1" name="mechanic_id" required>
                     <option value="">No Mechanic</option>
                     @foreach ($mechanics as $mechanic)
                     <option value="{{$mechanic->id}}">{{$mechanic->name}}</option>
@@ -118,11 +118,11 @@ Edit Quotation
                     value="{{$quotation->date}}" disabled>
                 @else
                 <input type="date" class="form-control" id="date" name="date" placeholder="Input Quotation Date"
-                    value="{{$quotation->date}}">
+                    value="{{$quotation->date}}" required>
                 @endif
-                @error('date')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
+                <div class="invalid-feedback">
+                    Please input quotation date
+                </div>
             </div>
             <div class="mb-3">
                 <label for="inputTotalPrice" class="form-label">Total Price</label>
@@ -244,5 +244,23 @@ Edit Quotation
         };
     });
 
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
 </script>
 @endsection

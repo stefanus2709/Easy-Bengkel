@@ -54,15 +54,15 @@ Update Vehicle Type
         </p>
     </div>
     <div class="bg-white rounded p-3 mb-3">
-        <form action="/vehicle_type/update/{{$vehicle_type->id}}" method="POST">
+        <form class="row g-3 needs-validation" action="/vehicle_type/update/{{$vehicle_type->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
-            <div class="mb-3">
+            <div class="">
                 <label for="inputVehicleTypeName" class="form-label">Vehicle Type Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{$vehicle_type->name}}">
-                @error('name')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
+                <input type="text" class="form-control" id="name" name="name" value="{{$vehicle_type->name}}" required>
+                <div class="invalid-feedback">
+                    Please vehicle type name
+                </div>
             </div>
             <div class="text-end">
                 <a href="/vehicle_type" class="btn btn-secondary">Back</a>
@@ -76,4 +76,24 @@ Update Vehicle Type
 @section('scripts')
 <!-- Bootstrap Bundle with Popper -->
 <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script type="text/javascript">
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
 @endsection

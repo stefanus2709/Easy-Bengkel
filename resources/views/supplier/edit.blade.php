@@ -54,29 +54,38 @@ Update Supplier
         </p>
     </div>
     <div class="bg-white rounded p-3 mb-3">
-        <form action="/supplier/update/{{$supplier->id}}" method="POST" id="editForm">
+        <form class="row g-3 needs-validation" action="/supplier/update/{{$supplier->id}}" method="POST" id="editForm" novalidate>
             @csrf
             @method('PATCH')
             <input type="hidden" name="supplier_id" id="supplier_id">
-            <div>
+            <div class="col-md-6">
                 <label for="inputSupplierName" class="form-label">Supplier Name</label>
                 <input type="text" class="form-control mb-3" name="name" id="name" placeholder="Input Supplier Name" value="{{$supplier->name}}"
-                    @error('name') is invalid @enderror>
+                    required>
+                <div class="invalid-feedback">
+                    Please input supplier name
+                </div>
             </div>
-            <div>
+            <div class="col-md-6">
                 <label for="inputCompanyName" class="form-label">Company Name</label>
                 <input type="text" class="form-control mb-3" id="company_name" name="company_name" value="{{$supplier->company_name}}"
-                    placeholder="Input Company Name" @error('company_name') is invalid @enderror>
+                    placeholder="Input Company Name" required>
+                <div class="invalid-feedback">
+                    Please input company name
+                </div>
             </div>
-            <div>
+            <div class="col-md-6">
                 <label for="inputPhoneNumber" class="form-label">Phone Number</label>
                 <input type="text" class="form-control mb-3" id="phone_number" name="phone_number" value="{{$supplier->phone_number}}"
-                    placeholder="Input Phone Number" @error('phone_number') is invalid @enderror>
+                    placeholder="Input Phone Number" required>
+                <div class="invalid-feedback">
+                    Please input supplier phone number
+                </div>
             </div>
-            <div>
+            <div class="col-md-6">
                 <label for="inputAddress" class="form-label">Address</label>
                 <input type="text" class="form-control mb-3" id="address" name="address" placeholder="Input Address" value="{{$supplier->address}}"
-                    @error('address') is invalid @enderror>
+                    required>
             </div>
             <div class="text-end">
                 <a href="/supplier" class="btn btn-secondary">Back</a>

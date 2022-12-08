@@ -72,6 +72,7 @@ Purchase Order
                     <th>Name</th>
                     <th>Date</th>
                     <th>Total Purchase</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -81,10 +82,13 @@ Purchase Order
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 25%;">{{$po_in->supplier->name}}</td>
                     <td style="width: 25%;">{{$po_in->date}}</td>
+                    <td style="width: 15%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>
                     @if ($po_in->finalized)
-                    <td style="width: 25%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>
+                    <td style="width: 13%;"><button class="btn btn-success ml-2" style="font-size: 10px;">
+                            Finalized</button>
+                    </td>
                     @else
-                    <td style="width: 25%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
+                    <td style="width: 13%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
                             Finalized</button>
                     </td>
                     @endif

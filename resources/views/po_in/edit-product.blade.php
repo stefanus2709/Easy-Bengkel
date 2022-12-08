@@ -49,22 +49,22 @@ Edit Purchase Product
         </p>
     </div>
     <div class="bg-white rounded p-3">
-        <form action="/po_in/{{$po_detail->purchase_in_id}}/details/update/{{$po_detail->id}}" method="POST">
+        <form class="needs-validation" action="/po_in/{{$po_detail->purchase_in_id}}/details/update/{{$po_detail->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
             <div class="mb-3">
                 <label for="inputPOProductQty" class="form-label">Product Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" value="{{$po_detail->quantity}}" min="1">
-                @error('quantity')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{$po_detail->quantity}}" min="1" required>
+                <div class="invalid-feedback">
+                    Please input quantity (more than 0)
+                </div>
             </div>
             <div class="mb-3">
                 <label for="inputPOProductPrice" class="form-label">Product Price</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{$po_detail->price}}" min="1">
-                @error('price')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
+                <input type="number" class="form-control" id="price" name="price" value="{{$po_detail->price}}" min="1" required>
+                <div class="invalid-feedback">
+                    Please input price (more than 0)
+                </div>
             </div>
             <div class="text-end">
                 <a href="/po_in/edit/{{$po_detail->purchase_in_id}}" class="btn btn-secondary">Back</a>
@@ -89,5 +89,23 @@ Edit Purchase Product
         $('.selectpicker').selectpicker();
     });
 
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
 </script>
 @endsection

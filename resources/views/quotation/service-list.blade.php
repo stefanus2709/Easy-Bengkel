@@ -7,36 +7,34 @@
 <div class="bg-white rounded mb-3">
     @if (!$quotation->finalized && $quotation->mechanic_id != null)
     <div class="px-3 py-3">
-        <form action="/service/{{$quotation->id}}/details/store" method="POST">
+        <form class="row g-3 needs-validation" action="/service/{{$quotation->id}}/details/store" method="POST" novalidate>
             @csrf
-            <div class="row g-3 align-items-center">
-                <div class="col-md-5">
-                    <label for="description" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Input Description">
-                    @error('description')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
+            <div class="col-md-4">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Input Description" required>
+                <div class="invalid-feedback">
+                    Please input description
                 </div>
-                <div class="col-sm">
-                    <label for="time" class="form-label">Time</label>
-                    <input type="time" class="form-control" id="time" name="time" placeholder="Input Price">
-                    @error('time')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-                <div class="col-sm">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" class="form-control" id="price" name="price" placeholder="Input Price" min="0">
-                    @error('price')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-                @if (!$quotation->finalized)
-                <div class="col-sm" style="vertical-align: bottom">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                </div>
-                @endif
             </div>
+            <div class="col-md-4">
+                <label for="time" class="form-label">Time</label>
+                <input type="time" class="form-control" id="time" name="time" placeholder="Input Price" required>
+                <div class="invalid-feedback">
+                    Please input service time
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Input Price" min="1" required>
+                <div class="invalid-feedback">
+                    Please input service price (more than 0)
+                </div>
+            </div>
+            @if (!$quotation->finalized)
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+            @endif
         </form>
     </div>
     @endif
