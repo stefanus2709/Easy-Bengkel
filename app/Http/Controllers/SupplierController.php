@@ -59,6 +59,6 @@ class SupplierController extends Controller
 
     public function delete(Request $request){
         Supplier::destroy($request->supplier_id);
-        return back();
+        return back()->with('failed', 'Supplier has been deleted');
     }
 }

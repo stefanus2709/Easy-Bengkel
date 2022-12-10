@@ -21,15 +21,21 @@ class PurchaseInDetailController extends Controller
         ]);
 
         $product = Product::findOrFail($request->product_id);
+        $curr_detail = PurchaseInDetail::where('product_id', $request->product_id)->where('purchase_in_id', $po_id);
 
-        PurchaseInDetail::create([
-            'purchase_in_id' => $po_id,
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-            'price' => $product->price,
-        ]);
+        if($curr_detail){
+            return redirect('/po_in/edit/'.$po_id)->with('failed', 'Product already exists');
+        }
+        else{
+            PurchaseInDetail::create([
+                'purchase_in_id' => $po_id,
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
+                'price' => $product->price,
+            ]);
 
-        return redirect('/po_in/edit/'.$po_id);
+            return redirect('/po_in/edit/'.$po_id)->with('success', 'Product added!');
+        }
     }
 
     public function edit($po_id, $id){
@@ -48,11 +54,11 @@ class PurchaseInDetailController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect('/po_in/edit/'.$po_id);
+        return redirect('/po_in/edit/'.$po_id)->with('success', 'Product has been updated');
     }
 
     public function delete(Request $request){
         PurchaseInDetail::destroy($request->po_detail_id);
-        return back();
+        return back()->with('failed', 'Product has been deleted');
     }
 }

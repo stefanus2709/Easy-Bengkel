@@ -112,7 +112,7 @@ class ProductController extends Controller
 
     public function delete(Request $request){
         Product::destroy($request->product_id);
-        return back();
+        return back()->with('failed', 'Product has been deleted');
     }
 
 

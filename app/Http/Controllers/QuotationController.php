@@ -57,7 +57,7 @@ class QuotationController extends Controller
 
     public function delete(Request $request){
         Quotation::destroy($request->quotation_id);
-        return back();
+        return back()->with('failed', 'Quotation has been deleted');
     }
 
     public function finalize($id){

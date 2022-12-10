@@ -163,7 +163,7 @@ Edit Purchase Order
                     <div class="col-md-4">
                         <label for="price" class="form-label">Price</label>
                         <input type="number" class="form-control" id="price" name="price"
-                            placeholder="Input Selling Price" min="1" required disabled>
+                            placeholder="Input Selling Price" min="1" required readonly>
                         <div class="invalid-feedback">
                             Please input price (more than 0)
                         </div>

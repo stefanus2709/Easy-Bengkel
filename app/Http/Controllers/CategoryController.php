@@ -47,6 +47,6 @@ class CategoryController extends Controller
 
     public function delete(Request $request){
         Category::destroy($request->category_id);
-        return back();
+        return back()->with('failed', 'Category has been deleted');
     }
 }

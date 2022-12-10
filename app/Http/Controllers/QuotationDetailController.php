@@ -17,15 +17,21 @@ class QuotationDetailController extends Controller
         ]);
 
         $product = Product::findOrFail($request->product_id);
+        $curr_detail = QuotationDetail::where('product_id', $request->product_id)->where('quotation_id', $quotation_id);
 
-        QuotationDetail::create([
-            'product_id' => $request->product_id,
-            'quotation_id' => $quotation_id,
-            'quantity' => $request->quantity,
-            'selling_price' => $request->selling_price,
-        ]);
+        if($curr_detail){
+            return redirect('/quotation/edit/'.$quotation_id)->with('failed', 'Product already exists');
+        }
+        else{
+            QuotationDetail::create([
+                'product_id' => $request->product_id,
+                'quotation_id' => $quotation_id,
+                'quantity' => $request->quantity,
+                'selling_price' => $request->selling_price,
+            ]);
 
-        return redirect('/quotation/edit/'.$quotation_id);
+            return redirect('/quotation/edit/'.$quotation_id)->with('success', 'Product added!');
+        }
     }
 
     public function edit($quotation_id, $id){
@@ -49,6 +55,6 @@ class QuotationDetailController extends Controller
 
     public function delete(Request $request){
         QuotationDetail::destroy($request->quotation_detail_id);
-        return back();
+        return back()->with('failed', 'Product has been deleted');
     }
 }

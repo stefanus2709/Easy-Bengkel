@@ -59,7 +59,7 @@ class PurchaseInController extends Controller
 
     public function delete(Request $request){
         PurchaseIn::destroy($request->po_in_id);
-        return back();
+        return back()->with('failed', 'PO has been deleted');
     }
 
     public function finalize($id){

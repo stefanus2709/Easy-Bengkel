@@ -26,6 +26,6 @@ class ServiceDetailController extends Controller
 
     public function delete(Request $request){
         ServiceDetail::destroy($request->service_detail_id);
-        return back();
+        return back()->with('failed', 'Service detail has been deleted');
     }
 }

@@ -47,6 +47,6 @@ class VehicleTypeController extends Controller
 
     public function delete(Request $request){
         VehicleType::destroy($request->vehicle_type_id);
-        return back();
+        return back()->with('failed', 'Vehicle type has been deleted');
     }
 }

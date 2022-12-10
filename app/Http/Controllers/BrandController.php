@@ -47,6 +47,6 @@ class BrandController extends Controller
 
     public function delete(Request $request){
         Brand::destroy($request->brand_id);
-        return back();
+        return back()->with('failed', 'Brand has been deleted');
     }
 }

@@ -59,7 +59,7 @@ class MechanicController extends Controller
 
     public function delete(Request $request){
         Mechanic::destroy($request->mechanic_id);
-        return back();
+        return back()->with('failed', 'Mechanic has been deleted');
     }
 
     public function take_salary(Request $request, $id){
