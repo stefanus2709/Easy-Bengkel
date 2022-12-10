@@ -20,7 +20,7 @@
         <div class="nav-width col-auto col-md-3 col-xl-2 px-sm-2 px-0 pt-2 bg-white">
             <div class="d-flex flex-column  px-3 pt-2 min-vh-100">
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-primary text-decoration-none">
-                    <span class="fs-24px fw-bold d-none d-sm-inline text-primary">EASYBENGKEL</span>
+                    <span class="fs-24px fw-bold d-none d-sm-inline text-primary navbar-brand">EASYBENGKEL</span>
                 </a>
                 <ul class="nav nav-pills flex-column">
                     <p class="mb-2 text-dark fs-12px">MAIN MENU</p>

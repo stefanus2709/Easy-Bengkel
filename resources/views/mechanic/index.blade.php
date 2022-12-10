@@ -82,10 +82,10 @@ Mechanic
                 <tr>
                     <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                     <td style="width: 15%;">{{$mechanic->name}}</td>
-                    <td style="width: 25%;">Rp. {{number_format($mechanic->salary, 0, ',', '.')}}</td>
+                    <td style="width: 20%;">Rp. {{number_format($mechanic->salary, 0, ',', '.')}}</td>
                     <td style="width: 15%;">{{$mechanic->phone_number}}</td>
                     <td style="width: 25%;">{{$mechanic->address}}</td>
-                    <td style="width: 15%;">
+                    <td style="width: 20%;">
                         <button type="button" class="btn btn-success fs-16px" data-bs-toggle="modal"
                             data-bs-target="#salaryMechanicModal{{$mechanic->id}}"><i
                                 class="icofont-money"></i></button>

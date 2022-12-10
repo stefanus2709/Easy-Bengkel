@@ -63,6 +63,9 @@ Update Vehicle Type
                 <div class="invalid-feedback">
                     Please vehicle type name
                 </div>
+                @error('name')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
             <div class="text-end">
                 <a href="/vehicle_type" class="btn btn-secondary">Back</a>

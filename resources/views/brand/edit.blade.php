@@ -63,6 +63,9 @@ Update Brand
                 <div class="invalid-feedback">
                     Please input brand name
                 </div>
+                @error('name')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
             <div class="text-end">
                 <a href="/brand" class="btn btn-secondary">Back</a>

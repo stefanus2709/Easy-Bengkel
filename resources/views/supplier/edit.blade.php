@@ -60,7 +60,7 @@ Update Supplier
             <input type="hidden" name="supplier_id" id="supplier_id">
             <div class="col-md-6">
                 <label for="inputSupplierName" class="form-label">Supplier Name</label>
-                <input type="text" class="form-control mb-3" name="name" id="name" placeholder="Input Supplier Name" value="{{$supplier->name}}"
+                <input type="text" class="form-control" name="name" id="name" placeholder="Input Supplier Name" value="{{$supplier->name}}"
                     required>
                 <div class="invalid-feedback">
                     Please input supplier name
@@ -68,7 +68,7 @@ Update Supplier
             </div>
             <div class="col-md-6">
                 <label for="inputCompanyName" class="form-label">Company Name</label>
-                <input type="text" class="form-control mb-3" id="company_name" name="company_name" value="{{$supplier->company_name}}"
+                <input type="text" class="form-control" id="company_name" name="company_name" value="{{$supplier->company_name}}"
                     placeholder="Input Company Name" required>
                 <div class="invalid-feedback">
                     Please input company name
@@ -76,7 +76,7 @@ Update Supplier
             </div>
             <div class="col-md-6">
                 <label for="inputPhoneNumber" class="form-label">Phone Number</label>
-                <input type="text" class="form-control mb-3" id="phone_number" name="phone_number" value="{{$supplier->phone_number}}"
+                <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{$supplier->phone_number}}"
                     placeholder="Input Phone Number" required>
                 <div class="invalid-feedback">
                     Please input supplier phone number
@@ -84,7 +84,7 @@ Update Supplier
             </div>
             <div class="col-md-6">
                 <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control mb-3" id="address" name="address" placeholder="Input Address" value="{{$supplier->address}}"
+                <input type="text" class="form-control" id="address" name="address" placeholder="Input Address" value="{{$supplier->address}}"
                     required>
             </div>
             <div class="text-end">
