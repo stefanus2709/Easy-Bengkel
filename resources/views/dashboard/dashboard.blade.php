@@ -8,7 +8,7 @@ Dashboard
 @section('content')
 <div class="px-4 py-4 main-content">
     <div class="mb-2 align-middle">
-        <p class="fs-22px mb-0 pb-0 poppins-medium" style="padding-bottom: 15px">Summary</p>
+        <p class="fs-22px mb-0 pb-0 poppins-medium fw-bolder" style="padding-bottom: 15px">Summary</p>
     </div>
     <div class="bg-white rounded" style="padding: 20px 30px 20px 30px">
         @include('dashboard.summary')

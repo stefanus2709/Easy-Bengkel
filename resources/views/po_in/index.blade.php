@@ -109,6 +109,11 @@ Purchase Order
         var table = $('#datatable').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
+            "pagingType": "first_last_numbers",
+            "lengthMenu":  [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            language: {
+                search: "",
+            }
         });
 
         $('#deletePurchaseInModal').on('show.bs.modal', function (event) {

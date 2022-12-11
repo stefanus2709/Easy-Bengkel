@@ -107,7 +107,7 @@ Edit Quotation
     </div>
 </div>
 @if ($quotation->mechanic_id != null)
-<div class="px-4 quotation-item-content">
+<div class="px-4 mb-4 quotation-item-content">
     @include('quotation.service-list')
 </div>
 @endif
@@ -149,11 +149,21 @@ Edit Quotation
         var table = $('#datatable').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
+            "pagingType": "first_last_numbers",
+            "lengthMenu":  [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            language: {
+                search: "",
+            }
         });
 
         var serviceTable = $('#service-table').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
+            "pagingType": "first_last_numbers",
+            "lengthMenu":  [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            language: {
+                search: "",
+            }
         });
 
         // $('select[name=product_id]').selectpicker('val', '{{$quotation->product_id}}');

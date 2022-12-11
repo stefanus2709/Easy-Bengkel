@@ -103,10 +103,20 @@ Edit Product
         var stockTable = $('#stockTable').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
+            "pagingType": "first_last_numbers",
+            "lengthMenu":  [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            language: {
+                search: "",
+            }
         });
         var soldTable = $('#soldTable').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
+            "pagingType": "first_last_numbers",
+            "lengthMenu":  [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            language: {
+                search: "",
+            }
         });
         $('select[name=category_id]').selectpicker('val', '{{$product->category_id}}');
         $('select[name=vehicle_type_id]').selectpicker('val', '{{$product->vehicle_type_id}}');

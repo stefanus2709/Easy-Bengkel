@@ -1,5 +1,5 @@
 <div class="mb-2 align-middle">
-    <p class="fs-22px mb-0 pb-0 poppins-medium br-1">Today transaction</p>
+    <p class="fs-22px mb-0 pb-0 poppins-medium br-1 fw-bolder">Today Transaction</p>
     <div class="bg-white rounded pt-2 pb-2">
         <table class="table " id="datatable_transaction">
             <thead>

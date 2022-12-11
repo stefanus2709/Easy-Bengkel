@@ -84,8 +84,8 @@ Edit Purchase Order
 <div class="px-4 po-item-content">
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-2 align-middle">
-        <p class="fs-22px mb-0 pb-0">
-            Item list stock
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
+            Item List Stock
         </p>
     </div>
     <div class="bg-white rounded mb-3">
@@ -248,6 +248,11 @@ Edit Purchase Order
         var table = $('#datatable').DataTable({
             "pageLength": 5,
             "pagingType": 'full_numbers',
+            "pagingType": "first_last_numbers",
+            "lengthMenu":  [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            language: {
+                search: "",
+            }
         });
 
         $('select[name=supplier_id]').selectpicker('val', '{{$po_in->supplier_id}}');
