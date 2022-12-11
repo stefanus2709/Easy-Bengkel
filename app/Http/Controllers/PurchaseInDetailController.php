@@ -21,9 +21,9 @@ class PurchaseInDetailController extends Controller
         ]);
 
         $product = Product::findOrFail($request->product_id);
-        $curr_detail = PurchaseInDetail::where('product_id', $request->product_id)->where('purchase_in_id', $po_id);
+        $curr_detail = PurchaseInDetail::where('product_id', $request->product_id)->where('purchase_in_id', $po_id)->get();
 
-        if($curr_detail){
+        if(!blank($curr_detail)){
             return redirect('/po_in/edit/'.$po_id)->with('failed', 'Product already exists');
         }
         else{

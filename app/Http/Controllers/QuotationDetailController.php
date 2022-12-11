@@ -17,9 +17,9 @@ class QuotationDetailController extends Controller
         ]);
 
         $product = Product::findOrFail($request->product_id);
-        $curr_detail = QuotationDetail::where('product_id', $request->product_id)->where('quotation_id', $quotation_id);
+        $curr_detail = QuotationDetail::where('product_id', $request->product_id)->where('quotation_id', $quotation_id)->get();
 
-        if($curr_detail){
+        if(!blank($curr_detail)){
             return redirect('/quotation/edit/'.$quotation_id)->with('failed', 'Product already exists');
         }
         else{
