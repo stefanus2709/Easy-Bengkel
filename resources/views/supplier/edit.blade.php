@@ -54,8 +54,3 @@ Update Supplier
     </div>
 </div>
 @endsection
-
-@section('scripts')
-<!-- Bootstrap Bundle with Popper -->
-<script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-@endsection
