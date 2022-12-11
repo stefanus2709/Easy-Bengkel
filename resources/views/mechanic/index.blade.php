@@ -4,46 +4,6 @@
 Mechanic
 @endsection
 @section('mechanic','active text-white')
-@section('custom-css')
-<style>
-    .dataTables_info {
-        display: none;
-    }
-
-    .dataTables_wrapper .dataTables_paginate {
-        float: none;
-        text-align: center;
-        padding: 4px 10px 10px 10px;
-    }
-
-    .dataTables_length,
-    .dataTables_filter {
-        padding: 10px 10px 4px 10px;
-    }
-
-    .active>.page-link,
-    .page-link.active,
-    .btn-primary {
-        background-color: #293A80;
-        border-color: #293A80;
-    }
-
-    .page-link {
-        color: #293A80;
-    }
-
-    .left-form,
-    .right-form {
-        padding: 0 5px 0 0;
-    }
-
-    .main-content,
-    #deleteMechanicModal div {
-        font-family: 'Poppins';
-    }
-
-</style>
-@endsection
 
 @section('content')
 @if(Session::has('success'))

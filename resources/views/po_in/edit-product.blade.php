@@ -4,43 +4,6 @@
 Edit Purchase Product
 @endsection
 
-@section('custom-css')
-<style>
-    .dataTables_info {
-        display: none;
-    }
-
-    .dataTables_wrapper .dataTables_paginate {
-        float: none;
-        text-align: center;
-        padding: 4px 10px 10px 10px;
-    }
-
-    .dataTables_length,
-    .dataTables_filter {
-        padding: 10px 10px 4px 10px;
-    }
-
-    .active>.page-link,
-    .page-link.active,
-    .btn-primary {
-        background-color: #293A80;
-        border-color: #293A80;
-    }
-
-    .page-link {
-        color: #293A80;
-    }
-
-    .main-content,
-    .po-item-content,
-    #deleteSupplierModal div {
-        font-family: 'Poppins';
-    }
-
-</style>
-@endsection
-
 @section('content')
 <div class="px-4 py-4 main-content">
     <div class="d-flex justify-content-between mb-3 align-middle">

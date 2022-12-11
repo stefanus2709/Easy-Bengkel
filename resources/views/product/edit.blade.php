@@ -4,50 +4,6 @@
 Edit Product
 @endsection
 
-@section('custom-css')
-<style>
-    #datatable {
-        font-size: 14px;
-    }
-
-    .dataTables_info {
-        display: none;
-    }
-
-    .active>.page-link,
-    .page-link.active,
-    .btn-primary {
-        background-color: #293A80;
-        border-color: #293A80;
-    }
-
-    .left-form {
-        padding: 0 5px 0 0;
-    }
-
-    .page-link {
-        color: #293A80;
-    }
-
-    .dataTables_length,
-    .dataTables_filter {
-        padding: 10px 10px 4px 10px;
-    }
-
-    .dataTables_wrapper .dataTables_paginate {
-        float: none;
-        text-align: center;
-        padding: 4px 10px 10px 10px;
-    }
-
-    .main-content,
-    #deleteProductModal div {
-        font-family: 'Poppins';
-    }
-
-</style>
-@endsection
-
 @section('content')
 <div class="px-4 py-4 main-content">
     <div class="d-flex justify-content-between mb-2 align-middle">

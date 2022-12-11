@@ -1,20 +1,3 @@
-@section('custom-css')
-<style>
-    body {
-        font-family: 'Roboto';
-    }
-
-    .content {
-        font-family: 'Poppins';
-    }
-
-    .nav_item {
-        height: 40px;
-    }
-
-</style>
-@endsection
-
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="nav-width col-auto col-md-3 col-xl-2 px-sm-2 px-0 pt-2 bg-white">
@@ -80,5 +63,3 @@
         </div>
     </div>
 </div>
-
-@yield('scripts')
