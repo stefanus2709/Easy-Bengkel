@@ -54,7 +54,7 @@ class PurchaseInController extends Controller
             'date' => $request->date,
         ]);
 
-        return redirect('/po_in')->with('success', 'PO has been updated');
+        return redirect('/po_in/edit/'.$po_id)->with('success', 'PO has been updated');
     }
 
     public function delete(Request $request){
@@ -83,7 +83,7 @@ class PurchaseInController extends Controller
             'finalized' => true,
         ]);
 
-        return redirect('/po_in');
+        return redirect('/po_in')->with('success', 'PO has been finalized');
     }
 
     public function purchase_this_month(){

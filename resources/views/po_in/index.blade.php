@@ -7,14 +7,14 @@ Purchase Order
 
 @section('content')
 @if(Session::has('success'))
-<div class="alert alert-success">
-    <button type="button" class="close" data-dismiss="alert">×</button>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{Session::get('success')}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @elseif(Session::has('failed'))
-<div class="alert alert-danger">
-    <button type="button" class="close" data-dismiss="alert">×</button>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
     <strong>{{Session::get('failed')}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 <div class="px-4 py-4 main-content">
@@ -30,7 +30,7 @@ Purchase Order
             <thead>
                 <tr style="background-color: #293A80; color: white; border-radius: 5px">
                     <th class="text-center">#</th>
-                    <th>Name</th>
+                    <th>Supplier Name</th>
                     <th>Date</th>
                     <th>Total Purchase</th>
                     <th>Status</th>
