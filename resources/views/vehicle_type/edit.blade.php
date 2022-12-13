@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Update Vehicle Type
+Edit Vehicle Type
 @endsection
 
 @section('content')

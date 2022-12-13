@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Update Supplier
+Edit Supplier
 @endsection
 
 @section('content')

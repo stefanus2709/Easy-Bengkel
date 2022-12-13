@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Update Category
+Edit Category
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Update Brand
+Edit Brand
 @endsection
 
 @section('content')
