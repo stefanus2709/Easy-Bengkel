@@ -9,7 +9,7 @@ Update Vehicle Type
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-3 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            Update Vehicle Type
+            Edit Vehicle Type
         </p>
     </div>
     <div class="bg-white rounded p-3 mb-3">

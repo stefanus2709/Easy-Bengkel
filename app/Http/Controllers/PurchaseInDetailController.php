@@ -46,12 +46,12 @@ class PurchaseInDetailController extends Controller
     public function update(Request $request, $po_id, $id){
         $request->validate([
             'quantity' => 'required',
-            'price' => 'required',
+            // 'price' => 'required',
         ]);
 
         PurchaseInDetail::findOrFail($id)->update([
             'quantity' => $request->quantity,
-            'price' => $request->price,
+            // 'price' => $request->price,
         ]);
 
         return redirect('/po_in/edit/'.$po_id)->with('success', 'Product has been updated');

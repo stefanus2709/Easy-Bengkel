@@ -22,13 +22,13 @@ Edit Purchase Product
                     Please input quantity (more than 0)
                 </div>
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="inputPOProductPrice" class="form-label">Product Price</label>
                 <input type="number" class="form-control" id="price" name="price" value="{{$po_detail->price}}" min="1" required>
                 <div class="invalid-feedback">
                     Please input price (more than 0)
                 </div>
-            </div>
+            </div> --}}
             <div class="text-end">
                 <a href="/po_in/edit/{{$po_detail->purchase_in_id}}" class="btn btn-secondary">Back</a>
                 <button type="submit" class="btn btn-primary">Update</button>

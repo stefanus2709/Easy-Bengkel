@@ -49,7 +49,7 @@ Quotation
                     <td style="width: 13%;">
                         {{$quotation->mechanic_id == null ? 'No Mechanic' : $quotation->mechanic->name}}</td>
                     <td style="width: 13%;">
-                        {{number_format($quotation->total_price == 0 ? $quotation->total_service_product_price($quotation) : $quotation->total_price, 0, ',', '.')}}
+                        {{number_format($quotation->total_price, 0, ',', '.')}}
                     </td>
                     <td style="width: 13%;">
                         {{number_format($quotation->total_profit, 0, ',', '.')}}

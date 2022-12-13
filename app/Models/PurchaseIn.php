@@ -20,4 +20,13 @@ class PurchaseIn extends Model
     public function details(){
         return $this->hasMany('App\Models\PurchaseInDetail', 'purchase_in_id');
     }
+
+    public function total_product_price($po_in){
+        $total_price = 0;
+        foreach ($po_in->details as $detail) {
+            $total_price += $detail->price * $detail->quantity;
+        }
+
+        return $total_price;
+    }
 }

@@ -181,6 +181,11 @@ Edit Purchase Order
                     @endforeach
                 </tbody>
             </table>
+            <hr>
+            <div class="d-flex justify-content-between mb-2 align-middle px-3 pb-3 fw-bolder">
+                <div>Total Product Price</div>
+                <div>{{number_format($po_in->total_product_price($po_in), 0, ',', '.')}}</div>
+            </div>
         </div>
     </div>
 </div>

@@ -17,8 +17,9 @@
             <tr>
                 <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
                 <td style="width: 15%;">{{$detail->time}}</td>
-                <td style="width: 25%;">Rp.
-                    {{number_format($detail->salary_taken, 0, ',', '.')}}</td>
+                <td style="width: 25%;">
+                    {{number_format($detail->salary_taken, 0, ',', '.')}}
+                </td>
             </tr>
             @endforeach
         </tbody>

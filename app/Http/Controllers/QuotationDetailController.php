@@ -42,12 +42,12 @@ class QuotationDetailController extends Controller
     public function update(Request $request, $quotation_id, $id){
         $request->validate([
             'quantity' => 'required',
-            'selling_price' => 'required',
+            // 'selling_price' => 'required',
         ]);
 
         QuotationDetail::findOrFail($id)->update([
             'quantity' => $request->quantity,
-            'selling_price' => $request->selling_price,
+            // 'selling_price' => $request->selling_price,
         ]);
 
         return redirect('/quotation/edit/'.$quotation_id)->with('success', 'Product has been updated');
