@@ -28,10 +28,10 @@ Vehicle Type
     <div class="bg-white rounded">
         <table id="datatable" class="table">
             <thead>
-                <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th class="text-center">#</th>
-                    <th>Name</th>
-                    <th>Action</th>
+                <tr class="table-tr-style">
+                    <th class="poppins-medium text-center" style="padding-left: 30px !important;">#</th>
+                    <th class="poppins-medium">Name</th>
+                    <th class="poppins-medium text-center" style="width: 8%; padding-right: 30px !important;">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,13 +39,14 @@ Vehicle Type
                 <form action="/vehicle_type/delete/{{$vehicle_type->id}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <tr>
-                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                    <tr class="poppins-medium" style="font-size: 14px">
+                        <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                         <td style="width: 80%;">{{$vehicle_type->name}}</td>
-                        <td style="width: 10%;">
-                            <a href="/vehicle_type/edit/{{$vehicle_type->id}}" class="btn btn-info fs-16px"><i
-                                    class="icofont-pencil-alt-2 text-light"></i></a>
-                            <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
+                        <td class="text-center" style="width: 10%; padding-right: 30px !important;">
+                            <a href="/vehicle_type/edit/{{$vehicle_type->id}}" class="btn btn-info  btn-action-style" style="text-align: center">
+                                <i class="icofont-pencil-alt-2 text-light"></i>
+                            </a>
+                            <button type="button" class="btn btn-danger btn-action-style"
                                 data-bs-toggle="modal" data-bs-target="#deleteVehicleTypeModal"
                                 data-myId="{{$vehicle_type->id}}">
                                 <i class="icofont-trash text-light"></i>

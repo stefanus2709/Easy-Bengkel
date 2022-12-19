@@ -4,6 +4,8 @@
 Edit Purchase Order
 @endsection
 
+@section('po_in','active text-white')
+
 @section('content')
 @if(Session::has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -141,37 +143,36 @@ Edit Purchase Order
         <div>
             <table class="table" id="datatable">
                 <thead>
-                    <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                        <th class="text-center">#</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
+                    <tr class="table-tr-style">
+                        <th class="poppins-medium" style="padding-left: 30px !important;">#</th>
+                        <th class="poppins-medium">Product Name</th>
+                        <th class="poppins-medium">Quantity</th>
+                        <th class="poppins-medium">Price</th>
                         @if (!$po_in->finalized)
-                        <th>Action</th>
+                        <th class="poppins-medium text-center" style="width: 8%; padding-right: 30px !important;">Action</th>
                         @else
-                        <th>Total Price</th>
+                        <th class="poppins-medium">Total Price</th>
                         @endif
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($po_in->details as $detail)
-                    <tr>
+                    <tr class="poppins-medium" style="font-size: 14px">
                         @if (!$po_in->finalized)
-                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                        <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                         <td style="width: 35%;">{{$detail->product->name}}</td>
                         <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
                         <td style="width: 25%;">{{number_format($detail->price, 0, ',', '.')}}</td>
-                        <td style="width: 10%;">
-                            <a href="/po_in/{{$po_in->id}}/details/edit/{{$detail->id}}" class="btn btn-info fs-16px"><i
-                                    class="icofont-pencil-alt-2 text-light"></i></a>
-                            <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
-                                data-bs-toggle="modal" data-bs-target="#deletePurchaseInProductModal"
-                                data-myId="{{$detail->id}}">
+                        <td class="text-center" style="width: 8%; padding-right: 30px !important;">
+                            <a href="/po_in/{{$po_in->id}}/details/edit/{{$detail->id}}" class="btn btn-info  btn-action-style" style="text-align: center">
+                                <i class="icofont-pencil-alt-2 text-light"></i>
+                            </a>
+                            <button type="button" class="btn btn-danger btn-action-style" data-bs-toggle="modal" data-bs-target="#deletePurchaseInProductModal" data-myId="{{$detail->id}}">
                                 <i class="icofont-trash text-light"></i>
                             </button>
                         </td>
                         @else
-                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                        <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                         <td style="width: 30%;">{{$detail->product->name}}</td>
                         <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
                         <td style="width: 20%;">{{number_format($detail->price, 0, ',', '.')}}</td>

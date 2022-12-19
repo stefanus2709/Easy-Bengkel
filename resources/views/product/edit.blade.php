@@ -3,6 +3,7 @@
 @section('page-title')
 Edit Product
 @endsection
+@section('product','active text-white')
 
 @section('content')
 <div class="px-4 py-4 main-content">

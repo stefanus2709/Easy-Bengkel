@@ -1,4 +1,5 @@
 <!-- Button trigger modal -->
+@section('quotation','active text-white')
 <div class="d-flex justify-content-between mb-2 align-middle">
     <p class="fs-22px mb-0 pb-0 fw-bolder">
         Product List
@@ -63,37 +64,38 @@
     <div>
         <table class="table" id="datatable">
             <thead>
-                <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th class="text-center">#</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                <tr class="table-tr-style">
+                    <th class="poppins-medium" style="padding-left: 30px !important;">#</th>
+                    <th class="poppins-medium">Product Name</th>
+                    <th class="poppins-medium">Quantity</th>
+                    <th class="poppins-medium">Price</th>
                     @if (!$quotation->finalized)
-                    <th>Action</th>
+                    <th class="poppins-medium text-center" style="padding-right: 30px !important;">Action</th>
                     @else
-                    <th>Total Price</th>
+                    <th class="poppins-medium">Total Price</th>
                     @endif
                 </tr>
             </thead>
             <tbody>
                 @foreach ($quotation->details as $detail)
-                <tr>
+                <tr class="poppins-medium" style="font-size: 14px">
                     @if (!$quotation->finalized)
-                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                    <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                     <td style="width: 35%;">{{$detail->product->name}}</td>
                     <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
                     <td style="width: 25%;">{{number_format($detail->selling_price, 0, ',', '.')}}</td>
                     <td style="width: 10%;">
-                        <a href="/quotation/{{$quotation->id}}/details/edit/{{$detail->id}}"
-                            class="btn btn-info fs-16px"><i class="icofont-pencil-alt-2 text-light"></i></a>
-                        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
+                        <a href="/quotation/{{$quotation->id}}/details/edit/{{$detail->id}}" class="btn btn-info  btn-action-style" style="text-align: center">
+                            <i class="icofont-pencil-alt-2 text-light"></i>
+                        </a>
+                        <button type="button" class="btn btn-danger btn-action-style"
                             data-bs-toggle="modal" data-bs-target="#deleteQuotationProductModal"
                             data-myId="{{$detail->id}}">
                             <i class="icofont-trash text-light"></i>
                         </button>
                     </td>
                     @else
-                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                    <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                     <td style="width: 30%;">{{$detail->product->name}}</td>
                     <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
                     <td style="width: 20%;">{{number_format($detail->selling_price, 0, ',', '.')}}</td>

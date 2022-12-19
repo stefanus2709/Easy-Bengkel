@@ -7,14 +7,14 @@
 <div class="bg-white rounded mb-3">
     <table class="table" id="soldTable">
         <thead>
-            <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                <th class="text-center">#</th>
-                <th>Customer</th>
-                <th>Date</th>
-                <th>Qty</th>
-                <th>Sell Price</th>
-                <th>Total Price</th>
-                <th>Action</th>
+            <tr class="table-tr-style">
+                <th class="poppins-medium" style="padding-left: 30px !important;">#</th>
+                <th class="poppins-medium">Customer</th>
+                <th class="poppins-medium">Date</th>
+                <th class="poppins-medium">Qty</th>
+                <th class="poppins-medium">Sell Price</th>
+                <th class="poppins-medium">Total Price</th>
+                <th class="poppins-medium text-center" style="width: 8%; padding-right: 30px !important;">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -23,15 +23,17 @@
             @endphp
             @foreach ($sold_details as $detail)
             @if ($detail->quotation->finalized)
-            <tr>
-                <td class="text-center" style="width: 5%;">{{$itr}}</td>
+            <tr class="poppins-medium" style="font-size: 14px">
+                <td style="width: 3%; padding-left: 30px !important;">{{$itr}}</td>
                 <td style="width: 20%;">{{$detail->quotation->customer_name == null ? "No Name" : $detail->quotation->customer_name}}</td>
                 <td style="width: 8%;">{{$detail->quotation->date}}</td>
                 <td style="width: 8%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
                 <td style="width: 8%;">{{number_format($detail->selling_price, 0, ',', '.')}}</td>
                 <td style="width: 8%;">{{number_format($detail->quantity*$detail->selling_price, 0, ',', '.')}}</td>
-                <td style="width: 5%;">
-                    <a href="/quotation/edit/{{$detail->quotation_id}}" target="_blank" class="btn btn-success fs-16px"><i class="icofont-search-1"></i></a>
+                <td class="text-center" style="width: 8%; padding-right: 30px !important;">
+                    <a href="/quotation/edit/{{$detail->quotation_id}}" target="_blank"class="btn btn-success btn-action-style">
+                        <i class="icofont-search-1"></i>
+                    </a>
                 </td>
             </tr>
             @php

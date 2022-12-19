@@ -6,17 +6,17 @@
 <div class="bg-white rounded mb-3">
     <table class="table" id="salaryTable">
         <thead>
-            <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                <th class="text-center">#</th>
-                <th>Date</th>
-                <th>Salary Taken</th>
+            <tr class="table-tr-style">
+                <th class="poppins-medium" style="padding-left: 30px !important;">#</th>
+                <th class="poppins-medium">Date</th>
+                <th class="poppins-medium">Salary Taken</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($mechanic->salary_details as $detail)
-            <tr>
-                <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
-                <td style="width: 15%;">{{$detail->time}}</td>
+            <tr class="poppins-medium" style="font-size: 14px">
+                <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
+                <td style="width: 25%;">{{$detail->time}}</td>
                 <td style="width: 25%;">
                     {{number_format($detail->salary_taken, 0, ',', '.')}}
                 </td>

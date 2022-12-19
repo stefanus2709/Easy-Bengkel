@@ -3,6 +3,7 @@
 @section('page-title')
 Edit Vehicle Type
 @endsection
+@section('vehicle_type','active text-white')
 
 @section('content')
 <div class="px-4 py-4 main-content">

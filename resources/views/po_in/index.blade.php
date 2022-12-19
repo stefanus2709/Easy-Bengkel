@@ -28,40 +28,41 @@ Purchase Order
     <div class="bg-white rounded">
         <table class="table" id="datatable">
             <thead>
-                <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th class="text-center">#</th>
-                    <th>Supplier Name</th>
-                    <th>Date</th>
-                    <th>Total Purchase</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                <tr class="table-tr-style" style="font-size: 16px">
+                    <th class="poppins-medium text-center" style="padding-left: 30px !important;">#</th>
+                    <th class="poppins-medium">Supplier Name</th>
+                    <th class="poppins-medium">Date</th>
+                    <th class="poppins-medium">Total Purchase</th>
+                    <th class="poppins-medium">Status</th>
+                    <th class="poppins-medium text-center" style="width: 8%; padding-right: 30px !important;">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($po_ins as $po_in)
-                <tr>
-                    <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                <tr class="poppins-medium" style="font-size: 14px">
+                    <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                     <td style="width: 25%;">{{$po_in->supplier->name}}</td>
                     <td style="width: 25%;">{{$po_in->date}}</td>
                     <td style="width: 15%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>
                     @if ($po_in->finalized)
-                    <td style="width: 13%;"><button class="btn btn-success ml-2" style="font-size: 10px;">
-                            Finalized</button>
+                    <td style="width: 12%; padding-right: 30px !important;">
+                        <button class="btn btn-success ml-2" style="font-size: 12px;">Finalized</button>
                     </td>
                     @else
-                    <td style="width: 13%;"><button class="btn btn-danger ml-2" style="font-size: 10px;">Not
-                            Finalized</button>
+                    <td style="width: 12%; padding-right: 30px !important;">
+                        <button class="btn btn-danger ml-2" style="font-size: 12px;">Not Finalized</button>
                     </td>
                     @endif
-                    <td style="width: 10%;">
+                    <td class="text-center" style="width: 12%; padding-right: 30px !important;">
                         @if (!$po_in->finalized)
-                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-info fs-16px"><i
-                                class="icofont-pencil-alt-2 text-light"></i></a>
+                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-info  btn-action-style">
+                            <i class="icofont-pencil-alt-2 text-light"></i>
+                        </a>
                         @else
-                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-success fs-16px"><i
-                                class="icofont-search-1"></i></a>
+                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-success btn-action-style">
+                            <i class="icofont-search-1"></i></a>
                         @endif
-                        <button type="button" class="btn btn-danger fs-16px" style="font-size: 16px;"
+                        <button type="button" class="btn btn-danger btn-action-style"
                             data-bs-toggle="modal" data-bs-target="#deletePurchaseInModal" data-myId="{{$po_in->id}}">
                             <i class="icofont-trash text-light"></i>
                         </button>

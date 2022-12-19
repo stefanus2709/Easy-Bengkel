@@ -28,10 +28,10 @@ Category
     <div class="bg-white rounded">
         <table id="datatable" class="table">
             <thead>
-                <tr style="background-color: #293A80; color: white; border-radius: 5px">
-                    <th class="text-center">#</th>
-                    <th>Name</th>
-                    <th>Action</th>
+                <tr class="table-tr-style" style="font-size: 16px">
+                    <th class="poppins-medium text-center" style="padding-left: 30px !important;">#</th>
+                    <th class="poppins-medium">Name</th>
+                    <th  class="poppins-medium text-center" style="width: 8%; padding-right: 30px !important;">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,13 +39,13 @@ Category
                 <form action="/category/delete/{{$category->id}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <tr>
-                        <td class="text-center" style="width: 10%;">{{$loop->iteration}}</td>
+                    <tr class="poppins-medium" style="font-size: 14px">
+                        <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                         <td style="width: 80%;">{{$category->name}}</td>
-                        <td style="width: 10%;">
-                            <a href="/category/edit/{{$category->id}}" class="btn btn-info fs-16px"><i
-                                    class="icofont-pencil-alt-2 text-light"></i></a>
-                            <button type="button" class="btn btn-danger fs-16px edit" style="font-size: 16px;"
+                        <td class="text-center" style="width: 10%; padding-right: 30px !important;">
+                            <a href="/category/edit/{{$category->id}}"  class="btn btn-info  btn-action-style" style="text-align: center">
+                                <i class="icofont-pencil-alt-2 text-light"></i></a>
+                            <button type="button" class="btn btn-danger btn-action-style"
                                 data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"
                                 data-myId="{{$category->id}}">
                                 <i class="icofont-trash text-light"></i>

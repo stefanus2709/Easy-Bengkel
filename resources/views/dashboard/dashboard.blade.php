@@ -16,10 +16,10 @@ Dashboard
 
     <div class="row">
         <div class="col-sm">
-            @include('dashboard.total_transaction')
+            @include('dashboard.today_transaction')
         </div>
         <div class="col-sm">
-            @include('dashboard.total_purchase')
+            @include('dashboard.today_purchase')
         </div>
     </div>
     <div>
@@ -39,7 +39,6 @@ Dashboard
             language: {
                 search: "",
             },
-
         });
     });
     $(document).ready(function () {

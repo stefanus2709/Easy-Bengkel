@@ -1,10 +1,10 @@
 <div class="mb-2 align-middle">
     <p class="fs-22px mb-0 pb-0 poppins-medium br-1 fw-bolder">Today Purchase</p>
-    <div class="bg-white rounded pt-2 pb-2">
+    <div class="bg-white rounded pb-2">
         <table class="table " id="datatable_purchase">
             <thead>
                 <tr class="table-tr-style ">
-                    <th class="poppins-medium" style="padding-left: 30px !important;">#</th>
+                    <th class="poppins-medium" style="width: 3%; padding-left: 30px !important;">#</th>
                     <th class="poppins-medium">Customer</th>
                     <th class="poppins-medium">Date</th>
                     <th class="poppins-medium">Total Price</th>
