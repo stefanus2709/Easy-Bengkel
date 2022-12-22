@@ -1,13 +1,14 @@
-<!-- Button trigger modal -->
 @section('quotation','active text-white')
-<div class="d-flex justify-content-between mb-2 align-middle">
-    <p class="fs-22px mb-0 pb-0 fw-bolder">
-        Service List
-    </p>
-</div>
-<div class="bg-white rounded mb-3">
-    @if (!$quotation->finalized && $quotation->mechanic_id != null)
-    <div class="px-3 py-3">
+
+@if (!$quotation->finalized && $quotation->mechanic_id != null)
+<div class="px-4 mb-2 quotation-item-content">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
+            Create Service
+        </p>
+    </div>
+
+    <div class="bg-white rounded p-3 mb-3">
         <form class="row g-3 needs-validation" action="/service/{{$quotation->id}}/details/store" method="POST" novalidate>
             @csrf
             <div class="col-md-4">
@@ -38,8 +39,15 @@
             @endif
         </form>
     </div>
-    @endif
-    <div>
+</div>
+@endif
+<div class="px-4 quotation-item-content">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
+            Service List
+        </p>
+    </div>
+    <div class="bg-white rounded p-3 mb-3">
         <table class="table" id="service-table">
             <thead>
                 <tr class="table-tr-style">

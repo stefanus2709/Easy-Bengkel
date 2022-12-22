@@ -35,7 +35,7 @@ Edit Purchase Order
         @endif
 
     </div>
-    <div class="bg-white rounded p-3 mb-2">
+    <div class="bg-white rounded p-3">
         <form class="needs-validation" action="/po_in/update/{{$po_in->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
@@ -83,15 +83,15 @@ Edit Purchase Order
         </form>
     </div>
 </div>
-<div class="px-4 po-item-content">
-    <!-- Button trigger modal -->
+
+@if (!$po_in->finalized)
+<div class="px-4 pb-4 po-item-content">
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            Item List Stock
+            Item Stock
         </p>
     </div>
-    <div class="bg-white rounded mb-3">
-        @if (!$po_in->finalized)
+    <div class="bg-white rounded">
         <div class="px-3 py-3">
             <form class="needs-validation" action="/po_in/{{$po_in->id}}/details/store" method="POST" novalidate>
                 @csrf
@@ -139,7 +139,16 @@ Edit Purchase Order
                 </div>
             </form>
         </div>
-        @endif
+    </div>
+</div>
+@endif
+<div class="px-4 po-item-content">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
+            List of items purchase
+        </p>
+    </div>
+    <div class="bg-white rounded mb-3">
         <div>
             <table class="table" id="datatable">
                 <thead>

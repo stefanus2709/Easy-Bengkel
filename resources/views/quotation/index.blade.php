@@ -89,7 +89,7 @@ Quotation
             </div>
             <div class="modal-body">
                 <div>
-                    <form action="/po_in/delete" method="POST" id="editForm">
+                    <form action="/quotation/delete" method="POST" id="editForm">
                         @csrf
                         @method('DELETE')
                         <div class="">

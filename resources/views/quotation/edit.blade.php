@@ -16,8 +16,8 @@ Edit Quotation
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
-<div class="px-4 py-4 main-content">
-    <div class="d-flex justify-content-between mb-2 align-middle">
+<div class="px-4 pt-4 main-content">
+    <div class="d-flex justify-content-between align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
             Edit Quotation
         </p>
@@ -32,7 +32,7 @@ Edit Quotation
         </button>
         @endif
     </div>
-    <div class="bg-white rounded p-3 mb-2">
+    <div class="bg-white rounded p-3 mb-3">
         <form class="needs-validation" action="/quotation/update/{{$quotation->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
@@ -107,13 +107,9 @@ Edit Quotation
     </div>
 </div>
 @if ($quotation->mechanic_id != null)
-<div class="px-4 mb-4 quotation-item-content">
     @include('quotation.service-list')
-</div>
 @endif
-<div class="px-4 quotation-item-content">
     @include('quotation.product-list')
-</div>
 
 <!-- Finalize Quotation Modal -->
 <div class="modal" id="finalizeQuotationModal" tabindex="-1" aria-labelledby="finalizeQuotationModalLabel"

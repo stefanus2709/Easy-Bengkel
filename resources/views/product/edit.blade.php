@@ -13,7 +13,7 @@ Edit Product
         </p>
     </div>
     <div class="bg-white rounded p-3">
-        <form class="row g-3 needs-validation" action="/product/update/" method="POST" novalidate>
+        <form class="row g-3 needs-validation" action="/product/update/{{$product->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
             <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}">
@@ -65,7 +65,7 @@ Edit Product
             <div class="col-md-3">
                 <label for="inputQuantity" class="form-label">Quantity</label>
                 <input type="number" class="form-control" id="quantity" name="quantity"
-                    placeholder="Input Quantity" value="{{number_format($product->quantity, 0, ',', '.')}}" disabled>
+                    placeholder="Input Quantity" value="{{number_format($product->quantity, 0, ',', '.')}}">
             </div>
             <div class="col-md-3">
                 <label for="inputPrice" class="form-label">Price</label>

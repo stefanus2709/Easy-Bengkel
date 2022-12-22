@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,7 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/product/create', 'App\Http\Controllers\ProductController@create')->name('product-create');
     Route::post('/product/store', 'App\Http\Controllers\ProductController@store')->name('product-store');
     Route::get('/product/edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('product-edit');
-    Route::patch('/product/update', 'App\Http\Controllers\ProductController@update')->name('product-update');
+    Route::patch('/product/update/{id}', 'App\Http\Controllers\ProductController@update')->name('product-update');
     Route::delete('/product/delete', 'App\Http\Controllers\ProductController@delete')->name('product-delete');
     Route::get('/product/low', 'App\Http\Controllers\ProductController@low_product')->name('low-product');
 
@@ -83,7 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/quotation/store', 'App\Http\Controllers\QuotationController@store')->name('quotation-store');
     Route::get('/quotation/edit/{id}', 'App\Http\Controllers\QuotationController@edit')->name('quotation-edit');
     Route::patch('/quotation/update/{id}', 'App\Http\Controllers\QuotationController@update')->name('quotation-update');
-    Route::delete('/quotation/delete/{id}', 'App\Http\Controllers\QuotationController@delete')->name('quotation-delete');
+    Route::delete('/quotation/delete', 'App\Http\Controllers\QuotationController@delete')->name('quotation-delete');
     Route::patch('/quotation/finalize/{id}', 'App\Http\Controllers\QuotationController@finalize')->name('quotation-finalize');
     Route::get('/quotation/this_month', 'App\Http\Controllers\QuotationController@sales_this_month')->name('quotation_this_month');
 

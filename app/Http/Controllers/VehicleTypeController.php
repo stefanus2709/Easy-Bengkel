@@ -42,7 +42,7 @@ class VehicleTypeController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect('/vehicle_type');
+        return redirect('/vehicle_type')->with('success', 'Vehicle has been updated');
     }
 
     public function delete(Request $request){

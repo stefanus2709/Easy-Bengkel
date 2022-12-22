@@ -1,67 +1,77 @@
-<!-- Button trigger modal -->
 @section('quotation','active text-white')
-<div class="d-flex justify-content-between mb-2 align-middle">
-    <p class="fs-22px mb-0 pb-0 fw-bolder">
-        Product List
-    </p>
-</div>
-<div class="bg-white rounded mb-3">
-    @if (!$quotation->finalized)
-    <div class="px-3 py-3">
-        <form class="row g-3 needs-validation" action="/quotation/{{$quotation->id}}/details/store" method="POST" novalidate>
-            @csrf
-            <div class="col-md-4">
-                @if (!blank($products))
-                <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
-                <label for="select" class="form-label">Select Product</label>
-                <select id="select-product" class="selectpicker form-control" data-live-search="true" multiple
-                    data-max-options="1" name="product_id"
-                    onchange="getProductId('selling_price', this.selling_price.value)" required>
-                    @foreach ($products as $product)
-                    @if ($product->quantity != 0)
-                    <option value="{{$product->id}}" data-rc="{{$product->selling_price}}"
-                        data-qty="{{$product->quantity}}">{{$product->name}}
-                    </option>
-                    @endif
-                    @endforeach
-                </select>
-                @else
-                <fieldset disabled>
-                    <label for="disabledSelect" class="form-label">Select Product</label>
-                    <select id="disabledSelect" class="form-select">
-                        <option>No Products Data</option>
-                    </select>
-                </fieldset>
-                @endif
-                @error('product_id')
-                <span class="text-danger">The product field is required.</span>
-                @enderror
-            </div>
-            <div class="col-md-4">
-                <label for="inputQuantity" class="form-label">Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Input Quantity"
-                    min="1" max="" required>
-                <div class="invalid-feedback">
-                    Please input quantity (more than 0)
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="sellingPrice" class="form-label">Selling Price</label>
-                <input type="number" class="form-control" id="selling_price" name="selling_price"
-                    placeholder="Input Selling Price" min="1" required readonly>
-                <div class="invalid-feedback">
-                    Please input selling price (more than 0)
-                </div>
-            </div>
-            @if (!$quotation->finalized)
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-            @endif
-        </form>
+
+@if (!$quotation->finalized)
+<div class="px-4 quotation-item-content">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
+            Select Product
+        </p>
     </div>
-    @endif
-    <div>
+
+    <div class="bg-white rounded p-3 mb-3">
+        <div class="">
+            <form class="row g-3 needs-validation" action="/quotation/{{$quotation->id}}/details/store" method="POST" novalidate>
+                @csrf
+                <div class="col-md-4">
+                    @if (!blank($products))
+                    <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
+                    <label for="select" class="form-label">Select Product</label>
+                    <select id="select-product" class="selectpicker form-control" data-live-search="true" multiple
+                        data-max-options="1" name="product_id"
+                        onchange="getProductId('selling_price', this.selling_price.value)" required>
+                        @foreach ($products as $product)
+                        @if ($product->quantity != 0)
+                        <option value="{{$product->id}}" data-rc="{{$product->selling_price}}"
+                            data-qty="{{$product->quantity}}">{{$product->name}}
+                        </option>
+                        @endif
+                        @endforeach
+                    </select>
+                    @else
+                    <fieldset disabled>
+                        <label for="disabledSelect" class="form-label">Select Product</label>
+                        <select id="disabledSelect" class="form-select">
+                            <option>No Products Data</option>
+                        </select>
+                    </fieldset>
+                    @endif
+                    @error('product_id')
+                    <span class="text-danger">The product field is required.</span>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <label for="inputQuantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Input Quantity"
+                        min="1" max="" required>
+                    <div class="invalid-feedback">
+                        Please input quantity (more than 0)
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="sellingPrice" class="form-label">Selling Price</label>
+                    <input type="number" class="form-control" id="selling_price" name="selling_price"
+                        placeholder="Input Selling Price" min="1" required readonly>
+                    <div class="invalid-feedback">
+                        Please input selling price (more than 0)
+                    </div>
+                </div>
+                @if (!$quotation->finalized)
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+                @endif
+            </form>
+        </div>
+    </div>
+</div>
+@endif
+<div class="px-4 mb-4 quotation-item-content">
+    <div class="d-flex justify-content-between mb-2 align-middle">
+        <p class="fs-22px mb-0 pb-0 fw-bolder">
+            Product List
+        </p>
+    </div>
+    <div class="bg-white rounded mb-3">
         <table class="table" id="datatable">
             <thead>
                 <tr class="table-tr-style">

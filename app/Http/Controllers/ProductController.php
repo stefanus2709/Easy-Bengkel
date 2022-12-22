@@ -84,7 +84,8 @@ class ProductController extends Controller
         return view('product.edit', compact('product', 'categories', 'vehicle_types', 'brands', 'suppliers', 'stock_details', 'sold_details'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request, $product_id){
+        $product = Product::findOrFail($product_id);
         $request->validate([
             'category_id' => 'required',
             'vehicle_type_id' => 'required',
@@ -93,10 +94,9 @@ class ProductController extends Controller
             'quantity' => 'required',
             'price' => 'required',
             'selling_price' => 'required',
-            'name' => 'required',
+            'name' => 'required'
         ]);
-
-        Product::findOrFail($request->product_id)->update([
+        Product::findOrFail($product_id)->update([
             'category_id' => $request->category_id,
             'vehicle_type_id' => $request->vehicle_type_id,
             'brand_id' => $request->brand_id,
@@ -107,7 +107,7 @@ class ProductController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect('/product');
+        return redirect('/product')->with('success', 'Product has been updated');
     }
 
     public function delete(Request $request){
