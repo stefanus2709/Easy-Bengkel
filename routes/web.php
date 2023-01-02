@@ -115,5 +115,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/vehicle_type/edit/{id}', 'App\Http\Controllers\VehicleTypeController@edit')->name('vehicle_type-edit');
     Route::patch('/vehicle_type/update/{id}', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type-update');
     Route::delete('/vehicle_type/delete', 'App\Http\Controllers\VehicleTypeController@delete')->name('vehicle_type-delete');
+
+    
+    
 });
+//Forget Password
+Route::get('/forget-password',  'App\Http\Controllers\Auth\ForgotPasswordController@home')->name('forget-password');
+Route::get('/send-mail',  'App\Http\Controllers\Auth\ForgotPasswordController@forgotPassword')->name('send-mail');
 

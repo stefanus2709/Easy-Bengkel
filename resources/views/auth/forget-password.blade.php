@@ -23,7 +23,7 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 
-    <title>Login</title>
+    <title>Test</title>
 </head>
 
 <body>
@@ -99,48 +99,20 @@
     </div>
     </div>
     </div> --}}
-    @if(Session::has('success'))
-        <div class="alert alert-success d-flex justify-content-center align-items-center" role="alert">
-            <p>Your password has been successfully reset</p>
-        </div>
-    @endif
-    
+
     <div class="vh-100 d-flex justify-content-center align-items-center">
         <div class="col-md-3 p-5 shadow-sm border rounded-3">
             <h4 class="text-center mb-4 text-primary">EASYBENGKEL</h4>
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input id="username" type="text"
-                        class="form-control border border-primary @error('username') is-invalid @enderror"
-                        name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                    @error('username')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input id="password" type="password"
-                        class="form-control border border-primary @error('password') is-invalid @enderror"
-                        name="password" required autocomplete="current-password">
-
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">
-                        {{ __('Login') }}
-                    </button>
-                </div>
-            </form>
-            <a href="/forget-password"><p for="exampleInputPassword1" class="form-label">Forget Password?</p></a>
+            <div class="mb-3 align-items-center">
+                <strong class="form-label" style="font-size: 20px">Are you sure you want to reset your password?</strong>
+                <br>
+                <br>
+                <label class="form-label">Email will be sent to {{$email}}</label>
+            </div>
+            <div class="mb-3 d-flex justify-content-around align-items-center">
+                <a class="btn btn-success" href="/send-mail" role="button" style="width: 20%">Yes</a>
+                <a class="btn btn-danger" href="/login" role="button" style="width: 20%">No</a>
+            </div>
         </div>
     </div>
 </body>
