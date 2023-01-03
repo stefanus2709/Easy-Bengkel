@@ -18,7 +18,7 @@
                 <i class="icofont-user"></i> {{ Auth::user()->name }}
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-end">
-                <li><button class="dropdown-item" type="button">Settings</button></li>
+                <li><button class="dropdown-item" type="button"><a href="/change-password" style="text-decoration: none">Settings</a></button></li>
                 <hr>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

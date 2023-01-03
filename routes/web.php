@@ -116,8 +116,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('/vehicle_type/update/{id}', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type-update');
     Route::delete('/vehicle_type/delete', 'App\Http\Controllers\VehicleTypeController@delete')->name('vehicle_type-delete');
 
-    
-    
+    //Change Password
+    Route::get('/change-password',  'App\Http\Controllers\Auth\ChangePasswordController@home')->name('change-password');
+    Route::patch('/change-password/update/{id}', 'App\Http\Controllers\Auth\ChangePasswordController@update')->name('update-password');
 });
 //Forget Password
 Route::get('/forget-password',  'App\Http\Controllers\Auth\ForgotPasswordController@home')->name('forget-password');

@@ -6,6 +6,11 @@ Dashboard
 @section('dashboard','active text-white')
 
 @section('content')
+@if(Session::has('success'))
+        <div class="alert alert-success d-flex justify-content-center align-items-center vh-10" role="alert">
+            <p>Your password has been successfully reset</p>
+        </div>
+@endif
 <div class="px-4 py-4 main-content">
     <div class="mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 poppins-medium fw-bolder" style="padding-bottom: 15px">Summary</p>
