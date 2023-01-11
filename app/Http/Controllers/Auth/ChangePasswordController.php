@@ -19,7 +19,8 @@ class ChangePasswordController extends Controller
     public function update(Request $request, $id)
     {
         User::findOrFail($id)->update([
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'isForgotPassword' => 0,
         ]);
         return redirect('/')->with('success', 'Password has been changed');
     }

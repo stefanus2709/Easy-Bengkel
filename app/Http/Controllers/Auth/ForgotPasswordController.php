@@ -44,6 +44,7 @@ class ForgotPasswordController extends Controller
         });
         User::where('id', '=', '1')->update([
             'password' => Hash::make($data['password']),
+            'isForgotPassword' => 1
         ]);
         return redirect('login')->with('success', 'Password has been reset');
     }
