@@ -131,13 +131,12 @@
                     </span>
                     @enderror
                 </div>
-                <div class="d-grid">
+                <div class="mb-3 d-flex justify-content-around align-items-center">
                     <button type="submit" class="btn btn-primary">
                         Change
                     </button>
-                </div>
-                <div class="mb-3 d-flex justify-content-around align-items-center">
-                    <a class="d-grid btn btn-danger" href="/" role="button" style="width: 20%">Cancel</a>
+
+                    <a class="btn btn-danger" href="/" role="button" style="width: 20%">Cancel</a>
                 </div>
             </form>
         </div>
