@@ -69,9 +69,15 @@ class MechanicController extends Controller
             'take' => 'required',
         ]);
 
-        $mechanic->update([
-            'salary' => $mechanic->salary - $request->take,
-        ]);
+        if($request->take <= $mechanic->salary)
+        {
+            $mechanic->update([
+                'salary' => $mechanic->salary - $request->take,
+            ]);
+        }
+        else{
+            return redirect('/mechanic')->with('failed', "You cannot take money more than the mechanic's salary");
+        }
 
         SalaryDetail::create([
             'mechanic_id' => $id,

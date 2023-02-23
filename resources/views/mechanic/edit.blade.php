@@ -1,7 +1,7 @@
 @extends('application')
 
 @section('page-title')
-Edit Supplier
+Edit Mechanic
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Edit Supplier
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-3 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            Edit Supplier {{$mechanic->name}}
+            Edit Mechanic {{$mechanic->name}}
         </p>
     </div>
     <div class="bg-white rounded p-3 mb-3">
@@ -18,7 +18,7 @@ Edit Supplier
             @method('PATCH')
             <input type="hidden" name="mechanic_id" id="mechanic_id">
             <div>
-                <label for="inputSupplierName" class="form-label">Supplier Name</label>
+                <label for="inputSupplierName" class="form-label">Mechanic Name</label>
                 <input type="text" class="form-control mb-3" name="name" id="name" placeholder="Input Supplier Name" value="{{$mechanic->name}}"
                     @error('name') is invalid @enderror>
             </div>
