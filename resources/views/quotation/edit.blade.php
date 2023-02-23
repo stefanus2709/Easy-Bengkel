@@ -17,7 +17,7 @@ Edit Quotation
 </div>
 @endif
 <div class="px-4 pt-4 main-content">
-    <div class="d-flex justify-content-between align-middle">
+    <div class="d-flex justify-content-between align-middle mb-2">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
             Edit Quotation
         </p>

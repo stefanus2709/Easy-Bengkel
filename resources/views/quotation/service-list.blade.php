@@ -47,7 +47,7 @@
             Service List
         </p>
     </div>
-    <div class="bg-white rounded p-3 mb-3">
+    <div class="bg-white rounded mb-3">
         <table class="table" id="service-table">
             <thead>
                 <tr class="table-tr-style">

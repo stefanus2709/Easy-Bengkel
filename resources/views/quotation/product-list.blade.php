@@ -4,7 +4,7 @@
 <div class="px-4 quotation-item-content">
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
-            Select Product
+            Create Product
         </p>
     </div>
 
