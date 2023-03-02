@@ -15,8 +15,8 @@ class DashboardController extends Controller
     public function index(){
         $brands = Brand::all();
         $products = Product::all();
-        $quotations = Quotation::all();
-        $purchaseIns = PurchaseIn::all();
+        $quotations = Quotation::where('finalized', '1')->get();
+        $purchaseIns = PurchaseIn::where('finalized', '1')->get();
         $suppliers = Supplier::all();
         $total_asset = Product::total_assets($products);
 
