@@ -19,7 +19,7 @@ Edit Quotation Product
                 <label for="inputQuotationProductQty" class="form-label">Product Quantity</label>
                 <input type="number" class="form-control" id="quantity" name="quantity" value="{{$quotation_detail->quantity}}" min="1" max="{{$quotation_detail->product->quantity}}" required>
                 <div class="invalid-feedback">
-                    Please input product quantity (more than 0)
+                    Must be more than 0 & less than equal to product stock
                 </div>
             </div>
             {{-- <div class="mb-3">

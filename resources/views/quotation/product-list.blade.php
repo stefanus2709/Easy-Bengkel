@@ -44,13 +44,13 @@
                     <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Input Quantity"
                         min="1" max="" required>
                     <div class="invalid-feedback">
-                        Please input quantity (more than 0)
+                        Quantity must be greater than 0 & less than or equal to product stock
                     </div>
                 </div>
                 <div class="col-md-4">
                     <label for="sellingPrice" class="form-label">Selling Price</label>
                     <input type="number" class="form-control" id="selling_price" name="selling_price"
-                        placeholder="Input Selling Price" min="1" required readonly>
+                        placeholder="Input Selling Price" min="1" required>
                     <div class="invalid-feedback">
                         Please input selling price (more than 0)
                     </div>

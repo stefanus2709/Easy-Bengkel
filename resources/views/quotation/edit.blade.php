@@ -194,7 +194,7 @@ Edit Quotation
             var rc = event.target.options[event.target.selectedIndex].dataset.rc;
             var qty = event.target.options[event.target.selectedIndex].dataset.qty;
             document.getElementById('selling_price').value = rc;
-            document.getElementById('quantity').value = qty;
+            document.getElementById('quantity').placeholder = "Max " + qty;
             document.getElementById('quantity').max = qty;
         };
 
