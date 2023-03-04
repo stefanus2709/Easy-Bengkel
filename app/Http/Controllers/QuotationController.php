@@ -78,7 +78,7 @@ class QuotationController extends Controller
 
         foreach ($quotation->details as $detail) {
             if($detail->product->quantity - $detail->quantity < 0 || $detail->quantity > $detail->product->quantity){
-                return redirect('/quotation/edit/'.$quotation->id)->with('failed', 'Cannot finalize, there is outdated product quantity!');
+                return redirect('/quotation/edit/'.$quotation->id)->with('failed', 'Cannot finalize, please recheck the quantity');
             }
         }
 
