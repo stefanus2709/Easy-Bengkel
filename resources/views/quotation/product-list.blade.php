@@ -92,7 +92,14 @@
                     @if (!$quotation->finalized)
                     <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                     <td style="width: 35%;">{{$detail->product->name}}</td>
-                    <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
+                    <td style="width: 20%;">
+                        {{number_format($detail->quantity, 0, ',', '.')}}
+                        @if($detail->product->quantity - $detail->quantity < 0 || $detail->quantity > $detail->product->quantity)
+                            <button class="btn btn-danger">
+                                <i class="icofont-exclamation"></i>
+                            </button>
+                        @endif
+                    </td>
                     <td style="width: 25%;">{{number_format($detail->selling_price, 0, ',', '.')}}</td>
                     <td style="width: 10%;">
                         <a href="/quotation/{{$quotation->id}}/details/edit/{{$detail->id}}" class="btn btn-info  btn-action-style" style="text-align: center">
