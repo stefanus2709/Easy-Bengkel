@@ -70,6 +70,9 @@ class QuotationController extends Controller
         if(count($quotation->details) == 0){
             return redirect('/quotation/edit/'.$quotation->id)->with('failed', 'Cannot finalize, there is no item to data!');
         }
+        if(count($quotation->service_details) == 0 && $quotation->mechanic_id != null){
+            return redirect('/quotation/edit/'.$quotation->id)->with('failed', 'Cannot finalize, there is no service data for mechanic!');
+        }
 
         // foreach ($quotation->details as $detail) {
         //     if($detail->product->quantity - $detail->quantity < 0)

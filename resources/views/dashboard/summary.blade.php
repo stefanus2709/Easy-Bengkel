@@ -115,9 +115,15 @@
                 <p class="mb-2 pb-0 poppins-medium fs-16px">
                     Best Mechanic
                 </p>
-                <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
-                    -----------
-                </p>
+                @if ($best_mechanic == null)
+                    <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
+                        -----------
+                    </p>
+                @else
+                    <p class="mb-0 pb-0 value poppins-medium" style="font-size: 22px">
+                        {{$best_mechanic->name}}
+                    </p>
+                @endif
             </div>
             <div class="d-flex">
                 <i style="font-size: 75px" class="icofont-ui-user"></i>
