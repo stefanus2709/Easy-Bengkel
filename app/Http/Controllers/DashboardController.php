@@ -35,7 +35,10 @@ class DashboardController extends Controller
         ->orderBy('magnitude', 'DESC')
         ->limit(1)
         ->first();
-        $best_mechanic = Mechanic::findOrFail($get_frequent_mechanic->mechanic_id);
+        if($get_frequent_mechanic == null)
+            $best_mechanic = null;
+        else
+            $best_mechanic = Mechanic::findOrFail($get_frequent_mechanic->mechanic_id);
 
         return view('dashboard.dashboard', compact('total_profit', 'total_income', 'total_expense', 'products',
         'low_products', 'assets', 'total_asset', 'best_products','quotations', 'today_quotations', 'today_purchases', 'suppliers', 'best_mechanic'));
