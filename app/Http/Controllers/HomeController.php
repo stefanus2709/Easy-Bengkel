@@ -26,7 +26,7 @@ class HomeController extends Controller
         // $brands = Brand::all();
         // $products = Product::all();
         // $low_products = Product::where('quantity', '<', '5')->get();
-        // $total_purchase = PurchaseIn::whereMonth('date', now()->month)->sum('total_price');
+        // $total_purchase = PurchaseOrder::whereMonth('date', now()->month)->sum('total_price');
         // return view('dashboard', compact('products', 'low_products', 'total_purchase'));
     }
 }

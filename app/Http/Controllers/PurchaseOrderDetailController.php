@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PurchaseIn;
-use App\Models\PurchaseInDetail;
+use App\Models\PurchaseOrder;
+use App\Models\PurchaseOrderDetail;
 use App\Models\Supplier;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class PurchaseInDetailController extends Controller
+class PurchaseOrderDetailController extends Controller
 {
     public function create(){
 
@@ -21,26 +21,26 @@ class PurchaseInDetailController extends Controller
         ]);
 
         $product = Product::findOrFail($request->product_id);
-        $curr_detail = PurchaseInDetail::where('product_id', $request->product_id)->where('purchase_in_id', $po_id)->get();
+        $curr_detail = PurchaseOrderDetail::where('product_id', $request->product_id)->where('purchase_order_id', $po_id)->get();
 
         if(!blank($curr_detail)){
-            return redirect('/po_in/edit/'.$po_id)->with('failed', 'Product already exists');
+            return redirect('/po/edit/'.$po_id)->with('failed', 'Product already exists');
         }
         else{
-            PurchaseInDetail::create([
-                'purchase_in_id' => $po_id,
+            PurchaseOrderDetail::create([
+                'purchase_order_id' => $po_id,
                 'product_id' => $request->product_id,
                 'quantity' => $request->quantity,
                 'price' => $product->price,
             ]);
 
-            return redirect('/po_in/edit/'.$po_id)->with('success', 'Product added!');
+            return redirect('/po/edit/'.$po_id)->with('success', 'Product added!');
         }
     }
 
     public function edit($po_id, $id){
-        $po_detail = PurchaseInDetail::findOrFail($id);
-        return view('po_in.edit-product', compact('po_detail'));
+        $po_detail = PurchaseOrderDetail::findOrFail($id);
+        return view('po.edit-product', compact('po_detail'));
     }
 
     public function update(Request $request, $po_id, $id){
@@ -49,16 +49,16 @@ class PurchaseInDetailController extends Controller
             // 'price' => 'required',
         ]);
 
-        PurchaseInDetail::findOrFail($id)->update([
+        PurchaseOrderDetail::findOrFail($id)->update([
             'quantity' => $request->quantity,
             // 'price' => $request->price,
         ]);
 
-        return redirect('/po_in/edit/'.$po_id)->with('success', 'Product has been updated');
+        return redirect('/po/edit/'.$po_id)->with('success', 'Product has been updated');
     }
 
     public function delete(Request $request){
-        PurchaseInDetail::destroy($request->po_detail_id);
+        PurchaseOrderDetail::destroy($request->po_detail_id);
         return back()->with('failed', 'Product has been deleted');
     }
 }

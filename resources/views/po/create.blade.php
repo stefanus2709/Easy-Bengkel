@@ -4,7 +4,7 @@
     </p>
 </div>
 <div class="bg-white rounded p-3 mb-3">
-    <form class="needs-validation" action="/po_in/store" method="POST" novalidate>
+    <form class="needs-validation" action="/po/store" method="POST" novalidate>
         @csrf
         <div class="mb-3">
             @if (!blank($suppliers))

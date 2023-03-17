@@ -13,12 +13,12 @@ class CreatePurchaseInDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_in_details', function (Blueprint $table) {
+        Schema::create('purchase_order_details', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('purchase_in_id')->unsigned();
-            $table->foreign('purchase_in_id')->references('id')->on('purchase_ins')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('purchase_order_id')->unsigned();
+            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('quantity');
             $table->bigInteger('price');
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreatePurchaseInDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_in_details');
+        Schema::dropIfExists('purchase_order_details');
     }
 }
