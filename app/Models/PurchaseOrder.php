@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseIn extends Model
+class PurchaseOrder extends Model
 {
     use HasFactory;
 
@@ -18,12 +18,12 @@ class PurchaseIn extends Model
     }
 
     public function details(){
-        return $this->hasMany('App\Models\PurchaseInDetail', 'purchase_in_id');
+        return $this->hasMany('App\Models\PurchaseOrderDetail', 'purchase_order_id');
     }
 
-    public function total_product_price($po_in){
+    public function total_product_price($po){
         $total_price = 0;
-        foreach ($po_in->details as $detail) {
+        foreach ($po->details as $detail) {
             $total_price += $detail->price * $detail->quantity;
         }
 

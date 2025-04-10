@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PurchaseIn;
-use App\Models\PurchaseInDetail;
+use App\Models\PurchaseOrder;
+use App\Models\PurchaseOrderDetail;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
-class PurchaseInController extends Controller
+class PurchaseOrderController extends Controller
 {
     public function index(){
-        $po_ins = PurchaseIn::orderBy('created_at', 'DESC')->get();
+        $pos = PurchaseOrder::orderBy('created_at', 'DESC')->get();
         $suppliers = Supplier::all();
-        return view('po_in.index', compact('po_ins', 'suppliers'));
+        return view('po.index', compact('pos', 'suppliers'));
     }
 
     public function create(){
-        return view('po_in.create', compact('suppliers'));
+        return view('po.create', compact('suppliers'));
     }
 
     public function store(Request $request){
@@ -25,22 +25,22 @@ class PurchaseInController extends Controller
             'date' => 'required',
         ]);
 
-        PurchaseIn::create([
+        PurchaseOrder::create([
             'supplier_id' => $request->supplier_id,
             'date' => $request->date,
             'total_price' => 0,
             'finalized' => false,
         ]);
 
-        $last_po = PurchaseIn::orderBy('created_at', 'desc')->first();
+        $last_po = PurchaseOrder::orderBy('created_at', 'desc')->first();
 
-        return redirect('/po_in/edit/'.$last_po->id)->with('success', 'PO has been created');
+        return redirect('/po/edit/'.$last_po->id)->with('success', 'PO has been created');
     }
 
     public function edit($id){
-        $po_in = PurchaseIn::findOrFail($id);
+        $po = PurchaseOrder::findOrFail($id);
         $suppliers = Supplier::all();
-        return view('po_in.edit', compact('po_in', 'suppliers'));
+        return view('po.edit', compact('po', 'suppliers'));
     }
 
     public function update(Request $request, $po_id){
@@ -49,26 +49,26 @@ class PurchaseInController extends Controller
             'date' => 'required',
         ]);
 
-        PurchaseIn::findOrFail($po_id)->update([
+        PurchaseOrder::findOrFail($po_id)->update([
             'supplier_id' => $request->supplier_id,
             'date' => $request->date,
         ]);
 
-        return redirect('/po_in/edit/'.$po_id)->with('success', 'PO has been updated');
+        return redirect('/po/edit/'.$po_id)->with('success', 'PO has been updated');
     }
 
     public function delete(Request $request){
-        PurchaseIn::destroy($request->po_in_id);
+        PurchaseOrder::destroy($request->po_id);
         return back()->with('failed', 'PO has been deleted');
     }
 
     public function finalize($id){
-        $po_in = PurchaseIn::findOrFail($id);
-        $po_details = PurchaseInDetail::where('purchase_in_id', $id)->get();
+        $po = PurchaseOrder::findOrFail($id);
+        $po_details = PurchaseOrderDetail::where('purchase_order_id', $id)->get();
         $total_price = 0;
 
         if(count($po_details) == 0){
-            return redirect('/po_in/edit/'.$po_in->id)->with('failed', 'Cannot finalize, there is no item to stock!');
+            return redirect('/po/edit/'.$po->id)->with('failed', 'Cannot finalize, there is no item to stock!');
         }
 
         foreach ($po_details as $detail) {
@@ -78,16 +78,16 @@ class PurchaseInController extends Controller
             $total_price += $detail->quantity * $detail->price;
         }
 
-        $po_in->update([
+        $po->update([
             'total_price' => $total_price,
             'finalized' => true,
         ]);
 
-        return redirect('/po_in')->with('success', 'PO has been finalized');
+        return redirect('/po')->with('success', 'PO has been finalized');
     }
 
     public function purchase_this_month(){
-        $total_purchases = PurchaseIn::orderBy('created_at', 'DESC')->whereMonth('date', now()->month)->where('finalized', true)->get();
-        return view('po_in.purchase_this_month', compact('total_purchases'));
+        $total_purchases = PurchaseOrder::orderBy('created_at', 'DESC')->whereMonth('date', now()->month)->where('finalized', true)->get();
+        return view('po.purchase_this_month', compact('total_purchases'));
     }
 }

@@ -23,7 +23,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/po_in" class="nav-link align-middle pL-3 py-1 text-dark fw-normal fs-16px mb-3 @yield('po_in')">
+                        <a href="/po" class="nav-link align-middle pL-3 py-1 text-dark fw-normal fs-16px mb-3 @yield('po')">
                             <i class="icofont-cart"></i> <span class="ms-1 d-none d-sm-inline">Purchase Order</span>
                         </a>
                     </li>

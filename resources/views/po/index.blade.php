@@ -3,7 +3,7 @@
 @section('page-title')
 Purchase Order
 @endsection
-@section('po_in','active text-white')
+@section('po','active text-white')
 
 @section('content')
 @if(Session::has('success'))
@@ -18,7 +18,7 @@ Purchase Order
 </div>
 @endif
 <div class="px-4 py-4 main-content">
-    @include('po_in.create')
+    @include('po.create')
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
@@ -38,13 +38,13 @@ Purchase Order
                 </tr>
             </thead>
             <tbody>
-                @foreach ($po_ins as $po_in)
+                @foreach ($pos as $po)
                 <tr class="poppins-medium" style="font-size: 14px">
                     <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
-                    <td style="width: 25%;">{{$po_in->supplier->name}}</td>
-                    <td style="width: 25%;">{{$po_in->date}}</td>
-                    <td style="width: 15%;">{{number_format($po_in->total_price, 0, ',', '.')}}</td>
-                    @if ($po_in->finalized)
+                    <td style="width: 25%;">{{$po->supplier->name}}</td>
+                    <td style="width: 25%;">{{$po->date}}</td>
+                    <td style="width: 15%;">{{number_format($po->total_price, 0, ',', '.')}}</td>
+                    @if ($po->finalized)
                     <td style="width: 12%; padding-right: 30px !important;">
                         <button class="btn btn-success ml-2" style="font-size: 12px;">Finalized</button>
                     </td>
@@ -54,16 +54,16 @@ Purchase Order
                     </td>
                     @endif
                     <td class="text-center" style="width: 12%; padding-right: 30px !important;">
-                        @if (!$po_in->finalized)
-                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-info  btn-action-style">
+                        @if (!$po->finalized)
+                        <a href="/po/edit/{{$po->id}}" class="btn btn-info  btn-action-style">
                             <i class="icofont-pencil-alt-2 text-light"></i>
                         </a>
                         @else
-                        <a href="/po_in/edit/{{$po_in->id}}" class="btn btn-success btn-action-style">
+                        <a href="/po/edit/{{$po->id}}" class="btn btn-success btn-action-style">
                             <i class="icofont-search-1"></i></a>
                         @endif
                         <button type="button" class="btn btn-danger btn-action-style"
-                            data-bs-toggle="modal" data-bs-target="#deletePurchaseInModal" data-myId="{{$po_in->id}}">
+                            data-bs-toggle="modal" data-bs-target="#deletePurchaseInModal" data-myId="{{$po->id}}">
                             <i class="icofont-trash text-light"></i>
                         </button>
                     </td>
@@ -85,13 +85,13 @@ Purchase Order
             </div>
             <div class="modal-body">
                 <div>
-                    <form action="/po_in/delete" method="POST" id="editForm">
+                    <form action="/po/delete" method="POST" id="editForm">
                         @csrf
                         @method('DELETE')
                         <div class="">
                             <label class="form-label">Are you sure you want to delete this PO?</label>
                             <p>The data will gone forever</p>
-                            <input type="hidden" class="mb-3" name="po_in_id" id="po_in_id">
+                            <input type="hidden" class="mb-3" name="po_id" id="po_id">
                         </div>
                         <div class="text-end">
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -122,7 +122,7 @@ Purchase Order
             var id = button.attr('data-myId');
 
             var modal = $(this)
-            modal.find('.modal-body #po_in_id').val(id);
+            modal.find('.modal-body #po_id').val(id);
         });
     });
 </script>
