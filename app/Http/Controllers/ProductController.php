@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\VehicleType;
-use App\Models\PurchaseInDetail;
+use App\Models\PurchaseOrderDetail;
 use App\Models\QuotationDetail;
 use Illuminate\Http\Request;
 
@@ -79,7 +79,7 @@ class ProductController extends Controller
         $vehicle_types = VehicleType::all();
         $brands = Brand::all();
         $suppliers = Supplier::all();
-        $stock_details = PurchaseInDetail::where('product_id', $id)->get();
+        $stock_details = PurchaseOrderDetail::where('product_id', $id)->get();
         $sold_details = QuotationDetail::where('product_id', $id)->get();
         return view('product.edit', compact('product', 'categories', 'vehicle_types', 'brands', 'suppliers', 'stock_details', 'sold_details'));
     }

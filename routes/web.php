@@ -44,21 +44,21 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::patch('/item/update/{id}', 'App\Http\Controllers\ItemController@update')->name('item-update');
     // Route::delete('/item/delete/{id}', 'App\Http\Controllers\ItemController@delete')->name('item-delete');
 
-    //po_in
-    Route::get('/po_in', 'App\Http\Controllers\PurchaseInController@index')->name('po_in');
-    // Route::get('/po_in/create', 'App\Http\Controllers\PurchaseInController@create')->name('po_in-create');
-    Route::post('/po_in/store', 'App\Http\Controllers\PurchaseInController@store')->name('po_in-store');
-    Route::get('/po_in/edit/{id}', 'App\Http\Controllers\PurchaseInController@edit')->name('po_in-edit');
-    Route::patch('/po_in/update/{id}', 'App\Http\Controllers\PurchaseInController@update')->name('po_in-update');
-    Route::delete('/po_in/delete', 'App\Http\Controllers\PurchaseInController@delete')->name('po_in-delete');
-    Route::patch('/po_in/finalize/{id}', 'App\Http\Controllers\PurchaseInController@finalize')->name('po_in-finalize');
-    Route::get('/po_in/this_month', 'App\Http\Controllers\PurchaseInController@purchase_this_month')->name('po_in_this_month');
+    //po
+    Route::get('/po', 'App\Http\Controllers\PurchaseOrderController@index')->name('po');
+    // Route::get('/po/create', 'App\Http\Controllers\PurchaseOrderController@create')->name('po-create');
+    Route::post('/po/store', 'App\Http\Controllers\PurchaseOrderController@store')->name('po-store');
+    Route::get('/po/edit/{id}', 'App\Http\Controllers\PurchaseOrderController@edit')->name('po-edit');
+    Route::patch('/po/update/{id}', 'App\Http\Controllers\PurchaseOrderController@update')->name('po-update');
+    Route::delete('/po/delete', 'App\Http\Controllers\PurchaseOrderController@delete')->name('po-delete');
+    Route::patch('/po/finalize/{id}', 'App\Http\Controllers\PurchaseOrderController@finalize')->name('po-finalize');
+    Route::get('/po/this_month', 'App\Http\Controllers\PurchaseOrderController@purchase_this_month')->name('po_in_this_month');
 
     //po_in_details
-    Route::post('/po_in/{po_id}/details/store', 'App\Http\Controllers\PurchaseInDetailController@store')->name('po_in_details-store');
-    Route::get('/po_in/{po_id}/details/edit/{id}', 'App\Http\Controllers\PurchaseInDetailController@edit')->name('po_in_details-edit');
-    Route::patch('/po_in/{po_id}/details/update/{id}', 'App\Http\Controllers\PurchaseInDetailController@update')->name('po_in_details-update');
-    Route::delete('/po_in/{po_id}/details/delete', 'App\Http\Controllers\PurchaseInDetailController@delete')->name('po_in_details-delete');
+    Route::post('/po/{po_id}/details/store', 'App\Http\Controllers\PurchaseOrderDetailController@store')->name('po_in_details-store');
+    Route::get('/po/{po_id}/details/edit/{id}', 'App\Http\Controllers\PurchaseOrderDetailController@edit')->name('po_in_details-edit');
+    Route::patch('/po/{po_id}/details/update/{id}', 'App\Http\Controllers\PurchaseOrderDetailController@update')->name('po_in_details-update');
+    Route::delete('/po/{po_id}/details/delete', 'App\Http\Controllers\PurchaseOrderDetailController@delete')->name('po_in_details-delete');
 
     //product
     Route::get('/product', 'App\Http\Controllers\ProductController@index')->name('product');

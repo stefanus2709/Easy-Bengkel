@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Supplier;
-use App\Models\PurchaseIn;
+use App\Models\PurchaseOrder;
 use App\Models\Quotation;
 use App\Models\Mechanic;
 use DB;
@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $brands = Brand::all();
         $products = Product::all();
         $quotations = Quotation::where('finalized', '1')->get();
-        $purchaseIns = PurchaseIn::where('finalized', '1')->get();
+        $purchaseIns = PurchaseOrder::where('finalized', '1')->get();
         $suppliers = Supplier::all();
         $total_asset = Product::total_assets($products);
 

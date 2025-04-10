@@ -4,7 +4,7 @@
 Edit Purchase Order
 @endsection
 
-@section('po_in','active text-white')
+@section('po','active text-white')
 
 @section('content')
 @if(Session::has('success'))
@@ -23,7 +23,7 @@ Edit Purchase Order
         <p class="fs-22px mb-0 pb-0 fw-bolder">
             Edit Purchase Order
         </p>
-        @if ($po_in->finalized)
+        @if ($po->finalized)
         <button type="button" class="btn btn-success fs-16px" style="font-size: 16px;">
             Finalized
         </button>
@@ -36,18 +36,18 @@ Edit Purchase Order
 
     </div>
     <div class="bg-white rounded p-3">
-        <form class="needs-validation" action="/po_in/update/{{$po_in->id}}" method="POST" novalidate>
+        <form class="needs-validation" action="/po/update/{{$po->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
             <div class="mb-3">
-                @if(!blank($po_in->details) || $po_in->finalized)
+                @if(!blank($po->details) || $po->finalized)
                 <fieldset disabled>
                     <label for="disabledSelect" class="form-label">Select Supplier</label>
                     <select id="disabledSelect" class="form-select">
-                        <option>{{$po_in->supplier->name}}-{{$po_in->supplier->company_name}}</option>
+                        <option>{{$po->supplier->name}}-{{$po->supplier->company_name}}</option>
                     </select>
                 </fieldset>
-                <input type="hidden" name="supplier_id" value="{{$po_in->supplier->id}}">
+                <input type="hidden" name="supplier_id" value="{{$po->supplier->id}}">
                 @elseif (!blank($suppliers))
                 <label for="select" class="form-label">Select Supplier</label>
                 <select id="select" class="selectpicker form-control" data-live-search="true" multiple
@@ -63,20 +63,20 @@ Edit Purchase Order
             </div>
             <div class="mb-3">
                 <label for="inputPurchaseInDate" class="form-label">Purchase Date</label>
-                @if ($po_in->finalized)
+                @if ($po->finalized)
                     <input type="date" class="form-control" id="date" name="date" placeholder="Input Purchase Date"
-                    value="{{$po_in->date}}" disabled>
+                    value="{{$po->date}}" disabled>
                 @else
                     <input type="date" class="form-control" id="date" name="date" placeholder="Input Purchase Date"
-                    value="{{$po_in->date}}" required>
+                    value="{{$po->date}}" required>
                 @endif
                 <div class="invalid-feedback">
                     Please input purchase date
                 </div>
             </div>
             <div class="text-end">
-                <a href="/po_in" class="btn btn-secondary">Back</a>
-                @if (!$po_in->finalized)
+                <a href="/po" class="btn btn-secondary">Back</a>
+                @if (!$po->finalized)
                 <button type="submit" class="btn btn-primary">Update</button>
                 @endif
             </div>
@@ -84,7 +84,7 @@ Edit Purchase Order
     </div>
 </div>
 
-@if (!$po_in->finalized)
+@if (!$po->finalized)
 <div class="px-4 pb-4 po-item-content">
     <div class="d-flex justify-content-between mb-2 align-middle">
         <p class="fs-22px mb-0 pb-0 fw-bolder">
@@ -93,15 +93,15 @@ Edit Purchase Order
     </div>
     <div class="bg-white rounded">
         <div class="px-3 py-3">
-            <form class="needs-validation" action="/po_in/{{$po_in->id}}/details/store" method="POST" novalidate>
+            <form class="needs-validation" action="/po/{{$po->id}}/details/store" method="POST" novalidate>
                 @csrf
                 <div class="row g-3">
                     <div class="col-md-4">
-                        @if (!blank($po_in->supplier->products))
+                        @if (!blank($po->supplier->products))
                         <label for="select" class="form-label">Select Product</label>
                         <select id="select-product" class="selectpicker form-control" data-live-search="true" multiple
                             data-max-options="1" name="product_id" required>
-                            @foreach ($po_in->supplier->products as $product)
+                            @foreach ($po->supplier->products as $product)
                             <option value="{{$product->id}}" data-rc="{{$product->price}}">{{$product->name}}</option>
                             @endforeach
                         </select>
@@ -157,7 +157,7 @@ Edit Purchase Order
                         <th class="poppins-medium">Product Name</th>
                         <th class="poppins-medium">Quantity</th>
                         <th class="poppins-medium">Price</th>
-                        @if (!$po_in->finalized)
+                        @if (!$po->finalized)
                         <th class="poppins-medium text-center" style="width: 8%; padding-right: 30px !important;">Action</th>
                         @else
                         <th class="poppins-medium">Total Price</th>
@@ -165,15 +165,15 @@ Edit Purchase Order
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($po_in->details as $detail)
+                    @foreach ($po->details as $detail)
                     <tr class="poppins-medium" style="font-size: 14px">
-                        @if (!$po_in->finalized)
+                        @if (!$po->finalized)
                         <td style="width: 3%; padding-left: 30px !important;">{{$loop->iteration}}</td>
                         <td style="width: 35%;">{{$detail->product->name}}</td>
                         <td style="width: 20%;">{{number_format($detail->quantity, 0, ',', '.')}}</td>
                         <td style="width: 25%;">{{number_format($detail->price, 0, ',', '.')}}</td>
                         <td class="text-center" style="width: 8%; padding-right: 30px !important;">
-                            <a href="/po_in/{{$po_in->id}}/details/edit/{{$detail->id}}" class="btn btn-info  btn-action-style" style="text-align: center">
+                            <a href="/po/{{$po->id}}/details/edit/{{$detail->id}}" class="btn btn-info  btn-action-style" style="text-align: center">
                                 <i class="icofont-pencil-alt-2 text-light"></i>
                             </a>
                             <button type="button" class="btn btn-danger btn-action-style" data-bs-toggle="modal" data-bs-target="#deletePurchaseInProductModal" data-myId="{{$detail->id}}">
@@ -194,7 +194,7 @@ Edit Purchase Order
             <hr>
             <div class="d-flex justify-content-between mb-2 align-middle px-3 pb-3 fw-bolder">
                 <div>Total Product Price</div>
-                <div>{{number_format($po_in->total_product_price($po_in), 0, ',', '.')}}</div>
+                <div>{{number_format($po->total_product_price($po), 0, ',', '.')}}</div>
             </div>
         </div>
     </div>
@@ -211,7 +211,7 @@ Edit Purchase Order
             </div>
             <div class="modal-body">
                 <div>
-                    <form action="/po_in/{{$po_in->id}}/details/delete" method="POST" id="editForm">
+                    <form action="/po/{{$po->id}}/details/delete" method="POST" id="editForm">
                         @csrf
                         @method('DELETE')
                         <div class="">
@@ -240,7 +240,7 @@ Edit Purchase Order
             </div>
             <div class="modal-body">
                 <div>
-                    <form action="/po_in/finalize/{{$po_in->id}}" method="POST" id="editForm">
+                    <form action="/po/finalize/{{$po->id}}" method="POST" id="editForm">
                         @csrf
                         @method('PATCH')
                         <div class="">
@@ -270,7 +270,7 @@ Edit Purchase Order
             }
         });
 
-        $('select[name=supplier_id]').selectpicker('val', '{{$po_in->supplier_id}}');
+        $('select[name=supplier_id]').selectpicker('val', '{{$po->supplier_id}}');
 
         $('#deletePurchaseInProductModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);

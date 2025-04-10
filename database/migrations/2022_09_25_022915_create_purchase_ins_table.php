@@ -13,7 +13,7 @@ class CreatePurchaseInsTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_ins', function (Blueprint $table) {
+        Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade')->onUpdate('cascade');
@@ -31,6 +31,6 @@ class CreatePurchaseInsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_ins');
+        Schema::dropIfExists('purchase_orders');
     }
 }

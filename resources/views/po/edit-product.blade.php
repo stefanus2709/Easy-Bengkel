@@ -12,7 +12,7 @@ Edit Purchase Product
         </p>
     </div>
     <div class="bg-white rounded p-3">
-        <form class="needs-validation" action="/po_in/{{$po_detail->purchase_in_id}}/details/update/{{$po_detail->id}}" method="POST" novalidate>
+        <form class="needs-validation" action="/po/{{$po_detail->purchase_order_id}}/details/update/{{$po_detail->id}}" method="POST" novalidate>
             @csrf
             @method('PATCH')
             <div class="mb-3">
@@ -30,7 +30,7 @@ Edit Purchase Product
                 </div>
             </div> --}}
             <div class="text-end">
-                <a href="/po_in/edit/{{$po_detail->purchase_in_id}}" class="btn btn-secondary">Back</a>
+                <a href="/po/edit/{{$po_detail->purchase_order_id}}" class="btn btn-secondary">Back</a>
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
